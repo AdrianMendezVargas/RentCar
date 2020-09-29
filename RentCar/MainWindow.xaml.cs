@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RentCar.UI.Registros;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,12 @@ namespace RentCar {
         }
         public MainWindow() {
             InitializeComponent();
+        }
+
+        private void RegistroRentaMenuItem_Click(object sender , RoutedEventArgs e) {
+            RegistroRenta registroRenta = new RegistroRenta();
+            registroRenta.Owner = this;
+            registroRenta.Show();
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Rudy_BuyOrRentACar {
+namespace RentCar {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

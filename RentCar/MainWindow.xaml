@@ -10,6 +10,7 @@
 
         <Menu >
             <MenuItem Header="_Registros">
+                <MenuItem Name="RegistroRentaMenuItem" Header="Registrar R_enta" Click="RegistroRentaMenuItem_Click"/>
                 
             </MenuItem>
 

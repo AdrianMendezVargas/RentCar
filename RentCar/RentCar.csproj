@@ -40,7 +40,6 @@
     <Folder Include="BLL\" />
     <Folder Include="Entidades\" />
     <Folder Include="UI\Consulta\" />
-    <Folder Include="UI\Registros\" />
   </ItemGroup>
 
   <ItemGroup>
