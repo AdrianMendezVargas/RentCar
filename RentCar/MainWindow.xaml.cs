@@ -18,6 +18,10 @@ namespace RentCar {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
+        protected override void OnClosed(EventArgs e) {
+            this.Owner.Show();
+        }
         public MainWindow() {
             InitializeComponent();
         }
