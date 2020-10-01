@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar.UI.Consulta"
         mc:Ignorable="d"
-        Title="ConsultaVehiculos" Height="450" Width="800">
+        Title="ConsultaClientes" Height="350" Width="600">
     <Grid>
-        
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Filtro:" Margin="10,0"/>
+                <Label Content="Criterio:" Margin="80,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <ComboBox Width="100" Margin="10,0" Height="23">
+                    <ComboBoxItem Content="Todo"/>
+                </ComboBox>
+
+                <TextBox Text="" Width="200" Height="23" Margin="20,0"/>
+
+                <Button>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Resources/buscar.png" Width="25"/>
+                        <Label Content="Buscar"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+            <DataGrid Height="250" Margin="10,15"/>
+        </StackPanel>
     </Grid>
 </Window>
