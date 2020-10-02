@@ -10,6 +10,7 @@
 
         <Menu >
             <MenuItem Header="_Registros">
+                <MenuItem Name="RegistroClienteMenuItem" Header="Registrar _Cliente" Click="RegistroClienteMenuItem_Click"/>
                 <MenuItem Name="RegistroRentaMenuItem" Header="Registrar _Renta" Click="RegistroRentaMenuItem_Click"/>
                 <MenuItem Name="RegistroImportadorMenuItem" Header="Registrar _Importador" Click="RegistroImportadorMenuItem_Click"/>
                 <MenuItem Name="RegistroVehiculoMenuItem" Header="Registrar _Vehiculo" Click="RegistroVehiculoMenuItem_Click"/>

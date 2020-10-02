@@ -46,6 +46,12 @@ namespace RentCar {
             registro.Show();
         }
 
+        private void RegistroClienteMenuItem_Click(object sender , RoutedEventArgs e) {
+            RegistroCliente registro = new RegistroCliente();
+            registro.Owner = this;
+            registro.Show();
+        }
+
         private void ConsultaVehiculoMenuItem_Click(object sender , RoutedEventArgs e) {
             
         }
@@ -61,5 +67,7 @@ namespace RentCar {
             consulta.Owner = this;
             consulta.Show();
         }
+
+        
     }
 }

@@ -15,9 +15,9 @@ namespace RentCar.UI.Registros
     /// <summary>
     /// Interaction logic for Cliente.xaml
     /// </summary>
-    public partial class Cliente : Window
+    public partial class RegistroCliente : Window
     {
-        public Cliente()
+        public RegistroCliente()
         {
             InitializeComponent();
         }
