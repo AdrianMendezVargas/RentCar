@@ -10,12 +10,15 @@
 
         <Menu >
             <MenuItem Header="_Registros">
-                <MenuItem Name="RegistroRentaMenuItem" Header="Registrar R_enta" Click="RegistroRentaMenuItem_Click"/>
-                
+                <MenuItem Name="RegistroRentaMenuItem" Header="Registrar _Renta" Click="RegistroRentaMenuItem_Click"/>
+                <MenuItem Name="RegistroImportadorMenuItem" Header="Registrar _Importador" Click="RegistroImportadorMenuItem_Click"/>
+                <MenuItem Name="RegistroVehiculoMenuItem" Header="Registrar _Vehiculo" Click="RegistroVehiculoMenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Header="_Consultas">
-                
+                <MenuItem Name="ConsultaClientesMenuItem" Header="Consultar _Clientes" Click="ConsultaClientesMenuItem_Click"/>
+                <MenuItem Name="ConsultaRentasMenuItem" Header="Consultar _Rentas" Click="ConsultaRentasMenuItem_Click"/>
+                <MenuItem Name="ConsultaVehiculoMenuItem" Header="Consultar _Vehiculos" Click="ConsultaVehiculoMenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Name="OpcionesAdminMenuItem" Header="_Reportes">

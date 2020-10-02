@@ -15,7 +15,7 @@
             <ComboBoxItem Content="Cliente Id"/>
             <ComboBoxItem Content="Nombre"/>
         </ComboBox>
-        <Button  x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,36,33,0" VerticalAlignment="Top">
+        <Button  x:Name="BuscarButton" Height="30" HorizontalAlignment="Right" Margin="0,36,33,0" VerticalAlignment="Top">
             <Button.Content>
                 <DockPanel>
                     <Image Source="/Resources/buscar.png"/>

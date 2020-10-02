@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace RentCar.UI.Registros
 {
     /// <summary>
-    /// Interaction logic for Vehiculo.xaml
+    /// Interaction logic for RegistrodeImportador.xaml
     /// </summary>
-    public partial class Vehiculo : Window
+    public partial class RegistroImportador : Window
     {
-        public Vehiculo()
+        public RegistroImportador()
         {
             InitializeComponent();
         }

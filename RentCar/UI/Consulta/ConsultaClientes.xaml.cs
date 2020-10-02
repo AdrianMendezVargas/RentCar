@@ -14,8 +14,8 @@ namespace RentCar.UI.Consulta {
     /// <summary>
     /// Interaction logic for ConsultaVehiculos.xaml
     /// </summary>
-    public partial class ConsultaVehiculos : Window {
-        public ConsultaVehiculos() {
+    public partial class ConsultaClientes : Window {
+        public ConsultaClientes() {
             InitializeComponent();
         }
     }

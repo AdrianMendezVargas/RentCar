@@ -1,4 +1,5 @@
-﻿using RentCar.UI.Registros;
+﻿using RentCar.UI.Consulta;
+using RentCar.UI.Registros;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,37 @@ namespace RentCar {
         }
 
         private void RegistroRentaMenuItem_Click(object sender , RoutedEventArgs e) {
-            RegistroRenta registroRenta = new RegistroRenta();
-            registroRenta.Owner = this;
-            registroRenta.Show();
+            RegistroRenta registro = new RegistroRenta();
+            registro.Owner = this;
+            registro.Show();
+        }
+
+        private void RegistroVehiculoMenuItem_Click(object sender , RoutedEventArgs e) {
+            RegistroVehiculo registro = new RegistroVehiculo();
+            registro.Owner = this;
+            registro.Show();
+        }
+
+        private void RegistroImportadorMenuItem_Click(object sender , RoutedEventArgs e) {
+            RegistroImportador registro = new RegistroImportador();
+            registro.Owner = this;
+            registro.Show();
+        }
+
+        private void ConsultaVehiculoMenuItem_Click(object sender , RoutedEventArgs e) {
+            
+        }
+
+        private void ConsultaClientesMenuItem_Click(object sender , RoutedEventArgs e) {
+            ConsultaClientes consulta = new ConsultaClientes();
+            consulta.Owner = this;
+            consulta.Show();
+        }
+
+        private void ConsultaRentasMenuItem_Click(object sender , RoutedEventArgs e) {
+            ConsultaRentas consulta = new ConsultaRentas();
+            consulta.Owner = this;
+            consulta.Show();
         }
     }
 }
