@@ -180,7 +180,7 @@
             </Button>
 
 
-            <Button  x:Name="EliminarButton" HorizontalAlignment="Right">
+            <Button  x:Name="EliminarButton" HorizontalAlignment="Right" Click="EliminarButton_Click">
                 <DockPanel>
                     <Image Source="/Resources/eliminar.png"/>
                     <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
