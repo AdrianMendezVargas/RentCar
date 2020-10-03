@@ -23,8 +23,9 @@
             </MenuItem>
 
             <MenuItem Name="OpcionesAdminMenuItem" Header="_Reportes">
-                <MenuItem Name="ReporteRentas" Header="_Reportar Rentas" />
-                <MenuItem Name="ReporteClientes" Header="_Reportar Clientes" />
+                <MenuItem Name="ReportePolizasMenuItem" Header="_Reportar Polizas" Click="ReportePolizas_Click" />
+                <MenuItem Name="ReporteRentasMenuItem" Header="_Reportar Rentas" />
+                <MenuItem Name="ReporteClientesMenuItem" Header="_Reportar Clientes" />
             </MenuItem>
 
         </Menu>

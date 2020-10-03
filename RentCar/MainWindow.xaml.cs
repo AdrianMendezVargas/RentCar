@@ -1,5 +1,6 @@
 ﻿using RentCar.UI.Consulta;
 using RentCar.UI.Registros;
+using RentCar.UI.Reportes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,10 @@ namespace RentCar {
             consulta.Show();
         }
 
-        
+        private void ReportePolizas_Click(object sender , RoutedEventArgs e) {
+            ReportePolizas reporte = new ReportePolizas();
+            reporte.Owner = this;
+            reporte.ShowDialog();
+        }
     }
 }

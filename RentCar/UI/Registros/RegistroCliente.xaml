@@ -3,59 +3,122 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RentCar.UI.Registros"
+        xmlns:local="clr-namespace:RentCar.UI.Registros" xmlns:validaciones="clr-namespace:RentCar.UI.Validaciones"
         mc:Ignorable="d"
-        Title="Cliente" Height="450" Width="696">
+        Title="Cliente" Height="418" Width="400">
     <Grid>
-        <Label x:Name="ClienteID" Content="ClienteID" HorizontalAlignment="Left" Margin="105,73,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Nombre" Content="Nombre" HorizontalAlignment="Left" Margin="105,132,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Apellidos" Content="Apellidos" HorizontalAlignment="Left" Margin="105,191,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Direccion" Content="Direccion" HorizontalAlignment="Left" Margin="105,307,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Cedula" Content="Cedula" HorizontalAlignment="Left" Margin="105,246,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Email" Content="Email" HorizontalAlignment="Left" Margin="362,246,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="Telefono" Content="Telefono" HorizontalAlignment="Left" Margin="362,307,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ClientetextBox" HorizontalAlignment="Left" Margin="199,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NombretextBox" HorizontalAlignment="Left" Margin="199,136,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="ApellidostextBox" HorizontalAlignment="Left" Margin="199,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="CedulatextBox" HorizontalAlignment="Left" Margin="199,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="DirecciontextBox" HorizontalAlignment="Left" Margin="199,311,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="EmsiltextBox" HorizontalAlignment="Left" Margin="440,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="TelefonotextBox" HorizontalAlignment="Left" Margin="440,311,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button  x:Name="BuscarButton" Height="30" HorizontalAlignment="Right" Margin="0,71,222,0" VerticalAlignment="Top">
-            <DockPanel>
-                <Image Source="/Resources/buscar.png"/>
-                <TextBlock VerticalAlignment="Center" Text="Buscar"/>
-            </DockPanel>
+        <Label Content="Cliente Id" HorizontalAlignment="Left" Margin="30,79,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ClienteIdTextBox"  HorizontalAlignment="Right" Margin="0,83,125,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+            <TextBox.Text>
+                <Binding Path="cliente.ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
+
+        <Label Content="Nombres" HorizontalAlignment="Left" Margin="30,105,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NombresTextBox"  HorizontalAlignment="Right" Margin="0,109,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
+            <TextBox.Text>
+                <Binding Path="cliente.Nombres" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                    <Binding.ValidationRules>
+                        <validaciones:CamposOblicatoriosRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+
+        <Button  x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,75,50,0" VerticalAlignment="Top">
+            <Button.Content>
+                <DockPanel>
+                    <Image Source="/Resources/buscar.png"/>
+                    <TextBlock VerticalAlignment="Center" Text="Buscar"/>
+                </DockPanel>
+
+            </Button.Content>
         </Button>
+
         <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="248" Margin="0,0,0,23" Height="30">
 
 
-            <Button  x:Name="NuevoButton" HorizontalAlignment="Left">
-                <DockPanel>
-                    <Image Source="/Resources/nuevo.png"/>
-                    <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
-                </DockPanel>
+            <Button  x:Name="NuevoButton" Click="NuevoButton_Click" HorizontalAlignment="Left">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/nuevo.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
+                    </DockPanel>
 
+                </Button.Content>
             </Button>
 
-            <Button  x:Name="GuardarButton" HorizontalAlignment="Center">
-                <DockPanel>
-                    <Image Source="/Resources/guardar.png"/>
-                    <TextBlock VerticalAlignment="Center" Text="Guardar"/>
-                </DockPanel>
+            <Button  x:Name="GuardarButton" Click="GuardarButton_Click" HorizontalAlignment="Center">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/guardar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Guardar"/>
+                    </DockPanel>
 
+                </Button.Content>
             </Button>
 
 
-            <Button  x:Name="EliminarButton" HorizontalAlignment="Right">
-                <DockPanel>
-                    <Image Source="/Resources/eliminar.png"/>
-                    <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
-                </DockPanel>
+            <Button  x:Name="EliminarButton" Click="EliminarButton_Click" HorizontalAlignment="Right">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/eliminar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
+                    </DockPanel>
 
+                </Button.Content>
             </Button>
 
         </Grid>
+        <Label Content="Email" HorizontalAlignment="Left" Margin="30,161,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="EmailTextBox"  HorizontalAlignment="Right" Margin="0,165,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
+            <Binding Path="cliente.Email" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                <Binding.ValidationRules>
+                    <validaciones:CamposOblicatoriosRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <Label Content="Dirección" HorizontalAlignment="Left" Margin="30,189,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="DireccionTextBox"  HorizontalAlignment="Right" Margin="0,193,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
+            <Binding Path="cliente.Direccion" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                <Binding.ValidationRules>
+                    <validaciones:CamposOblicatoriosRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <Label Content="Cédula" HorizontalAlignment="Left" Margin="30,219,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="CedulaTextBox"  HorizontalAlignment="Right" Margin="0,223,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
+            <Binding Path="cliente.Cedula" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                <Binding.ValidationRules>
+                    <validaciones:CamposOblicatoriosRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <Label Content="Teléfono" HorizontalAlignment="Left" Margin="30,249,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TelefonoTextBox"  HorizontalAlignment="Right" Margin="0,253,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
+            <Binding Path="cliente.Telefono" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                <Binding.ValidationRules>
+                    <validaciones:CamposOblicatoriosRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <Label Content="Fecha de Nacimiento" HorizontalAlignment="Left" Margin="30,280,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="FechaNacimientoDatePicker" HorizontalAlignment="Right" SelectedDate="{Binding cliente.FechaNacimiento, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,281,50,0" VerticalAlignment="Top" Width="135">
+
+        </DatePicker>
+        <Label Content="Apellidos" HorizontalAlignment="Left" Margin="30,133,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ApellidosTextBox"  HorizontalAlignment="Right" Margin="0,137,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
+            <Binding Path="cliente.Apellidos" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                <Binding.ValidationRules>
+                    <validaciones:CamposOblicatoriosRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
     </Grid>
 </Window>

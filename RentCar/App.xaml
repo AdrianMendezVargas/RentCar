@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:RentCar"
              StartupUri="Login.xaml"
              DispatcherUnhandledException="Application_DispatcherUnhandledException">
-    
+
     <Application.Resources>
 
         <Style TargetType="{x:Type TextBox}">
@@ -179,6 +179,7 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+
 
     </Application.Resources>
 </Application>
