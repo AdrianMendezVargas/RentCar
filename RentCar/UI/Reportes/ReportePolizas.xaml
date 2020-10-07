@@ -6,12 +6,12 @@
         xmlns:local="clr-namespace:RentCar.UI.Reportes"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Reporte de polizas" Height="743" Width="535.5" ResizeMode="NoResize" FontFamily="Roboto" WindowStartupLocation="CenterScreen">
+        Title="Reporte de polizas" Height="743" Width="660" ResizeMode="NoResize" FontFamily="Roboto" WindowStartupLocation="CenterScreen">
     <ScrollViewer>
         <Grid>
             <Button x:Name="ImprimirButton" HorizontalAlignment="Right" ToolTip="Imprimir" Margin="0,10,10,0" Click="ImprimirButton_Click" VerticalAlignment="Top" >
                 <Grid Width="auto">
-                    <Rectangle Fill="#FF5CC8CD" Height="30" Width="auto" RadiusX="3" RadiusY="3" Stroke="Black" Cursor="Hand"/>
+                    <Rectangle Fill="#FF5CC8CD" Height="30" Width="auto" RadiusX="3" RadiusY="3" StrokeThickness="1.5" Stroke="Black" Cursor="Hand"/>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Margin="5" Kind="Printer" VerticalAlignment="Center" Foreground="White" />
                         <Label Content="Imprimir" Margin="0 0 5 0" Foreground="#DDFFFFFF" VerticalAlignment="Center"/>
@@ -20,26 +20,26 @@
             </Button>
             <Grid x:Name="print">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="120"/>
-                    <RowDefinition Height="400"/>
-                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Margin="30" Grid.Row="0">
                     <TextBlock Text="Code" Margin="4" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2D2D2D"/>
                     <TextBlock Text="RentCar" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF5CC8CD"/>
                 </StackPanel>
-                <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="20">
+                <StackPanel Grid.Row="1" Height="auto" HorizontalAlignment="Stretch" Margin="20">
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Margin="10">
-                            <TextBlock Text="Polizas a renovar" FontSize="20" Margin="5"/>
+                            <TextBlock Text="Polizas a renovar" FontSize="20" FontWeight="DemiBold" Margin="5"/>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Fecha:" FontSize="12" Margin="5"/>
-                                <TextBlock Text="04 Jul 2020" FontSize="12" Margin="5" FontWeight="DemiBold"/>
+                                <TextBlock Text="{Binding FechaActual}" FontSize="12" Margin="5" FontWeight="DemiBold"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Invoice No:" FontSize="12" Margin="5"/>
@@ -55,61 +55,35 @@
 
                     <Grid Margin="10 30 10 0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="DESCRIPTION" Grid.Column="0" FontSize="12" FontWeight="ExtraLight"/>
-                        <TextBlock Text="RATE" Grid.Column="1" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
-                        <TextBlock Text="HOURS" Grid.Column="2" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
-                        <TextBlock Text="SUBTOTAL" Grid.Column="3" FontSize="12" FontWeight="ExtraLight" HorizontalAlignment="Right"/>
+                        <TextBlock Text="POLIZA" Grid.Column="0" FontSize="14" FontWeight="ExtraLight"/>
+                        <TextBlock Text="VEHICULO" Grid.Column="1" FontSize="14" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
+                        <TextBlock Text="MONTO ASEGURADO" Grid.Column="2" FontSize="14" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
+                        <TextBlock Text="CADUCA" Grid.Column="3" FontSize="14" FontWeight="ExtraLight" HorizontalAlignment="Center"/>
                     </Grid>
+                    <ListBox x:Name="PolizasListBox" HorizontalContentAlignment="Stretch" Height="auto" BorderBrush="{x:Null}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding PolizaId}" FontSize="12"/>
+                                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text="{Binding VehiculoId}" FontSize="12"/>
+                                    <TextBlock Grid.Column="2" HorizontalAlignment="Right" Text="{Binding MontoAsegurado}" FontSize="12"/>
+                                    <TextBlock Grid.Column="3" HorizontalAlignment="Center" Text="{Binding FechaFinalCorta}" FontSize="12"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                     <Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5"/>
-                    <ListView BorderBrush="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <ListViewItem>
-                            <Grid HorizontalAlignment="Stretch" Margin="1" Width="480">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="Website design" Grid.Column="0"/>
-                                <TextBlock Text="$ 45.00" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="10" Grid.Column="2" HorizontalAlignment="Center"/>
-                                <TextBlock Text="$ 450.00" Grid.Column="3" HorizontalAlignment="Center" Foreground="#FF62013C"/>
-                            </Grid>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <Grid HorizontalAlignment="Stretch" Margin="1" Width="480">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="Logo design" Grid.Column="0"/>
-                                <TextBlock Text="$ 30.00" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="20" Grid.Column="2" HorizontalAlignment="Center"/>
-                                <TextBlock Text="$ 600.00" Grid.Column="3" HorizontalAlignment="Center" Foreground="#FF62013C"/>
-                            </Grid>
-                        </ListViewItem>
-                        <ListViewItem>
-                            <Grid HorizontalAlignment="Stretch" Margin="1" Width="480">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="3*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                    <ColumnDefinition Width="1*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="Backend Development" Grid.Column="0"/>
-                                <TextBlock Text="$ 45.00" Grid.Column="1" HorizontalAlignment="Center"/>
-                                <TextBlock Text="12" Grid.Column="2" HorizontalAlignment="Center"/>
-                                <TextBlock Text="$ 540.00" Grid.Column="3" HorizontalAlignment="Center" Foreground="#FF62013C"/>
-                            </Grid>
-                        </ListViewItem>
-                    </ListView>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Margin="20 0">
