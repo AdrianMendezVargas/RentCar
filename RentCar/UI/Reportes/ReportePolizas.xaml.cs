@@ -36,11 +36,11 @@ namespace RentCar.UI.Reportes {
 
         private void BuscarPolizasARenovar() {
 
-            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , MontoAsegurado = 300000, FechaFinal = new DateTime(2020 , 11 , 5) });
+            Polizas.Add(new Poliza { PolizaId = 2 , VehiculoId = 2 , MontoAsegurado = 500000 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            Polizas.Add(new Poliza { PolizaId = 3 , VehiculoId = 3 , MontoAsegurado = 100000000 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 4 , MontoAsegurado = 300000 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            Polizas.Add(new Poliza { PolizaId = 2 , VehiculoId = 5 , MontoAsegurado = 300000 , FechaFinal = new DateTime(2020 , 11 , 5) });
 
 
             Polizas = Polizas.Where(p => p.FechaFinal.DayOfYear - DIAS_ANTICIPACION <= DateTime.Today.DayOfYear).ToList();
