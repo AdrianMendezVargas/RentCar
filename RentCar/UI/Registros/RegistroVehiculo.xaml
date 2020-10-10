@@ -6,14 +6,16 @@
         xmlns:local="clr-namespace:RentCar.UI.Registros"
         mc:Ignorable="d"
         Title="RegistroVehiculos" Height="560" Width="530" MinHeight="660" MinWidth="544" WindowStartupLocation="CenterScreen">
-    <Grid Margin="0,0,0,-6">
+    <Grid>
         <Label Content="VehiculoId" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="VehiculoIdTextBox" Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="vehiculo.vehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
+            <TextBox.Text>
+                <Binding Path="vehiculo.vehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
         </TextBox>
 
         <Label Content="PolizaId" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top"/>
@@ -146,11 +148,13 @@
             </Binding>
         </TextBox>
 
-        <Button  x:Name="BuscarButton" Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top">
-            <DockPanel>
-                <Image Source="/Resources/buscar.png"/>
-                <TextBlock VerticalAlignment="Center" Text="Buscar"/>
-            </DockPanel>
+        <Button x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top">
+            <Button.Content>
+                <DockPanel>
+                    <Image Source="/Resources/buscar.png"/>
+                    <TextBlock VerticalAlignment="Center" Text="Buscar"/>
+                </DockPanel>
+            </Button.Content>
 
         </Button>
 
@@ -158,28 +162,34 @@
         <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="248" Margin="0,0,0,23" Height="30">
 
 
-            <Button  x:Name="NuevoButton" HorizontalAlignment="Left">
-                <DockPanel>
-                    <Image Source="/Resources/nuevo.png"/>
-                    <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
-                </DockPanel>
+            <Button  x:Name="NuevoButton" Click="NuevoButton_Click" HorizontalAlignment="Left">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/nuevo.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
+                    </DockPanel>
+                </Button.Content>
 
             </Button>
 
-            <Button  x:Name="GuardarButton" HorizontalAlignment="Center">
-                <DockPanel>
-                    <Image Source="/Resources/guardar.png"/>
-                    <TextBlock VerticalAlignment="Center" Text="Guardar"/>
-                </DockPanel>
+            <Button  x:Name="GuardarButton" Click="GuardarButton_Click" HorizontalAlignment="Center">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/guardar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Guardar"/>
+                    </DockPanel>
+                </Button.Content>
 
             </Button>
 
 
-            <Button  x:Name="EliminarButton" HorizontalAlignment="Right" Click="EliminarButton_Click">
-                <DockPanel>
-                    <Image Source="/Resources/eliminar.png"/>
-                    <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
-                </DockPanel>
+            <Button  x:Name="EliminarButton" Click="EliminarButton_Click" HorizontalAlignment="Right">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/eliminar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
+                    </DockPanel>
+                </Button.Content>
 
             </Button>
 
