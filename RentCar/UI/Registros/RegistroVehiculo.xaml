@@ -61,14 +61,9 @@
             </Binding>
         </TextBox>
 
-        <Label Content="Año de Fabricacion" HorizontalAlignment="Left" Margin="8,231,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AñodeFabricacionTextBox" Margin="128,235,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="vehiculo.AñodeFabricacion" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
-        </TextBox>
+        <Label Content="AñoFabricacion" HorizontalAlignment="Left" Margin="18,231,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="AñoFabricacionDatePicker" HorizontalAlignment="Right" SelectedDate="{Binding vehiculo.AñoFabricacion ,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,231,200,0" VerticalAlignment="Top" Width="216" Height="25">
+        </DatePicker>
 
         <Label Content="Precio" HorizontalAlignment="Left" Margin="29,303,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="PrecioTextBox" Margin="128,274,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
