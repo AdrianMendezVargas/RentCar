@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RentCar.DAL;
 
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20201010154640_Inicial")]
+    partial class Inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,32 +104,6 @@ namespace RentCar.Migrations
                     b.HasKey("VehiculoId");
 
                     b.ToTable("Vehiculos");
-                });
-
-            modelBuilder.Entity("RentCar.Entidades.Renta", b =>
-                {
-                    b.Property<int>("RentaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("FechaFinal")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("FechaInicial")
-                        .HasColumnType("TEXT");
-
-                    b.Property<decimal>("MontoTotal")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("VehiculoId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("RentaId");
-
-                    b.ToTable("Rentas");
                 });
 #pragma warning restore 612, 618
         }
