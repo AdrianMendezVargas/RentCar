@@ -47,6 +47,32 @@ namespace RentCar.Migrations
 
                     b.ToTable("Clientes");
                 });
+
+            modelBuilder.Entity("RentCar.Entidades.Renta", b =>
+                {
+                    b.Property<int>("RentaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaFinal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaInicial")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VehiculoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RentaId");
+
+                    b.ToTable("Rentas");
+                });
 #pragma warning restore 612, 618
         }
     }

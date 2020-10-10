@@ -9,8 +9,8 @@ using RentCar.DAL;
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201003194929_inicial")]
-    partial class inicial
+    [Migration("20201010183009_AddRentas")]
+    partial class AddRentas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,32 @@ namespace RentCar.Migrations
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.Renta", b =>
+                {
+                    b.Property<int>("RentaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaFinal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaInicial")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VehiculoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RentaId");
+
+                    b.ToTable("Rentas");
                 });
 #pragma warning restore 612, 618
         }
