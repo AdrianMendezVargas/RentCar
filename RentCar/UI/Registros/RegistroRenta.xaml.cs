@@ -22,9 +22,18 @@ namespace RentCar.UI.Registros {
 
         bool BuscarButtonPresionado = false;
 
-        public RegistroRenta() {
+        public RegistroRenta(int rentaId = 0) {
             InitializeComponent();
             this.DataContext = this;
+
+            if (rentaId > 0) {
+                InicializarRenta(rentaId);
+                BuscarButtonPresionado = true;
+            }
+        }
+
+        async Task InicializarRenta(int rentaId) {
+            Renta = await RentasBLL.Buscar(rentaId);
         }
 
         protected override async void OnClosed(EventArgs e) {

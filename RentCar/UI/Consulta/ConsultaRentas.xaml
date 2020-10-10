@@ -86,11 +86,14 @@
                     <DataGridTemplateColumn Header="" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Editar"/>
+                                <Button x:Name="EditarButton" Content="Ver" Click="EditarButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
+                <d:DataGrid.Items>
+                    <MenuItem></MenuItem>
+                </d:DataGrid.Items>
             </DataGrid>
         </Grid>
         

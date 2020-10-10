@@ -97,5 +97,13 @@ namespace RentCar.UI.Consulta {
 
         }
 
+        private void EditarButton_Click(object sender , RoutedEventArgs e) {
+            Renta renta = (sender as Button).DataContext as Renta;
+
+            RegistroRenta registroRenta = new RegistroRenta(renta.RentaId);
+            registroRenta.Owner = this;
+            registroRenta.Show();
+
+        }
     }
 }
