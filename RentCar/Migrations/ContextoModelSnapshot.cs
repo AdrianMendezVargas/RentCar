@@ -48,62 +48,6 @@ namespace RentCar.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("RentCar.Entidades.Vehiculo", b =>
-                {
-                    b.Property<int>("VehiculoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("AñoFabricacion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Chassis")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comentario")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Estado")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Marca")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Matricula")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Modelo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Pasajeros")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Placa")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("PolizaId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Precio")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Puertas")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Tipo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Traccion")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Valor")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("VehiculoId");
-
-                    b.ToTable("Vehiculos");
-                });
-
             modelBuilder.Entity("RentCar.Entidades.Renta", b =>
                 {
                     b.Property<int>("RentaId")
@@ -128,6 +72,68 @@ namespace RentCar.Migrations
                     b.HasKey("RentaId");
 
                     b.ToTable("Rentas");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.Vehiculo", b =>
+                {
+                    b.Property<int>("VehiculoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Ano")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("AñoFabricacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Chassis")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comentario")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Kilometraje")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Marca")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Matricula")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Pasajeros")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Placa")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PolizaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<decimal>("PrecioDia")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Puertas")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tipo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Traccion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("VehiculoId");
+
+                    b.ToTable("Vehiculos");
                 });
 #pragma warning restore 612, 618
         }

@@ -27,6 +27,11 @@ namespace RentCar.UI.Consulta {
             InicializarRentas();
         }
 
+        public async Task InicializarYFiltrarRentas() {
+            await InicializarRentas();
+            CargarGrid();
+        }
+
         private async Task InicializarRentas() {
             Rentas = await RentasBLL.GetRentas();
             CargarGrid();
@@ -42,7 +47,7 @@ namespace RentCar.UI.Consulta {
             FiltrarRentas();
         }
 
-        public async Task CargarGrid() {
+        public void CargarGrid() {
             ResultadosDataGrid.ItemsSource = null;
             ResultadosDataGrid.ItemsSource = Rentas;
         }

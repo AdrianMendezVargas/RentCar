@@ -9,8 +9,8 @@ using RentCar.DAL;
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201010154640_Inicial")]
-    partial class Inicial
+    [Migration("20201010202212_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,10 +50,39 @@ namespace RentCar.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("RentCar.Entidades.Renta", b =>
+                {
+                    b.Property<int>("RentaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaFinal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaInicial")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("MontoTotal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VehiculoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RentaId");
+
+                    b.ToTable("Rentas");
+                });
+
             modelBuilder.Entity("RentCar.Entidades.Vehiculo", b =>
                 {
                     b.Property<int>("VehiculoId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Ano")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("AñoFabricacion")
@@ -65,8 +94,11 @@ namespace RentCar.Migrations
                     b.Property<string>("Comentario")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Estado")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Estado")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Kilometraje")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Marca")
                         .HasColumnType("TEXT");
@@ -86,7 +118,7 @@ namespace RentCar.Migrations
                     b.Property<int>("PolizaId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Precio")
+                    b.Property<decimal>("PrecioDia")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Puertas")
@@ -98,7 +130,7 @@ namespace RentCar.Migrations
                     b.Property<string>("Traccion")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Valor")
+                    b.Property<decimal>("Valor")
                         .HasColumnType("TEXT");
 
                     b.HasKey("VehiculoId");

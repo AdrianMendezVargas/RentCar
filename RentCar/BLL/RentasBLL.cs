@@ -9,7 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace RentCar.BLL {
-    public class RentasBLL {
+    public class RentasBLL {         //TODO: Cuando la renta no este activa, liberar el vehiculo
+        public static object VehiculosBLL { get; private set; }
 
         public async static Task<bool> Guardar(Renta renta) {
             if (!await Existe(renta.RentaId))
@@ -26,10 +27,13 @@ namespace RentCar.BLL {
                 contexto.Rentas.Add(renta);
                 paso = await contexto.SaveChangesAsync() > 0;
 
-                //if (paso) {
-                //    var vehiculoRentado = await VehiculosBLL.Buscar(renta.VehiculoId);
-                //    vehiculoRentado.Estado = VehiculoEstado.Rentado;
-                //}
+                if (paso) {
+                    var vehiculoRentado = await VehiculoBLL.Buscar(renta.VehiculoId);
+                    if (vehiculoRentado != null) {
+                        vehiculoRentado.Estado = VehiculoEstado.Rentado;
+                        await VehiculoBLL.Modificar(vehiculoRentado);
+                    }
+                }
 
             } catch (Exception) {
                 throw;
@@ -68,10 +72,13 @@ namespace RentCar.BLL {
                     contexto.Rentas.Remove(renta);
                     paso = await contexto.SaveChangesAsync() > 0;
 
-                    //if (paso) {
-                    //    var vehiculoRentado = await VehiculosBLL.Buscar(renta.VehiculoId);
-                    //    vehiculoRentado.Estado = VehiculoEstado.Disponible;
-                    //}
+                    if (paso) {
+                        var vehiculoRentado = await VehiculoBLL.Buscar(renta.VehiculoId);
+                        if (vehiculoRentado != null) {
+                            vehiculoRentado.Estado = VehiculoEstado.Disponible;
+                            await VehiculoBLL.Modificar(vehiculoRentado);
+                        }
+                    }
                 }
             } catch (Exception) {
                 throw;

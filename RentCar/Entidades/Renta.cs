@@ -16,10 +16,10 @@ namespace RentCar.Entidades {
         public int ClienteId { get; set; }
 
         [Required]
-        public DateTime FechaInicial { get; set; }
+        public DateTime FechaInicial { get; set; } = DateTime.Now;
 
         [Required]
-        public DateTime FechaFinal { get; set; }
+        public DateTime FechaFinal { get; set; } = DateTime.Now;
 
         [Required]
         public decimal MontoTotal { get; set; }

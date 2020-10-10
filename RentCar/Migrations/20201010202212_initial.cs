@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentCar.Migrations
 {
-    public partial class AddRentas : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,6 +42,35 @@ namespace RentCar.Migrations
                 {
                     table.PrimaryKey("PK_Rentas", x => x.RentaId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Vehiculos",
+                columns: table => new
+                {
+                    VehiculoId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    PolizaId = table.Column<int>(nullable: false),
+                    Matricula = table.Column<string>(nullable: true),
+                    Placa = table.Column<string>(nullable: true),
+                    Marca = table.Column<string>(nullable: true),
+                    Modelo = table.Column<string>(nullable: true),
+                    AñoFabricacion = table.Column<DateTime>(nullable: false),
+                    Estado = table.Column<int>(nullable: false),
+                    PrecioDia = table.Column<decimal>(nullable: false),
+                    Kilometraje = table.Column<int>(nullable: false),
+                    Ano = table.Column<int>(nullable: false),
+                    Chassis = table.Column<string>(nullable: true),
+                    Pasajeros = table.Column<string>(nullable: true),
+                    Puertas = table.Column<string>(nullable: true),
+                    Traccion = table.Column<string>(nullable: true),
+                    Comentario = table.Column<string>(nullable: true),
+                    Valor = table.Column<decimal>(nullable: false),
+                    Tipo = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehiculos", x => x.VehiculoId);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -51,6 +80,9 @@ namespace RentCar.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rentas");
+
+            migrationBuilder.DropTable(
+                name: "Vehiculos");
         }
     }
 }

@@ -22,18 +22,6 @@ namespace RentCar.UI.Registros {
 
         bool BuscarButtonPresionado = false;
 
-        class Vehiculo {
-            public int VehiculoId { get; set; }
-            public int PolizaId { get; set; }
-            public string Marca { get; set; }
-            public decimal PrecioDia { get; set; }
-            public string Modelo { get; set; }
-            public string Chassis { get; set; }
-            public int Ano { get; set; }
-            public int Kilometraje { get; set; }
-            public VehiculoEstado Estado { get; set; }
-        }
-
         public RegistroRenta() {
             InitializeComponent();
             this.DataContext = this;
@@ -43,7 +31,7 @@ namespace RentCar.UI.Registros {
             base.OnClosed(e);
 
             if (Owner.GetType() == typeof(ConsultaRentas)) {
-                await ((ConsultaRentas) Owner).CargarGrid();
+                await ((ConsultaRentas) Owner).InicializarYFiltrarRentas();
             }
 
             Owner.Focus();
@@ -102,7 +90,7 @@ namespace RentCar.UI.Registros {
                 Limpiar();
 
                 if (Owner.GetType() == typeof(ConsultaRentas)) {
-                    await ((ConsultaRentas) Owner).CargarGrid();
+                    await ((ConsultaRentas) Owner).InicializarYFiltrarRentas();
                 }
 
                 MessageBox.Show("Guardado.");
@@ -185,19 +173,19 @@ namespace RentCar.UI.Registros {
                 validados = false;
                 mensaje += "\nVehículo Id invalido.";
             } else {                                                              //  TODO: Revisar
-                //Vehiculo vehiculo = VehiculosBLL.Buscar(vehiculoId);
-                //if (vehiculo == null) {
-                //    validados = false;
-                //    mensaje += "\nEste vehículo no existe.";
-                //} else {
-                //    if (vehiculo.Estado == VehiculoEstado.Vendido) {
-                //        validados = false;
-                //        mensaje += "\nEste vehículo fue vendido.";
-                //    } else if (vehiculo.Estado == VehiculoEstado.Rentado) {
-                //        validados = false;
-                //        mensaje += "\nEste vehículo fue Rentado.";
-                //    }
-                //}
+                Vehiculo vehiculo = await VehiculoBLL.Buscar(vehiculoId);
+                if (vehiculo == null) {
+                    validados = false;
+                    mensaje += "\nEste vehículo no existe.";
+                } else {
+                    if (vehiculo.Estado == VehiculoEstado.Rentado) {
+                        validados = false;
+                        mensaje += "\nEste vehículo fue rentado.";
+                    } else if (vehiculo.Estado == VehiculoEstado.Rentado) {
+                        validados = false;
+                        mensaje += "\nEste vehículo fue Rentado.";
+                    }
+                }
             }
 
             if (!validados) {
@@ -234,21 +222,10 @@ namespace RentCar.UI.Registros {
 
         }
 
-        private void NotificarCambioVehiculoId(bool fueBuscarButton) {
+        private async void NotificarCambioVehiculoId(bool fueBuscarButton) {
             if (fueBuscarButton) {
 
-                //Vehiculo vehiculo = VehiculosBLL.Buscar(Renta.VehiculoId);       TODO: Revisar
-                Vehiculo vehiculo = new Vehiculo {
-                    VehiculoId = 1 ,
-                    PolizaId = 1 ,
-                    Marca = "Toyota",
-                    Modelo = "Supra",
-                    PrecioDia = 2000,
-                    Chassis = "8917472734893",
-                    Ano = 2020,
-                    Kilometraje = 1234 ,
-                    Estado = VehiculoEstado.Disponible
-                };
+                Vehiculo vehiculo = await VehiculoBLL.Buscar(Renta.VehiculoId);       //TODO: Revisar
 
                 MarcaTextBox.Text = vehiculo.Marca;
                 ModeloTextBox.Text = vehiculo.Modelo;
@@ -272,18 +249,8 @@ namespace RentCar.UI.Registros {
                 MyPropertyChanged("Renta");
 
             } else {
-                //Vehiculo vehiculo = VehiculosBLL.Buscar(vehiculoId);       TODO: Revisar
-                Vehiculo vehiculo = new Vehiculo {
-                    VehiculoId = 1 ,
-                    PolizaId = 1 ,
-                    Marca = "Toyota" ,
-                    Modelo = "Supra" ,
-                    PrecioDia = 2000 ,
-                    Chassis = "8917472734893" ,
-                    Ano = 2020 ,
-                    Kilometraje = 1234,
-                    Estado = VehiculoEstado.Disponible
-                };
+                Vehiculo vehiculo = await VehiculoBLL.Buscar(vehiculoId);      
+
                 if (vehiculo == null) {
 
                     ModeloTextBox.Text = "No existe.";
@@ -315,7 +282,7 @@ namespace RentCar.UI.Registros {
 
                     } else {
                         if (!BuscarButtonPresionado) {
-                            ModeloTextBox.Text = "Vendido!.";
+                            ModeloTextBox.Text = "Eliminado!.";
                         }
                     }
 

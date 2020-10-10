@@ -86,11 +86,11 @@
             <GroupBox Header="Vigencia" Height="67" Margin="23,285,31,0" VerticalAlignment="Top"/>
 
             <Label Content="Desde" HorizontalAlignment="Left" Margin="35,307,0,0" VerticalAlignment="Top" Height="24" Width="43"/>
-            <DatePicker x:Name="DesdeDatePicker" HorizontalAlignment="Left" Margin="106,308,0,0" VerticalAlignment="Top" Width="151" Height="24">
+            <DatePicker x:Name="DesdeDatePicker" SelectedDate="{Binding Renta.FechaInicial}" HorizontalAlignment="Left" Margin="106,308,0,0" VerticalAlignment="Top" Width="151" Height="24">
             </DatePicker>
 
             <Label Content="Hasta" HorizontalAlignment="Right" Margin="0,307,197,0" VerticalAlignment="Top" Height="24" Width="40"/>
-            <DatePicker x:Name="HastaDatePicker" HorizontalAlignment="Right" Margin="0,308,44,0" VerticalAlignment="Top" Width="148" Height="24"/>
+            <DatePicker x:Name="HastaDatePicker" SelectedDate="{Binding Renta.FechaFinal}" HorizontalAlignment="Right" Margin="0,308,44,0" VerticalAlignment="Top" Width="148" Height="24"/>
 
             <GroupBox Header="Vehículo Id" Height="85" Margin="24,188,28,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
                 <GroupBox.RenderTransform>
