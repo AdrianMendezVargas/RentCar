@@ -1,10 +1,12 @@
-﻿using RentCar.BLL;
+﻿using MaterialDesignThemes.Wpf;
+using RentCar.BLL;
 using RentCar.Entidades;
 using RentCar.Entidades.Enums;
 using RentCar.UI.Consulta;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,9 +20,11 @@ namespace RentCar.UI.Registros {
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Renta Renta { get; set; } = new Renta();       
+        public Renta Renta { get; set; } = new Renta();
+        public Vehiculo Vehiculo { get; set; }
 
-        bool BuscarButtonPresionado = false;
+        bool EsUnaBusqueda = false;
+        bool OmitirVehiculoTextChanged = false;
 
         public RegistroRenta(int rentaId = 0) {
             InitializeComponent();
@@ -28,12 +32,13 @@ namespace RentCar.UI.Registros {
 
             if (rentaId > 0) {
                 InicializarRenta(rentaId);
-                BuscarButtonPresionado = true;
             }
         }
 
-        async Task InicializarRenta(int rentaId) {
-            Renta = await RentasBLL.Buscar(rentaId);
+        void InicializarRenta(int rentaId) {
+            RentaIdTextBox.Text = rentaId.ToString();
+            OmitirVehiculoTextChanged = true;
+            BuscarRenta();
         }
 
         protected override async void OnClosed(EventArgs e) {
@@ -47,22 +52,25 @@ namespace RentCar.UI.Registros {
         }
 
         private void MyPropertyChanged(string propiedad) {
-            CalcularBalance();
             PropertyChanged?.Invoke(this , new PropertyChangedEventArgs(propiedad));
         }
 
         private async void BuscarButton_Click(object sender , RoutedEventArgs e) {
 
-            BuscarButtonPresionado = true;
+            await BuscarRenta();
+        }
+
+        private async Task BuscarRenta() {
+            EsUnaBusqueda = true;
 
             if (int.TryParse(RentaIdTextBox.Text , out int RentaId)) {
 
-                if (await ExisteEnBaseDatos()) {
+                if (await ExisteEnBaseDatos(RentaId)) {
                     Renta = await RentasBLL.Buscar(RentaId);
-
-                    NotificarCambioVehiculoId(BuscarButtonPresionado);
-
                     MyPropertyChanged("Renta");
+
+                    await NotificarCambioVehiculoId();
+
                 } else {
                     MessageBox.Show("Este Renta no existe.");
                     Limpiar();
@@ -71,8 +79,8 @@ namespace RentCar.UI.Registros {
             } else {
                 MessageBox.Show("Este Renta id es invalido.");
             }
-            BuscarButtonPresionado = false;
 
+            EsUnaBusqueda = false;
         }
 
         private void NuevoButton_Click(object sender , RoutedEventArgs e) {
@@ -81,7 +89,7 @@ namespace RentCar.UI.Registros {
         }
 
         private async void GuardarButton_Click(object sender , RoutedEventArgs e) {
-            if (! await Validar()) {
+            if (!await Validar()) {
                 return;
             }
 
@@ -115,7 +123,7 @@ namespace RentCar.UI.Registros {
 
             if (int.TryParse(RentaIdTextBox.Text , out int RentaId)) {
 
-                if (await ExisteEnBaseDatos()) {
+                if (await ExisteEnBaseDatos(RentaId)) {
                     MessageBoxResult opcion = MessageBox.Show("Desea eliminar este Renta?." , "Confirme" , MessageBoxButton.YesNo , MessageBoxImage.Question);
 
                     if (opcion == MessageBoxResult.Yes) {
@@ -142,8 +150,8 @@ namespace RentCar.UI.Registros {
 
         }
 
-        private async Task<bool> ExisteEnBaseDatos() {
-            Renta Renta = await RentasBLL.Buscar(this.Renta.RentaId);
+        private async Task<bool> ExisteEnBaseDatos(int rentaId) {
+            Renta Renta = await RentasBLL.Buscar(rentaId);
             return (Renta != null);
         }
 
@@ -217,93 +225,74 @@ namespace RentCar.UI.Registros {
                     NombreClienteTextBox.Text = "Este cliente no existe.";
                 } else {
                     NombreClienteTextBox.Text = cliente.Nombres;
+                    CedulaClienteTextBox.Text = cliente.Cedula;
                 }
             }
         }
 
-        private void CalcularBalance() {
-            //Renta.MontoTotal = 0;
-            //foreach (RentaCuotas cuota in Renta.CuotasDetalle) {
-            //    if (!cuota.Pagada) {
-            //        Renta.Balance += cuota.Balance;
-            //    }
-            //}
-
+        private void CalcularMontoRenta() {
+            if (Vehiculo != null) {
+                Renta.MontoTotal = Vehiculo.PrecioDia;
+            } else {
+                Renta.MontoTotal = 0;
+            }
         }
 
-        private async void NotificarCambioVehiculoId(bool fueBuscarButton) {
-            if (fueBuscarButton) {
+        private async Task NotificarCambioVehiculoId() {
 
-                Vehiculo vehiculo = await VehiculoBLL.Buscar(Renta.VehiculoId);       //TODO: Revisar
+            Vehiculo = await VehiculoBLL.Buscar(Renta.VehiculoId);
+            LlenarCamposVehiculo();
+            CalcularMontoRenta();
 
-                MarcaTextBox.Text = vehiculo.Marca;
-                ModeloTextBox.Text = vehiculo.Modelo;
-                PrecioTextBox.Text = string.Format( "{0:c}",vehiculo.PrecioDia);
-                ChassisTextBox.Text = vehiculo.Chassis;
-                KilometrajeTextBox.Text = vehiculo.Kilometraje.ToString();
-                AnoTextBox.Text = vehiculo.Ano.ToString();
+            //MyPropertyChanged("Renta");
+        }
 
-                MyPropertyChanged("Renta");
+        private void LlenarCamposVehiculo() {
 
-            } else if (!int.TryParse(VehiculoIdTextBox.Text , out int vehiculoId)) {
+            if (Vehiculo != null) {
 
-                ModeloTextBox.Text = "Id invalido.";
-                MarcaTextBox.Text = "";
-                PrecioTextBox.Text = "";
-                ChassisTextBox.Text = "";
-                KilometrajeTextBox.Text = "";
-                AnoTextBox.Text = "";
+                if (Vehiculo.Estado == VehiculoEstado.Disponible || (Vehiculo.Estado == VehiculoEstado.Rentado && EsUnaBusqueda)) {
+                    MarcaTextBox.Text = Vehiculo.Marca;
+                    ModeloTextBox.Text = Vehiculo.Modelo;
+                    PrecioTextBox.Text = string.Format("{0:c}" , Vehiculo.PrecioDia);
+                    ChassisTextBox.Text = Vehiculo.Chassis;
+                    KilometrajeTextBox.Text = Vehiculo.Kilometraje.ToString();
+                    AnoTextBox.Text = Vehiculo.Ano.ToString();
 
-                Renta.MontoTotal = 0.0m;
-                MyPropertyChanged("Renta");
+                } else if (Vehiculo.Estado == VehiculoEstado.Rentado) {
+
+                    LimpiarCamposVehiculo();
+                    ModeloTextBox.Text = "Rentado.";
+
+                } else if (Vehiculo.Estado == VehiculoEstado.Eliminado) {
+
+                    LimpiarCamposVehiculo();
+                    ModeloTextBox.Text = "Eliminado.";
+                }
 
             } else {
-                Vehiculo vehiculo = await VehiculoBLL.Buscar(vehiculoId);      
-
-                if (vehiculo == null) {
-
-                    ModeloTextBox.Text = "No existe.";
-                    MarcaTextBox.Text = "";
-                    PrecioTextBox.Text = "";
-                    ChassisTextBox.Text = "";
-                    KilometrajeTextBox.Text = "";
-                    AnoTextBox.Text = "";
-
-                    Renta.MontoTotal = 0.0m;
-                    MyPropertyChanged("Renta");
-                } else {
-                    if (vehiculo.Estado == VehiculoEstado.Disponible) {
-                        MarcaTextBox.Text = vehiculo.Marca;
-                        ModeloTextBox.Text = vehiculo.Modelo;
-                        PrecioTextBox.Text = string.Format("{0:c}" , vehiculo.PrecioDia);
-                        ChassisTextBox.Text = vehiculo.Chassis.ToString();
-                        KilometrajeTextBox.Text = vehiculo.Kilometraje.ToString();
-                        AnoTextBox.Text = vehiculo.Ano.ToString();
-
-                        Renta.MontoTotal = vehiculo.PrecioDia;
-                        MyPropertyChanged("Renta");
-
-                    } else if (vehiculo.Estado == VehiculoEstado.Rentado) {
-
-                        if (!BuscarButtonPresionado) {
-                            ModeloTextBox.Text = "Rentado!.";
-                        }
-
-                    } else {
-                        if (!BuscarButtonPresionado) {
-                            ModeloTextBox.Text = "Eliminado!.";
-                        }
-                    }
-
-                }
+                LimpiarCamposVehiculo();
+                ModeloTextBox.Text = "No existe.";
             }
 
         }
 
-        private void VehiculoIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
+        private void LimpiarCamposVehiculo() {
+            ModeloTextBox.Text = "";
+            MarcaTextBox.Text = "";
+            PrecioTextBox.Text = "";
+            ChassisTextBox.Text = "";
+            KilometrajeTextBox.Text = "";
+            AnoTextBox.Text = "";
+        }
 
-            NotificarCambioVehiculoId(BuscarButtonPresionado);
+        private async void VehiculoIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
 
+            if (!OmitirVehiculoTextChanged) {
+                await NotificarCambioVehiculoId();
+            }
+
+            OmitirVehiculoTextChanged = false;
         }
 
         private void RentaIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
@@ -335,5 +324,12 @@ namespace RentCar.UI.Registros {
             }
         }
 
+        private void ColorZone_MouseLeftButtonDown(object sender , System.Windows.Input.MouseButtonEventArgs e) {
+            DragMove();
+        }
+
+        private void WindowCloseButton_Click(object sender , RoutedEventArgs e) {
+            Close();
+        }
     }
 }

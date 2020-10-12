@@ -78,8 +78,22 @@
             <DataGrid x:Name="ResultadosDataGrid" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Renta id" Width="1*" Binding="{Binding RentaId}"/>
-                    <DataGridTextColumn Header="Vehiculo id" Width="1.1*" Binding="{Binding VehiculoId}"/>
-                    <DataGridTextColumn Header="Cliente id" Width="1*" Binding="{Binding ClienteId}"/>
+                    <!--<DataGridTextColumn Header="Vehiculo id" Width="1.1*" Binding="{Binding VehiculoId}"/>-->
+                    <DataGridTemplateColumn Header="Vehiculo Id" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="VehiculoIdButton" HorizontalAlignment="Stretch" Content="{Binding VehiculoId}" Click="VehiculoIdButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTextColumn Header="Cliente id" Width="1*" Binding="{Binding ClienteId}"/>-->
+                    <DataGridTemplateColumn Header="Cliente Id" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="ClienteIdButton" HorizontalAlignment="Stretch" Content="{Binding ClienteId}" Click="ClienteIdButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Desde" Width="1.1*" Binding="{Binding FechaInicial}"/>
                     <DataGridTextColumn Header="Hasta" Width="1.1*" Binding="{Binding FechaFinal}"/>
                     <DataGridTextColumn Header="Monto" Width="1*" Binding="{Binding MontoTotal , StringFormat=\{0:C\}}"/>

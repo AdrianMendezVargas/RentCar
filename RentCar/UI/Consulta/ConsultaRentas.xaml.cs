@@ -24,7 +24,12 @@ namespace RentCar.UI.Consulta {
 
         public ConsultaRentas() {
             InitializeComponent();
-            InicializarRentas();
+            _ = InicializarRentas();
+        }
+
+        protected override void OnClosed(EventArgs e) {
+            base.OnClosed(e);
+            Owner.Focus();
         }
 
         public async Task InicializarYFiltrarRentas() {
@@ -103,6 +108,23 @@ namespace RentCar.UI.Consulta {
             RegistroRenta registroRenta = new RegistroRenta(renta.RentaId);
             registroRenta.Owner = this;
             registroRenta.Show();
+
+        }
+
+        private void VehiculoIdButton_Click(object sender , RoutedEventArgs e) {
+            Renta renta = (sender as Button).DataContext as Renta;
+
+            RegistroVehiculo registroVehiculo = new RegistroVehiculo(renta.VehiculoId);
+            registroVehiculo.Owner = this;
+            registroVehiculo.Show();
+        }
+
+        private void ClienteIdButton_Click(object sender , RoutedEventArgs e) {
+            Renta renta = (sender as Button).DataContext as Renta;
+
+            RegistroCliente registroCliente = new RegistroCliente(renta.ClienteId);
+            registroCliente.Owner = this;
+            registroCliente.Show();
 
         }
     }

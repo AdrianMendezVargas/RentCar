@@ -7,45 +7,151 @@
         xmlns:validaciones="clr-namespace:RentCar.UI.Validaciones"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="RegistroRentas" Height="561" Width="608" FontFamily="Roboto" WindowStartupLocation="CenterScreen">
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Registro de renta" Height="auto" Width="auto" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Cyan" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid  MinWidth="554">
+        <Grid  MinWidth="554" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="200*"/>
-                <RowDefinition Height="45*"/>
-                <RowDefinition Height="50*"/>
+                <RowDefinition Height="0.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-
-            <GroupBox Header="Cliente Id" Height="51" Margin="23,125,85,0" VerticalAlignment="Top"/>
-
-
-
-            <Label Content="Renta Id" HorizontalAlignment="Left" Margin="30,79,0,0" VerticalAlignment="Top" Height="24" Width="54"/>
-            <TextBox x:Name="RentaIdTextBox" materialDesign:TextFieldAssist.PrefixText="$" TextChanged="RentaIdTextBox_TextChanged" Margin="158,84,169,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16">
-                <Binding Path="Renta.RentaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                    <Binding.ValidationRules>
-                        <ExceptionValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-            <TextBox x:Name="ClienteIdTextBox" TextChanged="ClienteIdTextBox_TextChanged" Margin="227,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="217" Height="16">
-                <Binding Path="Renta.ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
-                    <Binding.ValidationRules>
-                        <validaciones:CamposOblicatoriosRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
+            <Grid Grid.Row="0">
+                
+            </Grid>
 
 
-            <Button  x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,75,50,0" VerticalAlignment="Top" Width="65">
-                <DockPanel>
-                    <Image Source="/Resources/buscar.png"/>
-                    <TextBlock VerticalAlignment="Center" Text="Buscar"/>
-                </DockPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,30">
+                <TextBox x:Name="RentaIdTextBox" Margin="20,0" materialDesign:HintAssist.Hint="Renta Id" materialDesign:HintAssist.IsFloating="True" TextChanged="RentaIdTextBox_TextChanged" Width="200" TextWrapping="Wrap" VerticalAlignment="Top" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}">
+                    <Binding Path="Renta.RentaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                        <Binding.ValidationRules>
+                            <ExceptionValidationRule/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox>
+                <Button  x:Name="BuscarButton" Click="BuscarButton_Click"   VerticalAlignment="Center">
+                    <DockPanel>
+                        <Image Source="/Resources/buscar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Buscar"/>
+                    </DockPanel>
 
-            </Button>
+                </Button>
+            </StackPanel>
 
-            <Grid Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="248"  Height="30">
+            <GroupBox Grid.Row="2"  Margin="10" Style="{DynamicResource MaterialDesignCardGroupBox}">
+                <GroupBox.Header>
+                    <DockPanel>
+                        <Label Content="Cliente id" Foreground="Black" Margin="10,0"/>
+                        <TextBox x:Name="ClienteIdTextBox" HorizontalAlignment="Left" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" Background="White" TextChanged="ClienteIdTextBox_TextChanged" TextWrapping="Wrap" Width="100">
+                            <Binding Path="Renta.ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                                <Binding.ValidationRules>
+                                    <validaciones:CamposOblicatoriosRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                    </DockPanel>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0" Margin="10,0">
+                        <TextBox x:Name="NombreClienteTextBox" materialDesign:HintAssist.Hint="Nombre" materialDesign:HintAssist.IsFloating="True" IsReadOnly="True"  TextWrapping="Wrap"/>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" Margin="10,0">
+                        <TextBox x:Name="CedulaClienteTextBox" materialDesign:HintAssist.Hint="Cedula" materialDesign:HintAssist.IsFloating="True" IsReadOnly="True"  TextWrapping="Wrap"/>
+                    </DockPanel>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="3"  Margin="10" Style="{DynamicResource MaterialDesignCardGroupBox}" >
+                <GroupBox.Header>
+                    <DockPanel>
+                        <Label Content="Vehiculo id" Foreground="Black"/>
+                        <TextBox x:Name="VehiculoIdTextBox" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" Background="White" TextChanged="VehiculoIdTextBox_TextChanged" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap" Width="100" Style="{DynamicResource MaterialDesignTextBox}">
+                            <Binding Path="Renta.VehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
+                                <Binding.ValidationRules>
+                                    <validaciones:CamposOblicatoriosRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox>
+                    </DockPanel>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Row="0" Grid.Column="0" Margin="10,0">
+                        <TextBox x:Name="MarcaTextBox" VerticalAlignment="Center" materialDesign:HintAssist.Hint="Marca" materialDesign:HintAssist.IsFloating="True" IsReadOnly="True" TextWrapping="NoWrap"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="0" Grid.Column="1" Margin="10,0">
+                        <TextBox x:Name="ModeloTextBox" IsReadOnly="True" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Modelo" materialDesign:HintAssist.IsFloating="True"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="0" Grid.Column="2"  Margin="10,0">
+                        <TextBox x:Name="PrecioTextBox" IsReadOnly="True" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Precio por dia" materialDesign:HintAssist.IsFloating="True"/>
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="0" Margin="10,0">
+                        <TextBox x:Name="ChassisTextBox" materialDesign:HintAssist.Hint="Chassis" materialDesign:HintAssist.IsFloating="True" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="NoWrap" />
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="1" Margin="10,0">
+                        <TextBox x:Name="KilometrajeTextBox" IsReadOnly="True" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Kilometraje" materialDesign:HintAssist.IsFloating="True" VerticalAlignment="Center" />
+                    </DockPanel>
+                    <DockPanel Grid.Row="1" Grid.Column="2" Margin="10,0">
+                        <TextBox x:Name="AnoTextBox" IsReadOnly="True" TextWrapping="NoWrap" materialDesign:HintAssist.Hint="Año" materialDesign:HintAssist.IsFloating="True" VerticalAlignment="Center" />
+                    </DockPanel>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="4" Header="Vigencia" Margin="10" Style="{DynamicResource MaterialDesignCardGroupBox}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Orientation="Horizontal">
+                        <Label Content="Desde" Margin="10,0" VerticalAlignment="Center"   />
+                        <DatePicker x:Name="DesdeDatePicker" SelectedDate="{Binding Renta.FechaInicial}"  Width="150" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <Label Margin="10,0" Content="Hasta" VerticalAlignment="Center" />
+                        <DatePicker x:Name="HastaDatePicker" SelectedDate="{Binding Renta.FechaFinal}" Width="150"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+
+            <StackPanel Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="30,20">
+                <Label Content="Monto Total" FontSize="14"/>
+                <TextBlock x:Name="MontoTotalTextBox" d:Text="$0.0" Text="{Binding Renta.MontoTotal, StringFormat=\{0:C\} }" VerticalAlignment="Center" FontSize="16" FontWeight="DemiBold" Margin="5,0,0,0"/>
+            </StackPanel>
+
+            <Grid Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -61,7 +167,7 @@
 
                 </Button>
 
-                <Button  Grid.Column="1" x:Name="GuardarButton" Click="GuardarButton_Click" HorizontalAlignment="Center">
+                <Button  Grid.Column="1" x:Name="GuardarButton" Click="GuardarButton_Click" Margin="30,0" HorizontalAlignment="Center">
                     <DockPanel>
                         <Image Source="/Resources/guardar.png"/>
                         <TextBlock VerticalAlignment="Center" Text="Guardar"/>
@@ -79,69 +185,6 @@
                 </Button>
 
             </Grid>
-
-            <Label Content="Nombre cliente" HorizontalAlignment="Left" Margin="23,145,0,0" VerticalAlignment="Top" Width="167" Height="24"/>
-            <TextBox x:Name="NombreClienteTextBox" IsReadOnly="True" Margin="190,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="254" Height="16"/>
-
-            <GroupBox Header="Vigencia" Height="67" Margin="23,285,31,0" VerticalAlignment="Top"/>
-
-            <Label Content="Desde" HorizontalAlignment="Left" Margin="35,307,0,0" VerticalAlignment="Top" Height="24" Width="43"/>
-            <DatePicker x:Name="DesdeDatePicker" SelectedDate="{Binding Renta.FechaInicial}" HorizontalAlignment="Left" Margin="106,308,0,0" VerticalAlignment="Top" Width="151" Height="24">
-            </DatePicker>
-
-            <Label Content="Hasta" HorizontalAlignment="Right" Margin="0,307,197,0" VerticalAlignment="Top" Height="24" Width="40"/>
-            <DatePicker x:Name="HastaDatePicker" SelectedDate="{Binding Renta.FechaFinal}" HorizontalAlignment="Right" Margin="0,308,44,0" VerticalAlignment="Top" Width="148" Height="24"/>
-
-            <GroupBox Header="Vehículo Id" Height="85" Margin="24,188,28,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
-                <GroupBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleX="0.404"/>
-                        <RotateTransform/>
-                        <TranslateTransform X="0.215"/>
-                    </TransformGroup>
-                </GroupBox.RenderTransform>
-            </GroupBox>
-
-            <TextBox x:Name="VehiculoIdTextBox" TextChanged="VehiculoIdTextBox_TextChanged" HorizontalAlignment="Center" Margin="0,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16">
-                <Binding Path="Renta.VehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
-                    <Binding.ValidationRules>
-                        <ExceptionValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox>
-
-            <Label Content="Marca" HorizontalAlignment="Left" Margin="29,214,0,0" VerticalAlignment="Top" Height="24" Width="43"/>
-            <TextBox x:Name="MarcaTextBox" IsReadOnly="True" HorizontalAlignment="Left" Margin="66,218,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="65" Height="16"/>
-            <StackPanel HorizontalAlignment="Center" Margin="0,214,0,0" Orientation="Horizontal" VerticalAlignment="Top" Height="24" Width="118">
-
-
-                <Label Content="Modelo"/>
-                <TextBox x:Name="ModeloTextBox" IsReadOnly="True" TextWrapping="NoWrap" Width="66" VerticalAlignment="Center"/>
-
-            </StackPanel>
-
-            <Label Content="Vin" HorizontalAlignment="Left" Margin="29,240,0,0" VerticalAlignment="Top" Height="24" Width="27"/>
-            <TextBox x:Name="ChassisTextBox" IsReadOnly="True" HorizontalAlignment="Left" Margin="66,244,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="65" Height="16"/>
-            <StackPanel HorizontalAlignment="Center" Margin="0,241,0,0" Orientation="Horizontal" VerticalAlignment="Top" Height="24" Width="116">
-
-                <Label Content="Km"/>
-                <TextBox x:Name="KilometrajeTextBox" Margin="23,0,0,0" IsReadOnly="True" VerticalAlignment="Center" TextWrapping="NoWrap" Width="66"/>
-
-            </StackPanel>
-
-            <Label Content="Precio" HorizontalAlignment="Right" Margin="0,214,115,0" VerticalAlignment="Top" Height="24" Width="43"/>
-            <TextBox x:Name="PrecioTextBox" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,218,45,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="65" Height="16"/>
-
-            <Label Content="Año" HorizontalAlignment="Right" Margin="0,240,118,0" VerticalAlignment="Top" Height="24" Width="32"/>
-            <TextBox x:Name="AnoTextBox" IsReadOnly="True" HorizontalAlignment="Right" Margin="0,244,45,0" TextWrapping="NoWrap" VerticalAlignment="Top" Width="65" Height="16"/>
-
-            <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="30,0,0,0">
-
-                <Label Content="Monto Total"/>
-                <TextBlock x:Name="MontoTotalTextBox" d:Text="$0.0" Text="{Binding Renta.MontoTotal, StringFormat=\{0:C\} }" VerticalAlignment="Center" FontSize="14" FontWeight="DemiBold" Margin="5,0,0,0"/>
-
-            </StackPanel>
 
 
         </Grid>

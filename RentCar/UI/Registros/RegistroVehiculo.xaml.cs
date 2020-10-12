@@ -21,14 +21,29 @@ namespace RentCar.UI.Registros
     public partial class RegistroVehiculo : Window, INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Vehiculo vehiculo { get; set; }
+        public Vehiculo vehiculo { get; set; } = new Vehiculo();
 
-        public RegistroVehiculo()
+        public RegistroVehiculo(int vehiculoId = 0)
         {
             InitializeComponent();
-            vehiculo = new Vehiculo();
+
+            if (vehiculoId > 0) {
+                InicializarVehiculo(vehiculoId);
+            }
+       
             this.DataContext = this;
             MyPropertyChanged("vehiculo");
+        }
+
+        private async void InicializarVehiculo(int vehiculoId) {
+            var _vehiculo = await VehiculoBLL.Buscar(vehiculoId);
+
+            if (_vehiculo != null) {
+                vehiculo = _vehiculo;
+            } else {
+                MessageBox.Show("Este cliente fue eliminado");
+            }
+
         }
 
         private void MyPropertyChanged(string propiedad)
