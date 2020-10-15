@@ -60,6 +60,12 @@ namespace RentCar.UI.Registros {
             await BuscarRenta();
         }
 
+        private void VerTodasButton_Click(object sender , RoutedEventArgs e) {
+            ConsultaRentas consultaRentas = new ConsultaRentas();
+            consultaRentas.Owner = this;
+            consultaRentas.Show();
+        }
+
         private async Task BuscarRenta() {
             EsUnaBusqueda = true;
 
@@ -205,6 +211,16 @@ namespace RentCar.UI.Registros {
                 }
             }
 
+            if (Renta.FechaInicial.Date < DateTime.Now.Date) {
+                validados = false;
+                mensaje += "\nLa fecha inicial debe ser mayor que la actual";
+            }
+
+            if (Renta.FechaFinal.Date <= Renta.FechaInicial.Date) {
+                validados = false;
+                mensaje += "\nLa fecha final debe ser mayor que la inical";
+            }
+
             if (!validados) {
                 MessageBox.Show(mensaje);
             }
@@ -236,6 +252,8 @@ namespace RentCar.UI.Registros {
             } else {
                 Renta.MontoTotal = 0;
             }
+            //MyPropertyChanged("Renta");
+            MontoTotalTextBox.Text = string.Format("{0:c}", Renta.MontoTotal);
         }
 
         private async Task NotificarCambioVehiculoId() {
@@ -243,8 +261,6 @@ namespace RentCar.UI.Registros {
             Vehiculo = await VehiculoBLL.Buscar(Renta.VehiculoId);
             LlenarCamposVehiculo();
             CalcularMontoRenta();
-
-            //MyPropertyChanged("Renta");
         }
 
         private void LlenarCamposVehiculo() {
@@ -288,7 +304,7 @@ namespace RentCar.UI.Registros {
 
         private async void VehiculoIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
 
-            if (!OmitirVehiculoTextChanged) {
+            if (!OmitirVehiculoTextChanged) {   //Si esta ventana fue abierta desde la consulta, se omitira el primer textChange
                 await NotificarCambioVehiculoId();
             }
 
@@ -308,8 +324,6 @@ namespace RentCar.UI.Registros {
             } else {
                 PuedeModificar(true);
             }
-
-            MyPropertyChanged("Renta");
 
         }
 
@@ -331,5 +345,7 @@ namespace RentCar.UI.Registros {
         private void WindowCloseButton_Click(object sender , RoutedEventArgs e) {
             Close();
         }
+
+        
     }
 }

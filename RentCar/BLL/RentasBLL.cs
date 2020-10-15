@@ -64,26 +64,21 @@ namespace RentCar.BLL {
 
         public async static Task<bool> Eliminar(int id) {
             bool paso = false;
-            Contexto contexto = new Contexto();
-            try {
-                var renta = contexto.Rentas.Find(id);
 
-                if (renta != null) {
-                    contexto.Rentas.Remove(renta);
-                    paso = await contexto.SaveChangesAsync() > 0;
+            var renta = await Buscar(id);
 
-                    if (paso) {
-                        var vehiculoRentado = await VehiculoBLL.Buscar(renta.VehiculoId);
-                        if (vehiculoRentado != null) {
-                            vehiculoRentado.Estado = VehiculoEstado.Disponible;
-                            await VehiculoBLL.Modificar(vehiculoRentado);
-                        }
+            if (renta != null) {
+                renta.Eliminada = true;
+                paso = await Modificar(renta);
+
+                if (paso) {
+                    var vehiculoRentado = await VehiculoBLL.Buscar(renta.VehiculoId);
+
+                    if (vehiculoRentado != null) {
+                        vehiculoRentado.Estado = VehiculoEstado.Disponible;
+                        await VehiculoBLL.Modificar(vehiculoRentado);
                     }
                 }
-            } catch (Exception) {
-                throw;
-            } finally {
-                await contexto.DisposeAsync();
             }
 
             return paso;
@@ -122,14 +117,14 @@ namespace RentCar.BLL {
             return encontrado;
         }
 
-        public async static Task<List<Renta>> GetRentas() {
+        public async static Task<List<Renta>> GetRentas(bool traerEliminadas = false) {
             Contexto contexto = new Contexto();
 
             List<Renta> rentas = new List<Renta>();
             await Task.Delay(01); //Para dar tiempo a renderizar el mensaje de carga
 
             try {
-                rentas = await contexto.Rentas.ToListAsync();
+                rentas = await contexto.Rentas.Where(r => r.Eliminada == traerEliminadas).ToListAsync();
 
             } catch (Exception) {
 

@@ -25,6 +25,7 @@ namespace RentCar.Entidades {
         public decimal MontoTotal { get; set; }
 
         public virtual bool Activa => DateTime.Now < FechaFinal;
+        public bool Eliminada { get; set; } = false;
 
 
     }
