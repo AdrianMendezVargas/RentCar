@@ -86,15 +86,21 @@
 
                 <GroupBox Grid.Row="2"  Margin="10" Style="{DynamicResource MaterialDesignCardGroupBox}">
                     <GroupBox.Header>
-                        <DockPanel>
+                        <DockPanel LastChildFill="False">
                             <Label Content="Cliente id" Foreground="Black" Margin="10,0"/>
-                            <TextBox x:Name="ClienteIdTextBox" HorizontalAlignment="Left" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" Background="White" TextChanged="ClienteIdTextBox_TextChanged" TextWrapping="Wrap" Width="100">
+                            <TextBox x:Name="ClienteIdTextBox" Margin="0,0,10,0" HorizontalAlignment="Left" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" Background="White" TextChanged="ClienteIdTextBox_TextChanged" TextWrapping="Wrap" Width="100">
                                 <Binding Path="Renta.ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
                                     <Binding.ValidationRules>
                                         <validaciones:CamposOblicatoriosRule/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox>
+                            <Button x:Name="VerListaClientesButton"  Height="25" Click="VerListaClientesButton_Click">
+                                <DockPanel >
+                                    <materialDesign:PackIcon Kind="ListStatus"/>
+                                    <TextBlock Margin="5,0">Ver lista</TextBlock>
+                                </DockPanel>
+                            </Button>
                         </DockPanel>
                     </GroupBox.Header>
                     <Grid>
@@ -113,15 +119,21 @@
 
                 <GroupBox Grid.Row="3"  Margin="10" Style="{DynamicResource MaterialDesignCardGroupBox}" >
                     <GroupBox.Header>
-                        <DockPanel>
+                        <DockPanel LastChildFill="False">
                             <Label Content="Vehiculo id" Foreground="Black"/>
-                            <TextBox x:Name="VehiculoIdTextBox" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" Background="White" TextChanged="VehiculoIdTextBox_TextChanged" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap" Width="100" Style="{DynamicResource MaterialDesignTextBox}">
+                            <TextBox x:Name="VehiculoIdTextBox" materialDesign:TextFieldAssist.UnderlineBrush="Black" materialDesign:TextFieldAssist.TextFieldCornerRadius="5" Background="White" TextChanged="VehiculoIdTextBox_TextChanged" HorizontalAlignment="Left" Margin="10,0" TextWrapping="Wrap" Width="100">
                                 <Binding Path="Renta.VehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
                                     <Binding.ValidationRules>
                                         <validaciones:CamposOblicatoriosRule/>
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox>
+                            <Button x:Name="VerListaVehiculosButton"  Height="25" Click="VerListaVehiculosButton_Click">
+                                <DockPanel >
+                                    <materialDesign:PackIcon Kind="ListStatus"/>
+                                    <TextBlock Margin="5,0">Ver lista</TextBlock>
+                                </DockPanel>
+                            </Button>
                         </DockPanel>
                     </GroupBox.Header>
                     <Grid>
@@ -163,11 +175,11 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
                             <Label Content="Desde" Margin="10,0" VerticalAlignment="Center"   />
-                            <DatePicker x:Name="DesdeDatePicker" SelectedDate="{Binding Renta.FechaInicial}"  Width="150" />
+                            <DatePicker x:Name="DesdeDatePicker" SelectedDate="{Binding Renta.FechaInicial}" SelectedDateChanged="DesdeDatePicker_SelectedDateChanged" Width="150" />
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                             <Label Margin="10,0" Content="Hasta" VerticalAlignment="Center" />
-                            <DatePicker x:Name="HastaDatePicker" SelectedDate="{Binding Renta.FechaFinal}" Width="150"/>
+                            <DatePicker x:Name="HastaDatePicker" SelectedDate="{Binding Renta.FechaFinal}" SelectedDateChanged="HastaDatePicker_SelectedDateChanged" Width="150"/>
                         </StackPanel>
                     </Grid>
                 </GroupBox>

@@ -75,7 +75,7 @@ namespace RentCar.UI.Registros {
                     Renta = await RentasBLL.Buscar(RentaId);
                     MyPropertyChanged("Renta");
 
-                    await NotificarCambioVehiculoId();
+                    await BuscarVehiculo();
 
                 } else {
                     MessageBox.Show("Este Renta no existe.");
@@ -230,7 +230,10 @@ namespace RentCar.UI.Registros {
         }
 
         private async void ClienteIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
+            await BuscarCliente();
+        }
 
+        private async Task BuscarCliente() {
             if (!int.TryParse(ClienteIdTextBox.Text , out int clienteId)) {
 
                 NombreClienteTextBox.Text = "Cliente Id invalido.";
@@ -248,7 +251,7 @@ namespace RentCar.UI.Registros {
 
         private void CalcularMontoRenta() {
             if (Vehiculo != null) {
-                Renta.MontoTotal = Vehiculo.PrecioDia;
+                Renta.MontoTotal = Vehiculo.PrecioDia * Renta.GetDiasRentados();
             } else {
                 Renta.MontoTotal = 0;
             }
@@ -256,7 +259,7 @@ namespace RentCar.UI.Registros {
             MontoTotalTextBox.Text = string.Format("{0:c}", Renta.MontoTotal);
         }
 
-        private async Task NotificarCambioVehiculoId() {
+        private async Task BuscarVehiculo() {
 
             Vehiculo = await VehiculoBLL.Buscar(Renta.VehiculoId);
             LlenarCamposVehiculo();
@@ -305,7 +308,7 @@ namespace RentCar.UI.Registros {
         private async void VehiculoIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
 
             if (!OmitirVehiculoTextChanged) {   //Si esta ventana fue abierta desde la consulta, se omitira el primer textChange
-                await NotificarCambioVehiculoId();
+                await BuscarVehiculo();
             }
 
             OmitirVehiculoTextChanged = false;
@@ -346,6 +349,20 @@ namespace RentCar.UI.Registros {
             Close();
         }
 
-        
+        private void VerListaClientesButton_Click(object sender , RoutedEventArgs e) {
+
+        }
+
+        private void VerListaVehiculosButton_Click(object sender , RoutedEventArgs e) {
+
+        }
+
+        private void DesdeDatePicker_SelectedDateChanged(object sender , SelectionChangedEventArgs e) {
+            CalcularMontoRenta();
+        }
+
+        private void HastaDatePicker_SelectedDateChanged(object sender , SelectionChangedEventArgs e) {
+            CalcularMontoRenta();
+        }
     }
 }

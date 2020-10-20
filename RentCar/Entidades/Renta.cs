@@ -24,8 +24,14 @@ namespace RentCar.Entidades {
         [Required]
         public decimal MontoTotal { get; set; }
 
-        public virtual bool Activa => DateTime.Now < FechaFinal;
         public bool Eliminada { get; set; } = false;
+
+        public virtual bool Activa => DateTime.Now < FechaFinal;
+
+        public virtual int GetDiasRentados(){
+            var timeSpam = FechaFinal.Date - FechaInicial.Date;
+            return timeSpam.Days;
+        }
 
 
     }
