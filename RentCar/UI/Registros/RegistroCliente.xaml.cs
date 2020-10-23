@@ -21,14 +21,21 @@ namespace RentCar.UI.Registros {
     public partial class RegistroCliente : Window, INotifyPropertyChanged {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Cliente cliente { get; set; }
+        public Cliente cliente { get; set; } = new Cliente();
 
-        public RegistroCliente() {
+        public RegistroCliente(int clienteId = 0) {
             InitializeComponent();
 
-            cliente = new Cliente();
+            if (clienteId > 0) {
+                InicializarCliente(clienteId);
+            }
+
             this.DataContext = this;
             MyPropertyChanged("cliente");
+        }
+
+        private async void InicializarCliente(int clienteId) {
+            cliente = await ClientesBLL.Buscar(clienteId);
         }
 
         private void MyPropertyChanged(string propiedad) {

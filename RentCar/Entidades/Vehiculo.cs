@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RentCar.Entidades.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -15,14 +16,16 @@ namespace RentCar.Entidades
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public DateTime AñoFabricacion { get; set; }
-        public string Estado { get; set; }
-        public string Precio { get; set; }
+        public VehiculoEstado Estado { get; set; }
+        public decimal PrecioDia { get; set; }
+        public int Kilometraje { get; set; }
+        public int Ano { get; set; }
         public string Chassis { get; set; }
         public string Pasajeros { get; set; }
         public string Puertas { get; set; }
         public string Traccion { get; set; }
         public string Comentario { get; set; }
-        public string Valor { get; set; }
+        public decimal Valor { get; set; }
         public string Tipo { get; set; }
 
         public Vehiculo()
@@ -34,14 +37,14 @@ namespace RentCar.Entidades
             Modelo = "";
             Placa = "";
             AñoFabricacion = DateTime.Now;
-            Estado = "";
-            Precio = "";
+            Estado = VehiculoEstado.Disponible;
+            PrecioDia = 0m;
             Chassis = "";
             Pasajeros = "";
             Puertas = "";
             Traccion = "";
             Comentario = "";
-            Valor = "";
+            Valor = 0m;
             Tipo = "";
 
 

@@ -69,7 +69,7 @@
 
         <Label Content="Precio" HorizontalAlignment="Left" Margin="29,303,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="PrecioTextBox" Margin="128,274,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="vehiculo.Precio" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+            <Binding Path="vehiculo.Estado" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
@@ -78,7 +78,7 @@
 
         <Label Content="Estado" HorizontalAlignment="Left" Margin="32,266,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="EstadoTextBox" Margin="128,303,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="vehiculo.Estado" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+            <Binding Path="vehiculo.PrecioDia" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
