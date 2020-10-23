@@ -9,6 +9,7 @@ namespace RentCar.DAL {
 
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Vehiculo> Vehiculos { get; set; }
+        public DbSet<Importador> Importador { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
 
             optionsBuilder.UseSqlite("Data source= RentCar.db");

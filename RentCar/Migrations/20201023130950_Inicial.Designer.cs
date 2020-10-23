@@ -9,7 +9,7 @@ using RentCar.DAL;
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201010154640_Inicial")]
+    [Migration("20201023130950_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,26 @@ namespace RentCar.Migrations
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.Importador", b =>
+                {
+                    b.Property<int>("ImportadorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaginaWeb")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ImportadorId");
+
+                    b.ToTable("Importador");
                 });
 
             modelBuilder.Entity("RentCar.Entidades.Vehiculo", b =>

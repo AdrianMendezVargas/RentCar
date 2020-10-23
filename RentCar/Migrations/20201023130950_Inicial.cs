@@ -27,6 +27,21 @@ namespace RentCar.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Importador",
+                columns: table => new
+                {
+                    ImportadorId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Nombre = table.Column<string>(nullable: true),
+                    PaginaWeb = table.Column<string>(nullable: true),
+                    Telefono = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Importador", x => x.ImportadorId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Vehiculos",
                 columns: table => new
                 {
@@ -58,6 +73,9 @@ namespace RentCar.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Clientes");
+
+            migrationBuilder.DropTable(
+                name: "Importador");
 
             migrationBuilder.DropTable(
                 name: "Vehiculos");

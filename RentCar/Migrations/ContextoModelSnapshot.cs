@@ -48,6 +48,26 @@ namespace RentCar.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("RentCar.Entidades.Importador", b =>
+                {
+                    b.Property<int>("ImportadorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaginaWeb")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ImportadorId");
+
+                    b.ToTable("Importador");
+                });
+
             modelBuilder.Entity("RentCar.Entidades.Vehiculo", b =>
                 {
                     b.Property<int>("VehiculoId")
