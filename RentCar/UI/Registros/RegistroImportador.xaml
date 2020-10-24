@@ -43,7 +43,7 @@
             </Binding>
         </TextBox>
 
-        <Button  x:Name="BuscarButton"  Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top">
+        <Button  x:Name="BuscarButton"  Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top" Click="BuscarButton_Click">
             <DockPanel>
                 <Image Source="/Resources/buscar.png"/>
                 <TextBlock VerticalAlignment="Center" Text="Buscar"/>
@@ -54,7 +54,7 @@
         <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="248" Margin="0,0,0,23" Height="30">
 
 
-            <Button  x:Name="NuevoButton" HorizontalAlignment="Left">
+            <Button  x:Name="NuevoButton" HorizontalAlignment="Left" Click="NuevoButton_Click">
                 <DockPanel>
                     <Image Source="/Resources/nuevo.png"/>
                     <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
@@ -62,7 +62,7 @@
 
             </Button>
 
-            <Button  x:Name="GuardarButton" HorizontalAlignment="Center">
+            <Button  x:Name="GuardarButton" HorizontalAlignment="Center" Click="GuardarButton_Click">
                 <DockPanel>
                     <Image Source="/Resources/guardar.png"/>
                     <TextBlock VerticalAlignment="Center" Text="Guardar"/>
@@ -71,7 +71,7 @@
             </Button>
 
 
-            <Button  x:Name="EliminarButton" HorizontalAlignment="Right">
+            <Button  x:Name="EliminarButton" HorizontalAlignment="Right" Click="EliminarButton_Click">
                 <DockPanel>
                     <Image Source="/Resources/eliminar.png"/>
                     <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
