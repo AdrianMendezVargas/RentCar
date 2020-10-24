@@ -54,7 +54,7 @@ namespace RentCar {
         }
 
         private void ConsultaVehiculoMenuItem_Click(object sender , RoutedEventArgs e) {
-            
+
         }
 
         private void ConsultaClientesMenuItem_Click(object sender , RoutedEventArgs e) {
@@ -71,6 +71,12 @@ namespace RentCar {
 
         private void ReportePolizas_Click(object sender , RoutedEventArgs e) {
             ReportePolizas reporte = new ReportePolizas();
+            reporte.Owner = this;
+            reporte.ShowDialog();
+        }
+
+        private void ReporteClientesMenuItem_Click(object sender , RoutedEventArgs e) {
+            ReporteClientes reporte = new ReporteClientes();
             reporte.Owner = this;
             reporte.ShowDialog();
         }
