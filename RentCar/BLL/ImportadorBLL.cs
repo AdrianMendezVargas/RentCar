@@ -4,6 +4,7 @@ using RentCar.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -159,6 +160,25 @@ namespace RentCar.BLL
 
             return importador;
 
+        }
+
+        public static List<Importador> GetList(Expression<Func<Importador, bool>> criterio)
+        {
+            Contexto contexto = new Contexto();
+            List<Importador> Lista = new List<Importador>();
+            try
+            {
+                Lista = contexto.Importador.Where(criterio).ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                contexto.Dispose();
+            }
+            return Lista;
         }
     }
 }
