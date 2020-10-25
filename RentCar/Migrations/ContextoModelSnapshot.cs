@@ -14,7 +14,7 @@ namespace RentCar.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.9");
 
             modelBuilder.Entity("RentCar.Entidades.Cliente", b =>
                 {
@@ -49,6 +49,26 @@ namespace RentCar.Migrations
                     b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.Importador", b =>
+                {
+                    b.Property<int>("ImportadorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaginaWeb")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ImportadorId");
+
+                    b.ToTable("Importador");
                 });
 
             modelBuilder.Entity("RentCar.Entidades.Renta", b =>

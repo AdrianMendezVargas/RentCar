@@ -33,8 +33,10 @@ namespace RentCar.UI.Registros
             {
                 InicializarImportador(importadorId);
             }
+            else
+                importador = new Importador();
 
-            this.DataContext = this;
+            this.DataContext = importador;
             MyPropertyChanged("importador");
 
         }
@@ -92,6 +94,7 @@ namespace RentCar.UI.Registros
                 if (await ImportadorBLL.Existe(importadorId))
                 {
                     importador = await ImportadorBLL.Buscar(importadorId);
+                    this.DataContext = importador;
                     MyPropertyChanged("importador");
                 }
                 else
@@ -110,6 +113,7 @@ namespace RentCar.UI.Registros
         private void Limpiar()
         {
             importador = new Importador();
+            this.DataContext = importador;
             MyPropertyChanged("importador");
         }
 

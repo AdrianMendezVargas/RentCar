@@ -8,39 +8,23 @@
          Title="RegistroImportador" Height="304" Width="530" MinHeight="350" MinWidth="544" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="ImportadorId" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ImportadorIdTextBox"  Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="Importador.ImportadorId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
+        <TextBox Text="{Binding ImportadorId}" x:Name="ImportadorIdTextBox"  Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            
         </TextBox>
 
         <Label Content="Nombre" HorizontalAlignment="Left" Margin="35,71,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="NombreTextBox"  Margin="128,75,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="Importador.Nombre" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
+        <TextBox x:Name="NombreTextBox" Text="{Binding Nombre}" Margin="128,75,199,0" TextWrapping="Wrap" VerticalAlignment="Top" >
+            
         </TextBox>
 
         <Label Content="PaginaWeb" HorizontalAlignment="Left" Margin="27,118,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="PaginaWebTextBox"  Margin="128,122,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="Importador.PaginaWeb" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
+        <TextBox Text="{Binding PaginaWeb}" x:Name="PaginaWebTextBox"  Margin="128,122,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            
         </TextBox>
 
         <Label Content="Telefono" HorizontalAlignment="Left" Margin="35,162,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TelefonoTextBox" Margin="128,166,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="Importador.Telefono" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
+        <TextBox x:Name="TelefonoTextBox" Text="{Binding Telefono}" Margin="128,166,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            
         </TextBox>
 
         <Button  x:Name="BuscarButton"  Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top" Click="BuscarButton_Click">
