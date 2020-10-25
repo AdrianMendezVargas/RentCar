@@ -44,7 +44,19 @@ namespace RentCar.UI.Consulta
                         int num = 0;
                         listado = Task.Run(() => ImportadorBLL.GetList(e => e.ImportadorId == Convert.ToInt32(CriterioTextBox.Text))).Result;
                         break;
+                    case 2:
                         
+                        listado = Task.Run(() => ImportadorBLL.GetList(e => e.Nombre.Contains(CriterioTextBox.Text))).Result;
+                        break;
+                    case 3:
+                        
+                        listado = Task.Run(() => ImportadorBLL.GetList(e => e.PaginaWeb.Contains(CriterioTextBox.Text))).Result;
+                        break;
+
+                    case 4:
+                        
+                        listado = Task.Run(() => ImportadorBLL.GetList(e => e.Telefono.Contains(CriterioTextBox.Text))).Result;
+                        break;
 
 
                 }

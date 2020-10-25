@@ -16,6 +16,10 @@
             <StackPanel Orientation="Horizontal">
                 <ComboBox x:Name="FiltroComboBox" Width="100" Margin="10,0" Height="23">
                     <ComboBoxItem Content="Todo"/>
+                    <ComboBoxItem Content="ID"/>
+                    <ComboBoxItem Content="Nombre"/>
+                    <ComboBoxItem Content="pagina Web"/>
+                    <ComboBoxItem Content="Telefono"/>
                 </ComboBox>
 
                 <TextBox x:Name="CriterioTextBox" Text="" Width="200" Height="23" Margin="20,0"/>
