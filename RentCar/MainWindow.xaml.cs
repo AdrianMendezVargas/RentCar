@@ -69,6 +69,13 @@ namespace RentCar {
             consulta.Show();
         }
 
+        private void ConsultaImportadoresMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ConsultaImportadores consulta = new ConsultaImportadores();
+            consulta.Owner = this;
+            consulta.Show();
+        }
+
         private void ReportePolizas_Click(object sender , RoutedEventArgs e) {
             ReportePolizas reporte = new ReportePolizas();
             reporte.Owner = this;

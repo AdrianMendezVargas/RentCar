@@ -124,13 +124,13 @@ namespace RentCar.UI.Registros
             if (int.TryParse(ImportadorIdTextBox.Text, out int clienteId))
             {
 
-                if (await ClientesBLL.Existe(clienteId))
+                if (await ImportadorBLL.Existe(clienteId))
                 {
                     MessageBoxResult opcion = MessageBox.Show("Desea eliminar este importador?.", "Confirme", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     if (opcion == MessageBoxResult.Yes)
                     {
-                        eliminado = await ClientesBLL.Eliminar(clienteId);
+                        eliminado = await ImportadorBLL.Eliminar(clienteId);
 
                         if (eliminado)
                         {

@@ -17,9 +17,11 @@
             </MenuItem>
 
             <MenuItem Header="_Consultas">
+                
                 <MenuItem Name="ConsultaClientesMenuItem" Header="Consultar _Clientes" Click="ConsultaClientesMenuItem_Click"/>
                 <MenuItem Name="ConsultaRentasMenuItem" Header="Consultar _Rentas" Click="ConsultaRentasMenuItem_Click"/>
                 <MenuItem Name="ConsultaVehiculoMenuItem" Header="Consultar _Vehiculos" Click="ConsultaVehiculoMenuItem_Click"/>
+                <MenuItem Name="ConsultaImportadoresMenuItem" Header="Consultar _Importadores" Click="ConsultaImportadoresMenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Name="OpcionesAdminMenuItem" Header="_Reportes">

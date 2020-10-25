@@ -3,6 +3,7 @@ using RentCar.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,7 +29,7 @@ namespace RentCar.UI.Consulta
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Importador> listado = new List<Importador>();
+            var listado = async List<Task<Importador>>();
 
             if (CriterioTextBox.Text.Trim().Length > 0)
             {

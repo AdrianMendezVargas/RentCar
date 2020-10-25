@@ -136,7 +136,7 @@ namespace RentCar.BLL
             return encontrado;
         }
 
-        public async static Task<List<Importador>> GetClientes()
+        public async static Task<List<Importador>> GetImportadores()
         {
             Contexto contexto = new Contexto();
 
@@ -162,13 +162,14 @@ namespace RentCar.BLL
 
         }
 
-        public static List<Importador> GetList(Expression<Func<Importador, bool>> criterio)
+        public async static Task<List<Importador>> GetList(Expression<Func<Importador, bool>> criterio)
         {
             Contexto contexto = new Contexto();
             List<Importador> Lista = new List<Importador>();
+            await Task.Delay(01); //Para dar tiempo a renderizar el mensaje de carga
             try
             {
-                Lista = contexto.Importador.Where(criterio).ToList();
+                Lista = await contexto.Importador.Where(criterio).ToListAsync();
             }
             catch (Exception)
             {
@@ -176,7 +177,7 @@ namespace RentCar.BLL
             }
             finally
             {
-                contexto.Dispose();
+                await contexto.DisposeAsync();
             }
             return Lista;
         }
