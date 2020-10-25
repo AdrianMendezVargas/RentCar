@@ -136,7 +136,7 @@ namespace RentCar.BLL
             return encontrado;
         }
 
-        public async static Task<List<Importador>> GetImportadores()
+        public async static Task<List<Importador>> GetList()
         {
             Contexto contexto = new Contexto();
 
@@ -165,7 +165,7 @@ namespace RentCar.BLL
         public async static Task<List<Importador>> GetList(Expression<Func<Importador, bool>> criterio)
         {
             Contexto contexto = new Contexto();
-            List<Importador> Lista = new List<Importador>();
+            var Lista = new List<Importador>();
             await Task.Delay(01); //Para dar tiempo a renderizar el mensaje de carga
             try
             {
@@ -179,7 +179,7 @@ namespace RentCar.BLL
             {
                 await contexto.DisposeAsync();
             }
-            return Lista;
+            return Task.Run(() => Lista).Result;
         }
     }
 }

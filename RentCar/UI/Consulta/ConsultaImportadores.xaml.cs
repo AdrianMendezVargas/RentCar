@@ -29,20 +29,20 @@ namespace RentCar.UI.Consulta
 
         private void BuscarButton_Click(object sender, RoutedEventArgs e)
         {
-            var listado = async List<Task<Importador>>();
+            var listado =  new  List<Importador>();
 
             if (CriterioTextBox.Text.Trim().Length > 0)
             {
                 switch (FiltroComboBox.SelectedIndex)
                 {
                     case 0:
-                        listado = ImportadorBLL.GetList(e => true);
+                        listado = Task.Run(() => ImportadorBLL.GetList(e => true)).Result;
                         break;
                         
 
                     case 1:
                         int num = 0;
-                        listado = ImportadorBLL.GetList(e => e.ImportadorId == Convert.ToInt32(CriterioTextBox.Text));
+                        listado = Task.Run(() => ImportadorBLL.GetList(e => e.ImportadorId == Convert.ToInt32(CriterioTextBox.Text))).Result;
                         break;
                         
 
@@ -51,8 +51,11 @@ namespace RentCar.UI.Consulta
             }
             else
             {
-                listado = ImportadorBLL.GetList(e=>true);
+                listado = Task.Run(() => ImportadorBLL.GetList(e => true)).Result;
             }
+
+            DatosDataGrid.ItemsSource = null;
+            DatosDataGrid.ItemsSource = listado;
         }
     }
 }
