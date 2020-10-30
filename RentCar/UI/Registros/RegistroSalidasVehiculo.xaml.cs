@@ -170,12 +170,17 @@ namespace RentCar.UI.Registros
             if (!int.TryParse(SalidaIdTextBox.Text, out int salidaId))
             {
                 validados = false;
-                mensaje += "\nVehiculo Id invalido.";
+                mensaje += "\nSalida Id invalido.";
             }
             if (!int.TryParse(VehiculoIdTextBox.Text, out int VehiculoId))
             {
                 validados = false;
-                mensaje += "\nPoliza Id invalido.";
+                mensaje += "\nVehiculo Id invalido.";
+            }
+            if (!int.TryParse(ClienteIdTextBox.Text, out int ClienteId))
+            {
+                validados = false;
+                mensaje += "\nVehiculo Id invalido.";
             }
             if (string.IsNullOrWhiteSpace(MarcaTextBox.Text))
             {
@@ -213,6 +218,11 @@ namespace RentCar.UI.Registros
             {
                 validados = false;
                 mensaje += "\nDebe introducir un comentario con respecto a la salida del vehiculo";
+            }
+            if (FechaDatePicker.SelectedDate > DateTime.Now)
+            {
+                validados = false;
+                mensaje += "\nDebe introducir una fecha de salida del vehiculo.";
             }
             if (!validados)
             {

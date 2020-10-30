@@ -19,7 +19,8 @@ namespace RentCar.Migrations
                     Direccion = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Telefono = table.Column<string>(nullable: true),
-                    FechaNacimiento = table.Column<DateTime>(nullable: false)
+                    FechaNacimiento = table.Column<DateTime>(nullable: false),
+                    FechaRegistro = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,6 +67,8 @@ namespace RentCar.Migrations
                     SalidaId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     VehiculoId = table.Column<int>(nullable: false),
+                    ClienteId = table.Column<int>(nullable: false),
+                    Fecha = table.Column<DateTime>(nullable: false),
                     Marca = table.Column<string>(nullable: true),
                     Modelo = table.Column<string>(nullable: true),
                     Kilometraje = table.Column<int>(nullable: false),

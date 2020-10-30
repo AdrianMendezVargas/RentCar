@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar.UI.Registros"
         mc:Ignorable="d"
-        Title="RegistroSalidasVehiculos" Height="500" Width="530" MinHeight="510" MinWidth="544" WindowStartupLocation="CenterScreen">
+        Title="RegistroSalidasVehiculos" Height="500" Width="550" MinHeight="550" MinWidth="544" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Salida Id" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="SalidaIdTextBox" Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <TextBox.Text>
-                <Binding Path="salidas.SalidaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding Path="salida.SalidaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                     <Binding.ValidationRules>
                         <ExceptionValidationRule/>
                     </Binding.ValidationRules>
@@ -20,70 +20,86 @@
 
         <Label Content="VehiculoId" HorizontalAlignment="Left" Margin="16,57,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="VehiculoIdTextBox"  Margin="128,61,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.VehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+            <Binding Path="salida.VehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+        <Label Content="Cliente Id" HorizontalAlignment="Left" Margin="20,92,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ClienteIdTextBox"  Margin="128,96,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="salida.ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <Label Content="Fecha de Salida" HorizontalAlignment="Left" Margin="9,132,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="FechaDatePicker" HorizontalAlignment="Right" SelectedDate="{Binding cliente.Fecha, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,133,199,0" VerticalAlignment="Top" Width="223" Height="25">
+
+        </DatePicker>
+
+
+
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="27,178,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="MarcaTextBox" Margin="128,182,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salida.Marca" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
 
-        <Label Content="Marca" HorizontalAlignment="Left" Margin="27,88,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="MarcaTextBox" Margin="128,92,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.Marca" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+        <Label Content="Modelo" HorizontalAlignment="Left" Margin="29,218,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ModeloTextBox"  Margin="128,226,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salida.Modelo" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
 
-        <Label Content="Modelo" HorizontalAlignment="Left" Margin="23,125,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ModeloTextBox"  Margin="128,129,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.Modelo" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+        <Label Content="Kilometraje" HorizontalAlignment="Left" Margin="20,257,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="KilometrajeTextBox"  Margin="128,261,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salida.Kilometraje" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
 
-        <Label Content="Kilometraje" HorizontalAlignment="Left" Margin="22,166,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="KilometrajeTextBox"  Margin="128,170,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.Kilometraje" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+        <Label Content="Nombres" HorizontalAlignment="Left" Margin="22,299,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NombresTextBox"  Margin="128,294,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salida.Nombres" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
 
-        <Label Content="Nombres" HorizontalAlignment="Left" Margin="23,207,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="NombresTextBox"  Margin="128,211,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.Nombres" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+        <Label Content="Precio" HorizontalAlignment="Left" Margin="30,331,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.352,0.656"/>
+        <TextBox x:Name="PrecioTextBox" Margin="128,335,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salida.PrecioDia" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
 
-        <Label Content="Precio" HorizontalAlignment="Left" Margin="30,252,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.352,0.656"/>
-        <TextBox x:Name="PrecioTextBox" Margin="128,256,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.PrecioDia" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+        <Label Content="Razon Salida" HorizontalAlignment="Left" Margin="16,366,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="RazonSalidaTextBox" Margin="128,370,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salida.RazonSalida" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
 
-        <Label Content="Razon Salida" HorizontalAlignment="Left" Margin="18,295,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="RazonSalidaTextBox" Margin="128,304,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.RazonSalida" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
-        </TextBox>
-
-        <Label Content="Comentario" HorizontalAlignment="Left" Margin="22,340,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ComentarioTextBox" Margin="128,348,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salidas.Comentario" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+        <Label Content="Comentario" HorizontalAlignment="Left" Margin="21,406,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ComentarioTextBox" Margin="128,410,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salida.Comentario" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>
