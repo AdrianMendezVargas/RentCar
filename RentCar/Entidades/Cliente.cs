@@ -14,6 +14,7 @@ namespace RentCar.Entidades {
         public string Email { get; set; }
         public string Telefono { get; set; }
         public DateTime FechaNacimiento { get; set; }
+        public DateTime FechaRegistro { get; set; }
 
         public Cliente() {
             ClienteId = 0;
@@ -23,6 +24,7 @@ namespace RentCar.Entidades {
             Email = "";
             Direccion = "";
             FechaNacimiento = DateTime.Now.Date;
+            FechaRegistro = DateTime.Now.Date;
             Telefono = "";
         }
 

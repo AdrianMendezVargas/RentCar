@@ -14,7 +14,7 @@ namespace RentCar.DAL {
         public DbSet<SalidaVehiculo> salidaVehiculos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
 
-            optionsBuilder.UseSqlite("Data source= RentCar.db");
+            optionsBuilder.UseSqlite("Data source = RentCar.db");
         }
 
     }

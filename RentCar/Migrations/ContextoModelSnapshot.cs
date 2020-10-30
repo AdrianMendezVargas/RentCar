@@ -14,7 +14,7 @@ namespace RentCar.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.9");
 
             modelBuilder.Entity("RentCar.Entidades.Cliente", b =>
                 {
@@ -35,6 +35,9 @@ namespace RentCar.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaRegistro")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nombres")

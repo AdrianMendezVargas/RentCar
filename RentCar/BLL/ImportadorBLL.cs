@@ -4,6 +4,7 @@ using RentCar.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -135,7 +136,7 @@ namespace RentCar.BLL
             return encontrado;
         }
 
-        public async static Task<List<Importador>> GetClientes()
+        public async static Task<List<Importador>> GetList()
         {
             Contexto contexto = new Contexto();
 
@@ -159,6 +160,26 @@ namespace RentCar.BLL
 
             return importador;
 
+        }
+
+        public async static Task<List<Importador>> GetList(Expression<Func<Importador, bool>> criterio)
+        {
+            Contexto contexto = new Contexto();
+            var Lista = new List<Importador>();
+            await Task.Delay(01); //Para dar tiempo a renderizar el mensaje de carga
+            try
+            {
+                Lista = await contexto.Importador.Where(criterio).ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                await contexto.DisposeAsync();
+            }
+            return Task.Run(() => Lista).Result;
         }
     }
 }

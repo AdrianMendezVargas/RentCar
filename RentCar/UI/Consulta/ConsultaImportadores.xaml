@@ -14,21 +14,33 @@
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <ComboBox Width="100" Margin="10,0" Height="23">
+                <ComboBox x:Name="FiltroComboBox" Width="100" Margin="10,0" Height="23">
                     <ComboBoxItem Content="Todo"/>
+                    <ComboBoxItem Content="ID"/>
+                    <ComboBoxItem Content="Nombre"/>
+                    <ComboBoxItem Content="pagina Web"/>
+                    <ComboBoxItem Content="Telefono"/>
                 </ComboBox>
 
-                <TextBox Text="" Width="200" Height="23" Margin="20,0"/>
+                <TextBox x:Name="CriterioTextBox" Text="" Width="200" Height="23" Margin="20,0"/>
 
-                <Button>
+                <Button x:Name="BuscarButton" Click="BuscarButton_Click">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Resources/buscar.png" Width="25"/>
-                        <Label Content="Buscar"/>
+                        <Label Content="Buscar" RenderTransformOrigin="-4.236,25.252"/>
                     </StackPanel>
                 </Button>
             </StackPanel>
 
-            <DataGrid Height="250" Margin="10,15"/>
+            <DataGrid x:Name="DatosDataGrid" Height="275" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ImportadorId}" Visibility="Visible"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
+                    <DataGridTextColumn Header="Pagina Web                      " Binding="{Binding PaginaWeb}"/>
+                    <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono}"/>
+                   
+                </DataGrid.Columns>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </Window>
