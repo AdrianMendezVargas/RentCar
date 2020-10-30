@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="RegistroSalidasVehiculos" Height="500" Width="530" MinHeight="510" MinWidth="544" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Label Content="Salidas Id" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="SalidasIdTextBox" Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <Label Content="Salida Id" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="SalidaIdTextBox" Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <TextBox.Text>
                 <Binding Path="salidas.SalidaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                     <Binding.ValidationRules>
@@ -90,7 +90,8 @@
             </Binding>
         </TextBox>
 
-        <Button x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top">
+
+        <Button x:Name="BuscarButton" Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top" Click="BuscarButton_Click">
             <Button.Content>
                 <DockPanel>
                     <Image Source="/Resources/buscar.png"/>
