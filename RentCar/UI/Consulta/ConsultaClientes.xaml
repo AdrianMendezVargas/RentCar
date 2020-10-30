@@ -5,30 +5,141 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar.UI.Consulta"
         mc:Ignorable="d"
-        Title="ConsultaClientes" Height="350" Width="600">
+
+xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Cyan" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Filtro:" Margin="10,0"/>
-                <Label Content="Criterio:" Margin="80,0"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <ComboBox Width="100" Margin="10,0" Height="23">
-                    <ComboBoxItem Content="Todo"/>
-                </ComboBox>
-
-                <TextBox Text="" Width="200" Height="23" Margin="20,0"/>
-
-                <Button>
+             <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Expander HorizontalAlignment="Stretch" Header="Aplicar filtros" BorderThickness="0.5" materialDesign:ColorZoneAssist.Background="AntiqueWhite" Background="#FFDAF0EF" BorderBrush="Black" >
+                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/buscar.png" Width="25"/>
-                        <Label Content="Buscar"/>
+                        <ComboBox x:Name="FiltroComboBox" SelectedIndex="0" materialDesign:HintAssist.Hint="Filtrar por" materialDesign:HintAssist.IsFloating="True" Margin="20 10" VerticalAlignment="Center" Width="92"  >
+                            <ComboBoxItem Content="Ninguno"/>
+                            <ComboBoxItem Content="Cliente Id"/>
+                            <ComboBoxItem Content="Nombre"/>
+                            <ComboBoxItem Content="Apellido"/>
+                        </ComboBox>
+
                     </StackPanel>
+                </StackPanel>
+            </Expander>
+    </Grid>
+     <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Orientation="Horizontal" >
+                <TextBox x:Name="CriterioTextBox" Margin="30, 20" FontSize="14" materialDesign:HintAssist.Hint="Criterio" materialDesign:HintAssist.IsFloating="True" Text="" TextWrapping="Wrap" Width="206" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                <Button  x:Name="BuscarButton"  Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" >
+                    <DockPanel>
+                        <Image Source="/Resources/buscar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Buscar"/>
+                    </DockPanel>
                 </Button>
             </StackPanel>
+            <Grid Grid.Column="1">
+                <Button x:Name="AgregarClienteButton" HorizontalAlignment="Right" Margin="30,0" >
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="0,0,5,0" Kind="Add" VerticalAlignment="Center"/>
+                        <TextBlock Text="Nuevo Cliente"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+         <Grid Grid.Row="2">
+            <DataGrid x:Name="ResultadosDataGrid" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
+                <DataGrid.Columns>
 
-            <DataGrid Height="250" Margin="10,15"/>
-        </StackPanel>
+                    <DataGridTemplateColumn Header="Cliente Id" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="ClienteIdButton" HorizontalAlignment="Stretch" Content="{Binding ClienteId}" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Nombres " Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="NombresButton" HorizontalAlignment="Stretch" Content="{Binding Nombres}" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Apellidos " Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="ApellidosButton" HorizontalAlignment="Stretch" Content="{Binding Apellidos}" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Cédula" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="CédulaButton" HorizontalAlignment="Stretch" Content="{Binding Cédula}" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Teléfono" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="TeléfonoButton" HorizontalAlignment="Stretch" Content="{Binding Teléfono}" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Dirección" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="DirecciónButton" HorizontalAlignment="Stretch" Content="{Binding Dirección}" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                     <DataGridTemplateColumn Header="Email" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="EmailButton" HorizontalAlignment="Stretch" Content="{Binding Email}" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="1*">
+                    <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="EditarButton" Content="Ver" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+                <d:DataGrid.Items>
+                    <MenuItem></MenuItem>
+                </d:DataGrid.Items>
+            </DataGrid>
+        </Grid>
     </Grid>
 </Window>
