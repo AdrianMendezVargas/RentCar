@@ -10,6 +10,8 @@ namespace RentCar.Entidades
         [Key]
         public int SalidaId { get; set; }
         public int VehiculoId { get; set; }
+        public int ClienteId { get; set; }
+        public DateTime Fecha { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public int Kilometraje { get; set; }
@@ -22,6 +24,8 @@ namespace RentCar.Entidades
         {
             SalidaId = 0;
             VehiculoId = 0;
+            ClienteId = 0;
+            Fecha = DateTime.Now;
             Marca = "";
             Modelo = "";
             Kilometraje = 0;
