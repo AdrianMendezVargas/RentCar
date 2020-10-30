@@ -89,13 +89,12 @@
         </TextBox>
 
         <Label Content="Razon Salida" HorizontalAlignment="Left" Margin="16,366,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="RazonSalidaTextBox" Margin="128,370,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="salida.RazonSalida" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
-                <Binding.ValidationRules>
-                    <ExceptionValidationRule/>
-                </Binding.ValidationRules>
-            </Binding>
-        </TextBox>
+        <ComboBox HorizontalAlignment="Left" Margin="128,370,0,0" VerticalAlignment="Top" SelectedIndex="0" Width="120">
+            <ComboBoxItem Content="Venta" />
+            <ComboBoxItem Content="Choque" />
+            <ComboBoxItem Content="Renovacion" />
+            <ComboBoxItem Content="Otra" />
+        </ComboBox>
 
         <Label Content="Comentario" HorizontalAlignment="Left" Margin="21,406,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="ComentarioTextBox" Margin="128,410,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
