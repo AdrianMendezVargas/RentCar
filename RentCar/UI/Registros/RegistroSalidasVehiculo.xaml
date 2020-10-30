@@ -1,0 +1,144 @@
+﻿<Window x:Class="RentCar.UI.Registros.RegistroSalidasVehiculo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RentCar.UI.Registros"
+        mc:Ignorable="d"
+        Title="RegistroSalidasVehiculos" Height="500" Width="530" MinHeight="510" MinWidth="544" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Salidas Id" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="SalidasIdTextBox" Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <TextBox.Text>
+                <Binding Path="salidas.SalidaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <Label Content="VehiculoId" HorizontalAlignment="Left" Margin="16,57,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="VehiculoIdTextBox"  Margin="128,61,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.VehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label Content="Marca" HorizontalAlignment="Left" Margin="27,88,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="MarcaTextBox" Margin="128,92,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.Marca" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label Content="Modelo" HorizontalAlignment="Left" Margin="23,125,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ModeloTextBox"  Margin="128,129,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.Modelo" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label Content="Kilometraje" HorizontalAlignment="Left" Margin="22,166,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="KilometrajeTextBox"  Margin="128,170,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.Kilometraje" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label Content="Nombres" HorizontalAlignment="Left" Margin="23,207,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NombresTextBox"  Margin="128,211,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.Nombres" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label Content="Precio" HorizontalAlignment="Left" Margin="30,252,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.352,0.656"/>
+        <TextBox x:Name="PrecioTextBox" Margin="128,256,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.PrecioDia" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label Content="Razon Salida" HorizontalAlignment="Left" Margin="18,295,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="RazonSalidaTextBox" Margin="128,304,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.RazonSalida" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Label Content="Comentario" HorizontalAlignment="Left" Margin="22,340,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ComentarioTextBox" Margin="128,348,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="salidas.Comentario" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+                <Binding.ValidationRules>
+                    <ExceptionValidationRule/>
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox>
+
+        <Button x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top">
+            <Button.Content>
+                <DockPanel>
+                    <Image Source="/Resources/buscar.png"/>
+                    <TextBlock VerticalAlignment="Center" Text="Buscar"/>
+                </DockPanel>
+            </Button.Content>
+
+        </Button>
+
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="248" Margin="0,0,0,23" Height="30">
+            <Button  x:Name="NuevoButton" Click="NuevoButton_Click" HorizontalAlignment="Left">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/nuevo.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
+                    </DockPanel>
+                </Button.Content>
+
+            </Button>
+
+            <Button  x:Name="GuardarButton" Click="GuardarButton_Click" HorizontalAlignment="Center">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/guardar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Guardar"/>
+                    </DockPanel>
+                </Button.Content>
+
+            </Button>
+
+            <Button  x:Name="EliminarButton" Click="EliminarButton_Click" HorizontalAlignment="Right">
+                <Button.Content>
+                    <DockPanel>
+                        <Image Source="/Resources/eliminar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
+                    </DockPanel>
+                </Button.Content>
+
+            </Button>
+
+        </Grid>
+
+
+
+
+
+
+
+
+    </Grid>
+</Window>

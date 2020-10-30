@@ -11,6 +11,7 @@ namespace RentCar.DAL {
         public DbSet<Renta> Rentas { get; set; }
         public DbSet<Vehiculo> Vehiculos { get; set; }
         public DbSet<Importador> Importador { get; set; }
+        public DbSet<SalidaVehiculo> salidaVehiculos { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
 
             optionsBuilder.UseSqlite("Data source= RentCar.db");

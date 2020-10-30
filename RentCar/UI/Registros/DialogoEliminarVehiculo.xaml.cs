@@ -25,6 +25,7 @@ namespace RentCar.UI.Registros {
 
         private void eliminarButton_Click(object sender , RoutedEventArgs e) {
 
+            
         }
     }
 }

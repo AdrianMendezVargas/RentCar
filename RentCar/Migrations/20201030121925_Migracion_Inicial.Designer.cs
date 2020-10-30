@@ -9,8 +9,8 @@ using RentCar.DAL;
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201015162425_AddColumnEliminadasToRentas")]
-    partial class AddColumnEliminadasToRentas
+    [Migration("20201030121925_Migracion_Inicial")]
+    partial class Migracion_Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,26 @@ namespace RentCar.Migrations
                     b.ToTable("Clientes");
                 });
 
+            modelBuilder.Entity("RentCar.Entidades.Importador", b =>
+                {
+                    b.Property<int>("ImportadorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaginaWeb")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ImportadorId");
+
+                    b.ToTable("Importador");
+                });
+
             modelBuilder.Entity("RentCar.Entidades.Renta", b =>
                 {
                     b.Property<int>("RentaId")
@@ -77,6 +97,41 @@ namespace RentCar.Migrations
                     b.HasKey("RentaId");
 
                     b.ToTable("Rentas");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.SalidaVehiculo", b =>
+                {
+                    b.Property<int>("SalidaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Comentario")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Kilometraje")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Marca")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Modelo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombres")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("PrecioDia")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RazonSalida")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VehiculoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("SalidaId");
+
+                    b.ToTable("salidaVehiculos");
                 });
 
             modelBuilder.Entity("RentCar.Entidades.Vehiculo", b =>

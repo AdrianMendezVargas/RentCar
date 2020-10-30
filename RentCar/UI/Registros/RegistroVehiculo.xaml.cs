@@ -119,6 +119,11 @@ namespace RentCar.UI.Registros
 
                 if (await VehiculoBLL.Existe(vehiculoId))
                 {
+                    DialogoEliminarVehiculo f = new DialogoEliminarVehiculo();
+                    f.ShowDialog();
+
+                    
+
                     MessageBoxResult opcion = MessageBox.Show("Desea eliminar este vehiculo?.", "Confirme", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     if (opcion == MessageBoxResult.Yes)
