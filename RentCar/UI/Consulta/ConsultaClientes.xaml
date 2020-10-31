@@ -38,6 +38,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                             <ComboBoxItem Content="Cliente Id"/>
                             <ComboBoxItem Content="Nombre"/>
                             <ComboBoxItem Content="Apellido"/>
+                            <ComboBoxItem Content="Cedula"/>
                         </ComboBox>
 
                     </StackPanel>
@@ -51,7 +52,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Orientation="Horizontal" >
                 <TextBox x:Name="CriterioTextBox" Margin="30, 20" FontSize="14" materialDesign:HintAssist.Hint="Criterio" materialDesign:HintAssist.IsFloating="True" Text="" TextWrapping="Wrap" Width="206" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}"/>
-                <Button  x:Name="BuscarButton"  Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" >
+                <Button  x:Name="BuscarButton"  Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" Click="BuscarButton_Click" >
                     <DockPanel>
                         <Image Source="/Resources/buscar.png"/>
                         <TextBlock VerticalAlignment="Center" Text="Buscar"/>
@@ -59,7 +60,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                 </Button>
             </StackPanel>
             <Grid Grid.Column="1">
-                <Button x:Name="AgregarClienteButton" HorizontalAlignment="Right" Margin="30,0" >
+                <Button x:Name="AgregarClienteButton" HorizontalAlignment="Right" Margin="30,0" Click="AgregarClienteButton_Click" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Margin="0,0,5,0" Kind="Add" VerticalAlignment="Center"/>
                         <TextBlock Text="Nuevo Cliente"/>
@@ -82,7 +83,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Header="Nombres " Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Label x:Name="NombresButton" HorizontalAlignment="Stretch" Content="{Binding Nombres}" />
+                                <Label x:Name="Nombres" HorizontalAlignment="Stretch" Content="{Binding Nombres}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -130,7 +131,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="EditarButton" Content="Ver" />
+                                <Button x:Name="EditarButton" Content="Ver" Click="EditarButton_Click"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
