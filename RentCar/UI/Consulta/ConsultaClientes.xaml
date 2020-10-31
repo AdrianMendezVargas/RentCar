@@ -60,7 +60,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                 </Button>
             </StackPanel>
             <Grid Grid.Column="1">
-                <Button x:Name="AgregarClienteButton" HorizontalAlignment="Right" Margin="30,0" Click="AgregarClienteButton_Click" >
+                <Button x:Name="AgregarClienteButton" HorizontalAlignment="Right" Margin="30,0"  >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Margin="0,0,5,0" Kind="Add" VerticalAlignment="Center"/>
                         <TextBlock Text="Nuevo Cliente"/>
