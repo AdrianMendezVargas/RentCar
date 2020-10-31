@@ -32,6 +32,7 @@ namespace RentCar.BLL
                     Vehiculo vehiculo = await VehiculoBLL.Buscar(salida.VehiculoId);
                     if (vehiculo != null) {
                         vehiculo.Estado = Entidades.Enums.VehiculoEstado.Eliminado;
+                        await VehiculoBLL.Modificar(vehiculo);
                     }
                 }
             }
