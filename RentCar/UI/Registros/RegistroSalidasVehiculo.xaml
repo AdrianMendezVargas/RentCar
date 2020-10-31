@@ -19,7 +19,7 @@
         </TextBox>
 
         <Label Content="VehiculoId" HorizontalAlignment="Left" Margin="16,57,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="VehiculoIdTextBox"  Margin="128,61,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <TextBox x:Name="VehiculoIdTextBox" TextChanged="VehiculoIdTextBox_TextChanged"  Margin="128,61,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <Binding Path="salida.VehiculoId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
@@ -27,7 +27,7 @@
             </Binding>
         </TextBox>
         <Label Content="Cliente Id" HorizontalAlignment="Left" Margin="20,92,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="ClienteIdTextBox"  Margin="128,96,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <TextBox x:Name="ClienteIdTextBox" TextChanged="ClienteIdTextBox_TextChanged" Margin="128,96,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <TextBox.Text>
                 <Binding Path="salida.ClienteId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                     <Binding.ValidationRules>

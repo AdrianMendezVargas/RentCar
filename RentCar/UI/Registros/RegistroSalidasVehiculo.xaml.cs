@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -23,6 +24,8 @@ namespace RentCar.UI.Registros
 
         public SalidaVehiculo salida { get; set; } = new SalidaVehiculo();
         public static int ID { get; set; }
+        public Vehiculo Vehiculo { get; set; }
+
         public RegistroSalidasVehiculo(int SalidaId = 0)
         {
             InitializeComponent();
@@ -32,11 +35,8 @@ namespace RentCar.UI.Registros
                 InicializarSalidaVehiculo(SalidaId);
             }
 
-
-            
-            
             this.DataContext = this;
-            MyPropertyChanged("Salidas");
+            MyPropertyChanged("salida");
             
         }
 
@@ -225,6 +225,54 @@ namespace RentCar.UI.Registros
             }
 
             return validados;
+        }
+
+        private async void VehiculoIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
+            await BuscarVehiculo();
+        }
+
+        private async Task BuscarVehiculo() {
+            Vehiculo = await VehiculoBLL.Buscar(salida.VehiculoId);
+            LlenarCamposVehiculo();
+        }
+
+        private void LlenarCamposVehiculo() {
+            LimpiarCamposVehiculo();
+            if (Vehiculo != null) {
+                MarcaTextBox.Text = Vehiculo.Marca;
+                ModeloTextBox.Text = Vehiculo.Modelo;
+                KilometrajeTextBox.Text = Vehiculo.Kilometraje.ToString();
+                PrecioTextBox.Text = Vehiculo.Valor.ToString();
+            } else {
+                LimpiarCamposVehiculo();
+                MarcaTextBox.Text = "Este vehiculo no existe";
+            }
+        }
+
+        private void LimpiarCamposVehiculo() {
+            ModeloTextBox.Text = "";
+            MarcaTextBox.Text = "";
+            PrecioTextBox.Text = "";
+            KilometrajeTextBox.Text = "";
+        }
+
+        private async void ClienteIdTextBox_TextChanged(object sender , TextChangedEventArgs e) {
+            await BuscarCliente();
+        }
+
+        private async Task BuscarCliente() {
+            if (!int.TryParse(ClienteIdTextBox.Text , out int clienteId)) {
+
+                NombresTextBox.Text = "Cliente Id invalido.";
+            } else {
+                Cliente cliente = await ClientesBLL.Buscar(clienteId);
+                if (cliente == null) {
+
+                    NombresTextBox.Text = "Este cliente no existe.";
+                } else {
+                    NombresTextBox.Text = cliente.Nombres;
+                }
+            }
         }
     }
 
