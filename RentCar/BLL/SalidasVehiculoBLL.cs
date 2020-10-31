@@ -28,6 +28,12 @@ namespace RentCar.BLL
             {
                 contexto.salidaVehiculos.Add(salida);
                 paso = await contexto.SaveChangesAsync() > 0;
+                if (paso) {
+                    Vehiculo vehiculo = await VehiculoBLL.Buscar(salida.VehiculoId);
+                    if (vehiculo != null) {
+                        vehiculo.Estado = Entidades.Enums.VehiculoEstado.Eliminado;
+                    }
+                }
             }
             catch (Exception)
             {
