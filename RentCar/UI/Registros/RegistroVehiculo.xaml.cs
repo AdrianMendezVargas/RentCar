@@ -114,44 +114,11 @@ namespace RentCar.UI.Registros
 
         private async void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-            bool eliminado = false;
+            
 
-            if (int.TryParse(VehiculoIdTextBox.Text, out int vehiculoId))
-            {
-
-                if (await VehiculoBLL.Existe(vehiculoId))
-                {
-
-                    RegistroSalidasVehiculo.ID = vehiculoId;
-
-                   // MessageBoxResult opcion = MessageBox.Show("Desea eliminar este vehiculo?.", "Confirme", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                  //  if (opcion == MessageBoxResult.Yes)
-                    {
-                        eliminado = await VehiculoBLL.Eliminar(vehiculoId);
-
-                        if (eliminado)
-                        {
-                            Limpiar();
-                            MessageBox.Show("Eliminado.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error al eliminar.");
-                        }
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Este vehiculo no existe.");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("vehiculo Id invalido.");
-            }
+                    RegistroSalidasVehiculo registro = new RegistroSalidasVehiculo();
+                    registro.Show();
+                   
 
         }
 
