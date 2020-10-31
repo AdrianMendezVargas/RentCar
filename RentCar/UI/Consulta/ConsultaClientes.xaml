@@ -33,11 +33,12 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
             <Expander HorizontalAlignment="Stretch" Header="Aplicar filtros" BorderThickness="0.5" materialDesign:ColorZoneAssist.Background="AntiqueWhite" Background="#FFDAF0EF" BorderBrush="Black" >
                 <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                     <StackPanel Orientation="Horizontal">
-                        <ComboBox x:Name="FiltroComboBox" SelectedIndex="0" materialDesign:HintAssist.Hint="Filtrar por" materialDesign:HintAssist.IsFloating="True" Margin="20 10" VerticalAlignment="Center" Width="92"  >
-                            <ComboBoxItem Content="Ninguno"/>
+                        <ComboBox x:Name="FiltroComboBox" SelectedIndex="4" materialDesign:HintAssist.Hint="Filtrar por" materialDesign:HintAssist.IsFloating="True" Margin="20 10" VerticalAlignment="Center" Width="92"  >
                             <ComboBoxItem Content="Cliente Id"/>
                             <ComboBoxItem Content="Nombre"/>
                             <ComboBoxItem Content="Apellido"/>
+                            <ComboBoxItem Content="Cedula"/>
+                            <ComboBoxItem Content="Ninguno"/>
                         </ComboBox>
 
                     </StackPanel>
@@ -51,7 +52,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Orientation="Horizontal" >
                 <TextBox x:Name="CriterioTextBox" Margin="30, 20" FontSize="14" materialDesign:HintAssist.Hint="Criterio" materialDesign:HintAssist.IsFloating="True" Text="" TextWrapping="Wrap" Width="206" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}"/>
-                <Button  x:Name="BuscarButton"  Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" >
+                <Button  x:Name="BuscarButton" Click="BuscarButton_Click" Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" >
                     <DockPanel>
                         <Image Source="/Resources/buscar.png"/>
                         <TextBlock VerticalAlignment="Center" Text="Buscar"/>
@@ -59,7 +60,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                 </Button>
             </StackPanel>
             <Grid Grid.Column="1">
-                <Button x:Name="AgregarClienteButton" HorizontalAlignment="Right" Margin="30,0" >
+                <Button x:Name="AgregarClienteButton" HorizontalAlignment="Right" Click="AgregarClienteButton_Click" Margin="30,0" >
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Margin="0,0,5,0" Kind="Add" VerticalAlignment="Center"/>
                         <TextBlock Text="Nuevo Cliente"/>
@@ -68,7 +69,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
             </Grid>
         </Grid>
          <Grid Grid.Row="2">
-            <DataGrid x:Name="ResultadosDataGrid" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
+            <DataGrid x:Name="ResultadosDataGrid" ItemsSource="{Binding clientes}" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
                 <DataGrid.Columns>
 
                     <DataGridTemplateColumn Header="Cliente Id" Width="1*">
@@ -98,7 +99,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Header="Cédula" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Label x:Name="CédulaButton" HorizontalAlignment="Stretch" Content="{Binding Cédula}"  />
+                                <Label x:Name="CédulaButton" HorizontalAlignment="Stretch" Content="{Binding Cedula}"  />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -106,7 +107,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Header="Teléfono" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Label x:Name="TeléfonoButton" HorizontalAlignment="Stretch" Content="{Binding Teléfono}"  />
+                                <Label x:Name="TeléfonoButton" HorizontalAlignment="Stretch" Content="{Binding Telefono}"  />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -114,7 +115,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Header="Dirección" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Label x:Name="DirecciónButton" HorizontalAlignment="Stretch" Content="{Binding Dirección}"  />
+                                <Label x:Name="DirecciónButton" HorizontalAlignment="Stretch" Content="{Binding Direccion}"  />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -130,7 +131,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="EditarButton" Content="Ver" />
+                                <Button x:Name="EditarButton" Content="Ver" Click="EditarButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
