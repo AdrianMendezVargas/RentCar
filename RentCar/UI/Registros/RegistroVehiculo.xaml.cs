@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -33,6 +34,8 @@ namespace RentCar.UI.Registros
        
             this.DataContext = this;
             MyPropertyChanged("vehiculo");
+
+            
         }
 
         private async void InicializarVehiculo(int vehiculoId) {
@@ -111,7 +114,6 @@ namespace RentCar.UI.Registros
 
         private async void EliminarButton_Click(object sender, RoutedEventArgs e)
         {
-
             bool eliminado = false;
 
             if (int.TryParse(VehiculoIdTextBox.Text, out int vehiculoId))
@@ -119,14 +121,12 @@ namespace RentCar.UI.Registros
 
                 if (await VehiculoBLL.Existe(vehiculoId))
                 {
-                    DialogoEliminarVehiculo f = new DialogoEliminarVehiculo();
-                    f.ShowDialog();
 
-                    
+                    RegistroSalidasVehiculo.ID = vehiculoId;
 
-                    MessageBoxResult opcion = MessageBox.Show("Desea eliminar este vehiculo?.", "Confirme", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                   // MessageBoxResult opcion = MessageBox.Show("Desea eliminar este vehiculo?.", "Confirme", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                    if (opcion == MessageBoxResult.Yes)
+                  //  if (opcion == MessageBoxResult.Yes)
                     {
                         eliminado = await VehiculoBLL.Eliminar(vehiculoId);
 

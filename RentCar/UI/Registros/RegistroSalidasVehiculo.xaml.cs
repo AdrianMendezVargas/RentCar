@@ -22,7 +22,7 @@ namespace RentCar.UI.Registros
         public event PropertyChangedEventHandler PropertyChanged;
 
         public SalidaVehiculo salida { get; set; } = new SalidaVehiculo();
-
+        public static int ID { get; set; }
         public RegistroSalidasVehiculo(int SalidaId = 0)
         {
             InitializeComponent();
@@ -31,15 +31,20 @@ namespace RentCar.UI.Registros
             {
                 InicializarSalidaVehiculo(SalidaId);
             }
-            
 
+
+            
+            
             this.DataContext = this;
             MyPropertyChanged("Salidas");
             
         }
 
+
         private async void InicializarSalidaVehiculo(int SalidaId)
         {
+            var vehiculo = await VehiculoBLL.Buscar(ID);
+
             var _salida = await SalidasVehiculoBLL.Buscar(SalidaId);
 
             if (_salida != null)
@@ -126,11 +131,7 @@ namespace RentCar.UI.Registros
 
                 if (await SalidasVehiculoBLL.Existe(salidaId))
                 {
-                    DialogoEliminarVehiculo f = new DialogoEliminarVehiculo();
-                    f.ShowDialog();
-
-
-
+                   
                     MessageBoxResult opcion = MessageBox.Show("Desea eliminar esta salida?.", "Confirme", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     if (opcion == MessageBoxResult.Yes)
@@ -208,12 +209,6 @@ namespace RentCar.UI.Registros
                 validados = false;
                 mensaje += "\nDebe introducir el precio.";
             }
-            if (string.IsNullOrWhiteSpace(RazonSalidaTextBox.Text))
-            {
-                validados = false;
-                mensaje += "\nDebe introducir la razon de salida del vehiculo.";
-            }
-
             if (string.IsNullOrWhiteSpace(ComentarioTextBox.Text))
             {
                 validados = false;
