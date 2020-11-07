@@ -22,7 +22,7 @@ namespace RentCar.UI.Consulta
     /// </summary>
     public partial class Consulta_vehiculos : Window
     {
-        public List<Vehiculo> Vehiculo { get; set; } = new List<Vehiculo>();
+        public List<Vehiculo> Vehiculos { get; set; } = new List<Vehiculo>();
         public Consulta_vehiculos()
         {
             InitializeComponent();
@@ -42,10 +42,10 @@ namespace RentCar.UI.Consulta
         }
         private async Task InicializarVehiculo()
         {
-            Vehiculo = await VehiculoBLL.GetVehiculo();
+            Vehiculos = await VehiculoBLL.GetVehiculos();
             CargarGrid();
         }
-        private void AgregarRentaButton_Click(object sender, RoutedEventArgs e)
+        private void AgregarVehiculoButton_Click(object sender, RoutedEventArgs e)
         {
             RegistroVehiculo registroVehiculo = new RegistroVehiculo();
             registroVehiculo.Owner = this;
@@ -60,7 +60,7 @@ namespace RentCar.UI.Consulta
         public void CargarGrid()
         {
             ResultadosDataGrid.ItemsSource = null;
-            ResultadosDataGrid.ItemsSource = Vehiculo;
+            ResultadosDataGrid.ItemsSource = Vehiculos;
         }
 
         async Task FiltrarVehiculo()
@@ -68,7 +68,7 @@ namespace RentCar.UI.Consulta
             if (FiltroComboBox.SelectedIndex == 0)
             {  //Todo
 
-                Vehiculo = (await VehiculoBLL.GetVehiculo()).Where(v => true).ToList();
+                Vehiculos = (await VehiculoBLL.GetVehiculos()).Where(v => true).ToList();
 
             }
             else if (FiltroComboBox.SelectedIndex == 1)
@@ -77,7 +77,7 @@ namespace RentCar.UI.Consulta
                 if (int.TryParse(CriterioTextBox.Text, out int VehiculoId))
                 {
 
-                    Vehiculo = (await VehiculoBLL.GetVehiculo()).Where(v => v.VehiculoId == VehiculoId).ToList();
+                    Vehiculos = (await VehiculoBLL.GetVehiculos()).Where(v => v.VehiculoId == VehiculoId).ToList();
 
                 }
 
@@ -88,7 +88,7 @@ namespace RentCar.UI.Consulta
                 if (int.TryParse(CriterioTextBox.Text, out int PolizaId))
                 {
 
-                    Vehiculo = (await VehiculoBLL.GetVehiculo()).Where(v => v.PolizaId == PolizaId).ToList();
+                    Vehiculos = (await VehiculoBLL.GetVehiculos()).Where(v => v.PolizaId == PolizaId).ToList();
 
                 }
 
@@ -97,7 +97,7 @@ namespace RentCar.UI.Consulta
 
             if (TodasRadioButton.IsChecked.Value)
             {
-                Vehiculo = Vehiculo.Where(v => true).ToList();
+                Vehiculos = Vehiculos.Where(v => true).ToList();
 
             }
 
@@ -114,8 +114,12 @@ namespace RentCar.UI.Consulta
 
         }
 
+        private void PolizaIdButton_Click(object sender , RoutedEventArgs e) {
+            Vehiculo vehiculo = (sender as Button).DataContext as Vehiculo;
 
-
-
+            VistaPoliza vista = new VistaPoliza(vehiculo.PolizaId);
+            vista.Owner = this;
+            vista.Show();
+        }
     }
 }

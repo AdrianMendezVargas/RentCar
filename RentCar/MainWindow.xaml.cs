@@ -53,7 +53,9 @@ namespace RentCar {
             registro.Show();
         }
         private void ConsultaVehiculoMenuItem_Click(object sender , RoutedEventArgs e) {
-
+            Consulta_vehiculos cosulta = new Consulta_vehiculos();
+            cosulta.Owner = this;
+            cosulta.Show();
         }
 
         private void ConsultaClientesMenuItem_Click(object sender , RoutedEventArgs e) {

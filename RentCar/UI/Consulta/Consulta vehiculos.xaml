@@ -4,12 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar.UI.Consulta"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="RentCar.UI.Consulta.Consulta_vehiculos"
+        x:Class="RentCar.UI.Consulta.Consulta_vehiculos"
         mc:Ignorable="d"
-        Title="ConsultaVehiculos" Height="350" Width="600">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="ConsultaVehiculos" Height="506" Width="811">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Cyan" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        <Grid Grid.Row="0" Margin="0,0,-400,285">
-            <Expander Header="Aplicar filtros" BorderThickness="0.5" materialDesign:ColorZoneAssist.Background="AntiqueWhite" Background="#FFDAF0EF" BorderBrush="Black" Margin="0,10,408,0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Expander HorizontalAlignment="Stretch" Header="Aplicar filtros" BorderThickness="0.5" materialDesign:ColorZoneAssist.Background="AntiqueWhite" Background="#FFDAF0EF" BorderBrush="Black" >
                 <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                     <StackPanel Orientation="Horizontal">
                         <ComboBox x:Name="FiltroComboBox" SelectedIndex="0" materialDesign:HintAssist.Hint="Filtrar por" materialDesign:HintAssist.IsFloating="True" Margin="20 10" VerticalAlignment="Center" Width="92"  >
@@ -30,33 +51,58 @@
                 </StackPanel>
             </Expander>
         </Grid>
-        <Grid Margin="0,54,0,204" >
+        <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Orientation="Horizontal" >
                 <TextBox x:Name="CriterioTextBox" Margin="30, 20" FontSize="14" materialDesign:HintAssist.Hint="Criterio" materialDesign:HintAssist.IsFloating="True" Text="" TextWrapping="Wrap" Width="206" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}"/>
-                <Image x:Name="image" Height="30" Width="44" Source="/Resources/buscar.png"/>
                 <Button  x:Name="BuscarButton"  Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" Click="BuscarButton_Click">
                     <DockPanel>
-                        <Image Source="4db7723f-52cd-4252-9ff8-394e97f92b40"/>
+                        <Image Source="/Resources/buscar.png"/>
                         <TextBlock VerticalAlignment="Center" Text="Buscar"/>
                     </DockPanel>
                 </Button>
-                <Image x:Name="image1" Height="5" Width="100"/>
             </StackPanel>
-            <Grid Grid.Column="1" Margin="0,0,77,0">
-                <Button x:Name="AgregarRentaButton" HorizontalAlignment="Right" Margin="30,0" Click="AgregarRentaButton_Click">
+            <Grid Grid.Column="1">
+                <Button x:Name="AgregarRentaButton" HorizontalAlignment="Right" Margin="30,0" Click="AgregarVehiculoButton_Click">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Nueva vehiculo"/>
+                        <materialDesign:PackIcon Margin="0,0,5,0" Kind="Add" VerticalAlignment="Center"/>
+                        <TextBlock Text="Nuevo vehiculo"/>
                     </StackPanel>
                 </Button>
-                <Image x:Name="image2" Height="76" Source="/Resources/nuevo.png" Margin="12,0,95,0"/>
             </Grid>
         </Grid>
-        <Grid Margin="0,130,-400,-250">
-            <DataGrid x:Name="ResultadosDataGrid" Margin="0,0,405,250" SelectionChanged="ResultadosDataGrid_SelectionChanged"/>
+        <Grid Grid.Row="2">
+            <DataGrid x:Name="ResultadosDataGrid" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Vehiculo id" Width="1*" Binding="{Binding VehiculoId}"/>
+                    <!--<DataGridTextColumn Header="Vehiculo id" Width="1.1*" Binding="{Binding VehiculoId}"/>-->
+                    <d:DataGridTemplateColumn Header="Poliza Id" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="PolizaIdButton" HorizontalAlignment="Stretch" Content="{Binding PolizaId}" Click="PolizaIdButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </d:DataGridTemplateColumn>
+                    <!--<DataGridTextColumn Header="Cliente id" Width="1*" Binding="{Binding ClienteId}"/>-->
+                    <DataGridTextColumn Header="Matricula" Width="1*" Binding="{Binding Matricula}"/>
+                    <DataGridTextColumn Header="Placa" Width="1.1*" Binding="{Binding Placa}"/>
+                    <DataGridTextColumn Header="Marca" Width="1.1*" Binding="{Binding Marca}"/>
+                    <DataGridTextColumn Header="Precio Dia" Width="1*" Binding="{Binding PrecioDia , StringFormat=\{0:C\}}"/>
+                    <DataGridTemplateColumn Header="" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="EditarButton" Content="Ver" Click="EditarButton_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <d:DataGrid.Items>
+                    <MenuItem></MenuItem>
+                </d:DataGrid.Items>
+            </DataGrid>
         </Grid>
     </Grid>
 </Window>

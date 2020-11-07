@@ -135,7 +135,7 @@ namespace RentCar.BLL
             return encontrado;
         }
 
-        public async static Task<List<Vehiculo>> GetVehiculo()
+        public async static Task<List<Vehiculo>> GetVehiculos()
         {
             Contexto contexto = new Contexto();
 
