@@ -1,34 +1,62 @@
-﻿<Window x:Class="RentCar.UI.Consulta.Consulta_vehiculos"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar.UI.Consulta"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="RentCar.UI.Consulta.Consulta_vehiculos"
         mc:Ignorable="d"
         Title="ConsultaVehiculos" Height="350" Width="600">
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Filtro:" Margin="10,0"/>
-                <Label Content="Criterio:" Margin="80,0"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <ComboBox Width="100" Margin="10,0" Height="23">
-                    <ComboBoxItem Content="Todo"/>
-                </ComboBox>
-
-                <TextBox Text="" Width="200" Height="23" Margin="20,0"/>
-
-                <Button>
+        <Grid Grid.Row="0" Margin="0,0,-400,285">
+            <Expander Header="Aplicar filtros" BorderThickness="0.5" materialDesign:ColorZoneAssist.Background="AntiqueWhite" Background="#FFDAF0EF" BorderBrush="Black" Margin="0,10,408,0" >
+                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/buscar.png" Width="25"/>
-                        <Label Content="Buscar"/>
+                        <ComboBox x:Name="FiltroComboBox" SelectedIndex="0" materialDesign:HintAssist.Hint="Filtrar por" materialDesign:HintAssist.IsFloating="True" Margin="20 10" VerticalAlignment="Center" Width="92"  >
+                            <ComboBoxItem Content="Ninguno"/>
+                            <ComboBoxItem Content="Renta Id"/>
+                            <ComboBoxItem Content="Cliente Id"/>
+                            <ComboBoxItem Content="Vehiculo Id"/>
+                        </ComboBox>
+                        <Label VerticalAlignment="Center" Content="Estado:" Margin="10,0"/>
+                        <StackPanel Orientation="Vertical">
+                            <RadioButton x:Name="AntiguasRadioButton" GroupName="EstadoRenta" Content="Antiguas" Margin="0,2"/>
+                            <RadioButton x:Name="ActualesRadioButton" GroupName="EstadoRenta" Content="Actuales" Margin="0,2"/>
+                            <RadioButton x:Name="TodasRadioButton" IsChecked="True" GroupName="EstadoRenta" Content="Todas" Margin="0,2"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+                </StackPanel>
+            </Expander>
+        </Grid>
+        <Grid Margin="0,54,0,204" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Orientation="Horizontal" >
+                <TextBox x:Name="CriterioTextBox" Margin="30, 20" FontSize="14" materialDesign:HintAssist.Hint="Criterio" materialDesign:HintAssist.IsFloating="True" Text="" TextWrapping="Wrap" Width="206" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                <Image x:Name="image" Height="30" Width="44" Source="/Resources/buscar.png"/>
+                <Button  x:Name="BuscarButton"  Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" Click="BuscarButton_Click">
+                    <DockPanel>
+                        <Image Source="4db7723f-52cd-4252-9ff8-394e97f92b40"/>
+                        <TextBlock VerticalAlignment="Center" Text="Buscar"/>
+                    </DockPanel>
+                </Button>
+                <Image x:Name="image1" Height="5" Width="100"/>
+            </StackPanel>
+            <Grid Grid.Column="1" Margin="0,0,77,0">
+                <Button x:Name="AgregarRentaButton" HorizontalAlignment="Right" Margin="30,0" Click="AgregarRentaButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Nueva vehiculo"/>
                     </StackPanel>
                 </Button>
-            </StackPanel>
-
-            <DataGrid Height="250" Margin="10,15"/>
-        </StackPanel>
+                <Image x:Name="image2" Height="76" Source="/Resources/nuevo.png" Margin="12,0,95,0"/>
+            </Grid>
+        </Grid>
+        <Grid Margin="0,130,-400,-250">
+            <DataGrid x:Name="ResultadosDataGrid" Margin="0,0,405,250" SelectionChanged="ResultadosDataGrid_SelectionChanged"/>
+        </Grid>
     </Grid>
 </Window>
