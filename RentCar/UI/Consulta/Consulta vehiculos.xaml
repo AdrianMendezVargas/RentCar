@@ -91,6 +91,10 @@
                     <DataGridTextColumn Header="Placa" Width="1.1*" Binding="{Binding Placa}"/>
                     <DataGridTextColumn Header="Marca" Width="1.1*" Binding="{Binding Marca}"/>
                     <DataGridTextColumn Header="Precio Dia" Width="1*" Binding="{Binding PrecioDia , StringFormat=\{0:C\}}"/>
+                    <DataGridTextColumn Header="Valor" Width="1.1*" Binding="{Binding Valor}"/>
+                    <DataGridTextColumn Header="AñoFabricacion" Width="1.1*" Binding="{Binding AñoFabricacion}"/>
+                    <DataGridTextColumn Header="Traccion" Width="1.1*" Binding="{Binding Traccion}"/>
+                    <DataGridTextColumn Header="Estado" Width="1.1*" Binding="{Binding Estado}"/>
                     <DataGridTemplateColumn Header="" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
