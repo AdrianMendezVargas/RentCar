@@ -80,23 +80,23 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Vehiculo id" Width="1*" Binding="{Binding VehiculoId}"/>
                     <!--<DataGridTextColumn Header="Vehiculo id" Width="1.1*" Binding="{Binding VehiculoId}"/>-->
-                    <d:DataGridTemplateColumn Header="Poliza Id" Width="1*">
+                    <DataGridTemplateColumn Header="Poliza Id" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="PolizaIdButton" HorizontalAlignment="Stretch" Content="{Binding PolizaId}" Click="PolizaIdButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
+                                <Button x:Name="PolizaIdButton" HorizontalAlignment="Stretch" Content="{Binding Poliza.PolizaId}" Click="PolizaIdButton_Click" Style="{DynamicResource MaterialDesignOutlinedButton}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </d:DataGridTemplateColumn>
+                    </DataGridTemplateColumn>
                     <!--<DataGridTextColumn Header="Cliente id" Width="1*" Binding="{Binding ClienteId}"/>-->
                     <DataGridTextColumn Header="Matricula" Width="1*" Binding="{Binding Matricula}"/>
                     <DataGridTextColumn Header="Placa" Width="1.1*" Binding="{Binding Placa}"/>
                     <DataGridTextColumn Header="Marca" Width="1.1*" Binding="{Binding Marca}"/>
                     <DataGridTextColumn Header="Precio Dia" Width="1*" Binding="{Binding PrecioDia , StringFormat=\{0:C\}}"/>
-                    <DataGridTextColumn Header="Valor" Width="1.1*" Binding="{Binding Valor}"/>
+                    <DataGridTextColumn Header="Valor" Width="1.1*" Binding="{Binding Valor, StringFormat=\{0:C\}}"/>
                     <DataGridTextColumn Header="AñoFabricacion" Width="1.1*" Binding="{Binding AñoFabricacion}"/>
                     <DataGridTextColumn Header="Traccion" Width="1.1*" Binding="{Binding Traccion}"/>
                     <DataGridTextColumn Header="Estado" Width="1.1*" Binding="{Binding Estado}"/>
-                    <DataGridTemplateColumn Header="" Width="1*">
+                    <DataGridTemplateColumn Header="" Width="1.2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />

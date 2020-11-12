@@ -9,8 +9,8 @@ using RentCar.DAL;
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201030212102_Migracion_Inicial")]
-    partial class Migracion_Inicial
+    [Migration("20201112202502_AddPolizaToVehiculo")]
+    partial class AddPolizaToVehiculo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -71,6 +71,35 @@ namespace RentCar.Migrations
                     b.HasKey("ImportadorId");
 
                     b.ToTable("Importador");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.Poliza", b =>
+                {
+                    b.Property<int>("PolizaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaFinal")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaInicial")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaLimitePago")
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("MontoAsegurado")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("VehiculoId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("PolizaId");
+
+                    b.HasIndex("VehiculoId")
+                        .IsUnique();
+
+                    b.ToTable("Polizas");
                 });
 
             modelBuilder.Entity("RentCar.Entidades.Renta", b =>
@@ -182,9 +211,6 @@ namespace RentCar.Migrations
                     b.Property<string>("Placa")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PolizaId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<decimal>("PrecioDia")
                         .HasColumnType("TEXT");
 
@@ -203,6 +229,15 @@ namespace RentCar.Migrations
                     b.HasKey("VehiculoId");
 
                     b.ToTable("Vehiculos");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.Poliza", b =>
+                {
+                    b.HasOne("RentCar.Entidades.Vehiculo", null)
+                        .WithOne("Poliza")
+                        .HasForeignKey("RentCar.Entidades.Poliza", "VehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -78,7 +78,7 @@ namespace RentCar.UI.Consulta {
 
                 if (int.TryParse(CriterioTextBox.Text , out int PolizaId)) {
 
-                    Vehiculos = (await VehiculoBLL.GetVehiculos()).Where(v => v.PolizaId == PolizaId).ToList();
+                    Vehiculos = (await VehiculoBLL.GetVehiculos()).Where(v => v.Poliza.PolizaId == PolizaId).ToList();
 
                 }
 
@@ -109,7 +109,7 @@ namespace RentCar.UI.Consulta {
         private void PolizaIdButton_Click(object sender , RoutedEventArgs e) {
             Vehiculo vehiculo = (sender as Button).DataContext as Vehiculo;
 
-            VistaPoliza vista = new VistaPoliza(vehiculo.PolizaId);
+            VistaPoliza vista = new VistaPoliza(vehiculo.Poliza);
             vista.Owner = this;
             vista.Show();
         }

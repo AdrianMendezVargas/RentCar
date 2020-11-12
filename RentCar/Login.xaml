@@ -5,7 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         Title="Login" Height="499" Width="400" MinHeight="499" MinWidth="400" WindowStartupLocation="CenterScreen" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Cyan" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <RadialGradientBrush>
@@ -16,26 +32,23 @@
 
         <Rectangle HorizontalAlignment="Center" Height="60" Margin="0,0,0,265" Stroke="Black" VerticalAlignment="Center" Width="56" Fill="White"/>
 
-        <Rectangle HorizontalAlignment="Center" Height="203" Margin="0,0,0,18" Stroke="Black" VerticalAlignment="Center" Width="295" RadiusX="30" RadiusY="30" Fill="White"/>
+        <Rectangle materialDesign:ShadowAssist.ShadowDepth="Depth3" HorizontalAlignment="Center" Height="203" Margin="0,0,0,18" Stroke="Black" VerticalAlignment="Center" Width="295" RadiusX="30" RadiusY="30" Fill="White"/>
 
         <Image Source="Resources/usuario.png" HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" Margin="0,0,0,250"/>
 
 
-        <Rectangle HorizontalAlignment="Center" Height="30" Stroke="Black" Margin="0,0,0,40" VerticalAlignment="Center" Width="190" RadiusX="5.04" RadiusY="5.04" ToolTip="Usuario" AutomationProperties.HelpText="Ingrese su usuario"/>
-        <DockPanel HorizontalAlignment="Center" LastChildFill="True" Height="21" Margin="0,0,0,40" VerticalAlignment="Center" Width="185">
-            <Image Source="Resources/usuario.png" Width="32"/>
-            <TextBox x:Name="usuarioTextBox" Style="{DynamicResource NoFocusTextBox}" Text="" TextWrapping="Wrap" FontSize="14" FontWeight="Bold"  Width="auto" BorderBrush="{x:Null}"/>
+        <DockPanel HorizontalAlignment="Center" LastChildFill="True" Margin="0,0,0,40" VerticalAlignment="Center" Width="185">
+            <materialDesign:PackIcon Kind="UserOutline" Foreground="{Binding Background, ElementName=iniciarSesionButton}" Width="25" Height="25" Margin="0,0,5,0" VerticalAlignment="Center"/>
+            <TextBox x:Name="usuarioTextBox" Padding="-5" materialDesign:HintAssist.FloatingOffset="0,-10" materialDesign:HintAssist.Hint="Usuario" materialDesign:HintAssist.IsFloating="True" TextWrapping="Wrap" FontSize="14" FontWeight="Bold" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}"/>
         </DockPanel>
 
-        <Rectangle HorizontalAlignment="Center" Height="30" Stroke="Black" VerticalAlignment="Center" Width="190" Margin="0,40,0,0" RadiusX="5.04" RadiusY="5.04" ToolTip="Usuario" AutomationProperties.HelpText="Ingrese su usuario" />
-        <DockPanel HorizontalAlignment="Center" LastChildFill="True" Height="20" VerticalAlignment="Center" Margin="0,40,0,0" Width="185">
-            <Image Source="Resources/contrasena.png" Width="34" Stretch="Uniform"/>
-            <PasswordBox x:Name="contrasenaTextBox" Style="{DynamicResource NoFocusPasswordBox}" FontSize="14" FontWeight="Bold" Width="auto" BorderBrush="{x:Null}"/>
+        <DockPanel HorizontalAlignment="Center" LastChildFill="True" VerticalAlignment="Center" Margin="0,40,0,0" Width="184">
+            <materialDesign:PackIcon Kind="KeyOutline" Foreground="{Binding Background, ElementName=iniciarSesionButton}" Width="25" Height="25" Margin="0,0,4,0" VerticalAlignment="Center" />
+            <PasswordBox x:Name="contrasenaTextBox" Padding="-5" FontSize="14" FontWeight="Bold" materialDesign:HintAssist.FloatingOffset="0,-10"  materialDesign:HintAssist.Hint="Contraseña" materialDesign:HintAssist.IsFloating="True" Style="{DynamicResource MaterialDesignOutlinedPasswordFieldPasswordBox}" />
         </DockPanel>
 
-        <Button x:Name="iniciarSesionButton" Click="IniciarSesionButton_Click" IsDefault="True" Background="{x:Null}" BorderBrush="{x:Null}"  Width="190" Height="40" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Center">
+        <Button x:Name="iniciarSesionButton" Click="IniciarSesionButton_Click" IsDefault="True"  Width="190" Height="40" HorizontalAlignment="Center" Margin="0,180,0,0" VerticalAlignment="Center">
             <Grid >
-                <Rectangle  Stroke="Black" Width="186" Height="36" RadiusX="5.04" RadiusY="5.04" Fill="#FF4DD0E1"/>
                 <TextBlock  Text="Iniciar Sesión" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </Grid>
         </Button>

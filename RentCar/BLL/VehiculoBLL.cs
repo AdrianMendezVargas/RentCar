@@ -26,6 +26,13 @@ namespace RentCar.BLL
 
             try
             {
+                #region Asignando poliza
+                vehiculo.Poliza.FechaInicial = DateTime.Now;
+                vehiculo.Poliza.FechaFinal = DateTime.Today.AddDays(365);
+                vehiculo.Poliza.MontoAsegurado = vehiculo.Valor * 1.01m;
+                vehiculo.Poliza.FechaLimitePago = DateTime.Today.AddDays(90);
+                #endregion
+
                 contexto.Vehiculos.Add(vehiculo);
                 paso = await contexto.SaveChangesAsync() > 0;
             }
@@ -99,7 +106,8 @@ namespace RentCar.BLL
             try
             {
                 vehiculo = await contexto.Vehiculos
-                    .Where(e => e.VehiculoId == id)
+                    .Where(v => v.VehiculoId == id)
+                    .Include(v => v.Poliza)
                     .FirstOrDefaultAsync();
             }
             catch (Exception)
@@ -144,7 +152,7 @@ namespace RentCar.BLL
 
             try
             {
-                vehiculo = await contexto.Vehiculos.ToListAsync();
+                vehiculo = await contexto.Vehiculos.Include(v => v.Poliza).AsNoTracking().ToListAsync();
 
             }
             catch (Exception)

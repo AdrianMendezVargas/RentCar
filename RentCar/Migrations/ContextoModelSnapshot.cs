@@ -94,6 +94,9 @@ namespace RentCar.Migrations
 
                     b.HasKey("PolizaId");
 
+                    b.HasIndex("VehiculoId")
+                        .IsUnique();
+
                     b.ToTable("Polizas");
                 });
 
@@ -206,9 +209,6 @@ namespace RentCar.Migrations
                     b.Property<string>("Placa")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PolizaId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<decimal>("PrecioDia")
                         .HasColumnType("TEXT");
 
@@ -227,6 +227,15 @@ namespace RentCar.Migrations
                     b.HasKey("VehiculoId");
 
                     b.ToTable("Vehiculos");
+                });
+
+            modelBuilder.Entity("RentCar.Entidades.Poliza", b =>
+                {
+                    b.HasOne("RentCar.Entidades.Vehiculo", null)
+                        .WithOne("Poliza")
+                        .HasForeignKey("RentCar.Entidades.Poliza", "VehiculoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentCar.Migrations
 {
-    public partial class Migracion_Inicial : Migration
+    public partial class AddPolizaToVehiculo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,7 +88,6 @@ namespace RentCar.Migrations
                 {
                     VehiculoId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    PolizaId = table.Column<int>(nullable: false),
                     Matricula = table.Column<string>(nullable: true),
                     Placa = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
@@ -110,6 +109,35 @@ namespace RentCar.Migrations
                 {
                     table.PrimaryKey("PK_Vehiculos", x => x.VehiculoId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Polizas",
+                columns: table => new
+                {
+                    PolizaId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    VehiculoId = table.Column<int>(nullable: false),
+                    MontoAsegurado = table.Column<decimal>(nullable: false),
+                    FechaInicial = table.Column<DateTime>(nullable: false),
+                    FechaFinal = table.Column<DateTime>(nullable: false),
+                    FechaLimitePago = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Polizas", x => x.PolizaId);
+                    table.ForeignKey(
+                        name: "FK_Polizas_Vehiculos_VehiculoId",
+                        column: x => x.VehiculoId,
+                        principalTable: "Vehiculos",
+                        principalColumn: "VehiculoId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Polizas_VehiculoId",
+                table: "Polizas",
+                column: "VehiculoId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -119,6 +147,9 @@ namespace RentCar.Migrations
 
             migrationBuilder.DropTable(
                 name: "Importador");
+
+            migrationBuilder.DropTable(
+                name: "Polizas");
 
             migrationBuilder.DropTable(
                 name: "Rentas");

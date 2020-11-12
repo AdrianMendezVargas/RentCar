@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace RentCar.Entidades
@@ -10,7 +11,7 @@ namespace RentCar.Entidades
     {
         [Key]
         public int VehiculoId { get; set; }
-        public int PolizaId { get; set; }
+        public Poliza Poliza { get; set; }
         public string Matricula { get; set; }
         public string Placa { get; set; }
         public string Marca { get; set; }
@@ -31,7 +32,7 @@ namespace RentCar.Entidades
         public Vehiculo()
         {
             VehiculoId = 0;
-            PolizaId = 0;
+            Poliza = new Poliza();
             Matricula = "";
             Marca = "";
             Modelo = "";

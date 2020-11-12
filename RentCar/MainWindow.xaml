@@ -5,10 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar"
         mc:Ignorable="d"
-        Title="MainWindow" Height="292" Width="507">
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="400" Width="600">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Cyan" SecondaryColor="Lime" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-
-        <Menu >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="{Binding Foreground, ElementName=RentCarText}">
             <MenuItem Header="_Registros">
                 <MenuItem Name="RegistroClienteMenuItem" Header="Registrar _Cliente" Click="RegistroClienteMenuItem_Click"/>
                 <MenuItem Name="RegistroRentaMenuItem" Header="Registrar _Renta" Click="RegistroRentaMenuItem_Click"/>
@@ -27,11 +46,18 @@
 
             <MenuItem Name="OpcionesAdminMenuItem" Header="_Reportes">
                 <MenuItem Name="ReportePolizasMenuItem" Header="_Reportar Polizas" Click="ReportePolizas_Click" />
-                <MenuItem Name="ReporteRentasMenuItem" Header="_Reportar Rentas" />
                 <MenuItem Name="ReporteClientesMenuItem" Header="_Reportar Clientes" Click="ReporteClientesMenuItem_Click" />
             </MenuItem>
 
         </Menu>
+
+        <Grid Grid.Row="1">
+            <DockPanel Grid.Row="0" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Width="260" LastChildFill="False">
+                <materialDesign:PackIcon Kind="CarOutline" VerticalAlignment="Center" Width="35" Height="35"/>
+                <TextBlock Text="Code" Margin="4" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2D2D2D"/>
+                <TextBlock x:Name="RentCarText" Text="RentCar" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF5CC8CD"/>
+            </DockPanel>
+        </Grid>
 
     </Grid>
 </Window>

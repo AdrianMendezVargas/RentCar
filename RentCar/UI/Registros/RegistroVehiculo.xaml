@@ -19,8 +19,8 @@
         </TextBox>
 
         <Label Content="PolizaId" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="PolizaIdTextBox"  Margin="128,61,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            <Binding Path="vehiculo.PolizaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
+        <TextBox x:Name="PolizaIdTextBox" IsReadOnly="True" Margin="128,61,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <Binding Path="vehiculo.Poliza.PolizaId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True" >
                 <Binding.ValidationRules>
                     <ExceptionValidationRule/>
                 </Binding.ValidationRules>

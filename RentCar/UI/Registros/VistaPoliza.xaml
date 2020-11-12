@@ -29,7 +29,7 @@
         </Button>
         <TextBox x:Name="PolizaIdTetBox" Text="{Binding Poliza.PolizaId}" HorizontalAlignment="Left" Margin="25,44,0,0" materialDesign:HintAssist.Hint="Poliza Id" materialDesign:HintAssist.IsFloating="True" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="VehiculoIdTetBox" Text="{Binding Poliza.VehiculoId}" materialDesign:HintAssist.Hint="Vehiculo Id" HorizontalAlignment="Left" Margin="25,101,0,0" materialDesign:HintAssist.IsFloating="True" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="MontoAseguradoTetBox" Text="{Binding Poliza.MontoAsegurado}" materialDesign:HintAssist.Hint="Monto Asegurado" HorizontalAlignment="Left" Margin="260,101,0,0" materialDesign:HintAssist.IsFloating="True" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="MontoAseguradoTetBox" Text="{Binding Poliza.MontoAsegurado, StringFormat=\{0:C\}}" materialDesign:HintAssist.Hint="Monto Asegurado" HorizontalAlignment="Left" Margin="260,101,0,0" materialDesign:HintAssist.IsFloating="True" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <GroupBox Header="Vigencia" Margin="10,163,10,0" Style="{DynamicResource MaterialDesignCardGroupBox}" Height="auto" VerticalAlignment="Top">
             <Grid>
@@ -45,16 +45,10 @@
                 </DockPanel>
             </Grid>
         </GroupBox>
-        <Button  HorizontalAlignment="Right" Padding="0" Margin="0,0,85,30" Height="32" VerticalAlignment="Bottom">
+        <Button  HorizontalAlignment="Center" Padding="0" Margin="0,0,0,30" Height="32" VerticalAlignment="Bottom">
             <DockPanel>
                 <materialDesign:PackIcon Kind="Refresh"/>
                 <TextBlock Padding="5,0">Renovar</TextBlock>
-            </DockPanel>
-        </Button>
-        <Button HorizontalAlignment="Left"  Padding="0" Margin="106,0,0,30" Background="#FFD40000" Style="{DynamicResource MaterialDesignOutlinedButton}" Height="32" VerticalAlignment="Bottom">
-            <DockPanel>
-                <materialDesign:PackIcon Kind="Trash" Foreground="White"/>
-                <TextBlock Padding="5,0" Foreground="White">Eliminar</TextBlock>
             </DockPanel>
         </Button>
         <TextBox x:Name="EstadoTetBox" materialDesign:HintAssist.Hint="Estado" HorizontalAlignment="Left" Margin="260,46,0,0" materialDesign:HintAssist.IsFloating="True" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
