@@ -350,11 +350,23 @@ namespace RentCar.UI.Registros {
         }
 
         private void VerListaClientesButton_Click(object sender , RoutedEventArgs e) {
+            ConsultaClientes consultaClientes = new ConsultaClientes(selecionar:true);
+            consultaClientes.Owner = this;
+            consultaClientes.ShowDialog();
+        }
 
+        public void RecibirClienteSeleccionado(Cliente cliente) {
+            ClienteIdTextBox.Text = cliente.ClienteId.ToString();
         }
 
         private void VerListaVehiculosButton_Click(object sender , RoutedEventArgs e) {
+            Consulta_vehiculos consultaVehiculos = new Consulta_vehiculos(selecionar: true);
+            consultaVehiculos.Owner = this;
+            consultaVehiculos.ShowDialog();
+        }
 
+        public void RecibirVehiculoSeleccionado(Vehiculo vehiculo) {
+            VehiculoIdTextBox.Text = vehiculo.VehiculoId.ToString();
         }
 
         private void DesdeDatePicker_SelectedDateChanged(object sender , SelectionChangedEventArgs e) {

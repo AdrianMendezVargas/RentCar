@@ -69,6 +69,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
             </Grid>
         </Grid>
          <Grid Grid.Row="2">
+            <TextBlock Visibility="Hidden" x:Name="ButtonTextBlock" Text="{Binding ButtonText}"/>
             <DataGrid x:Name="ResultadosDataGrid" ItemsSource="{Binding clientes}" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
                 <DataGrid.Columns>
 
@@ -131,7 +132,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="EditarButton" Content="Ver" Click="EditarButton_Click" />
+                                <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

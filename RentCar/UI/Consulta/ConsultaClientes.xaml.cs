@@ -21,9 +21,14 @@ namespace RentCar.UI.Consulta {
     /// </summary>
     public partial class ConsultaClientes : Window {
         public List<Cliente> clientes { get; set; } = new List<Cliente>();
+        public string ButtonText { get; set; } = "";
+        public bool SeleccionarCliente { get; set; } = false;
 
-        public ConsultaClientes() {
+        public ConsultaClientes(bool selecionar = false) {
             InitializeComponent();
+
+            SeleccionarCliente = selecionar;
+            ButtonText = selecionar ? "Seleccionar" : "Ver";
 
             this.DataContext = this;
 
@@ -97,11 +102,16 @@ namespace RentCar.UI.Consulta {
         }
 
 
-        private void EditarButton_Click(object sender , RoutedEventArgs e) {
+        private void VerButton_Click(object sender , RoutedEventArgs e) {
             Cliente cliente = (sender as Button).DataContext as Cliente;
-            RegistroCliente registroCliente = new RegistroCliente(cliente.ClienteId);
-            registroCliente.Owner = this;
-            registroCliente.Show();
+            if (SeleccionarCliente) {
+                ((RegistroRenta) Owner).RecibirClienteSeleccionado(cliente);
+                Close();
+            } else {
+                RegistroCliente registroCliente = new RegistroCliente(cliente.ClienteId);
+                registroCliente.Owner = this;
+                registroCliente.Show();
+            }
         }
 
     }

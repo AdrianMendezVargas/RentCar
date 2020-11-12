@@ -75,6 +75,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
+            <TextBlock Visibility="Hidden" x:Name="ButtonTextBlock" Text="{Binding ButtonText}"/>
             <DataGrid x:Name="ResultadosDataGrid" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Vehiculo id" Width="1*" Binding="{Binding VehiculoId}"/>
@@ -98,7 +99,7 @@
                     <DataGridTemplateColumn Header="" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="EditarButton" Content="Ver" Click="EditarButton_Click" />
+                                <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
