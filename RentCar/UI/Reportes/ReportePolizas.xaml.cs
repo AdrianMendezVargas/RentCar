@@ -1,5 +1,7 @@
 ﻿using Microsoft.VisualBasic;
+using RentCar.BLL;
 using RentCar.Entidades;
+using RentCar.UI.Registros;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,16 +36,17 @@ namespace RentCar.UI.Reportes {
            
         }
 
-        private void BuscarPolizasARenovar() {
+        public async void BuscarPolizasARenovar() {
 
-            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , MontoAsegurado = 300000, FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 2 , VehiculoId = 2 , MontoAsegurado = 500000 , FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 3 , VehiculoId = 3 , MontoAsegurado = 100000000 , FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 4 , MontoAsegurado = 300000 , FechaFinal = new DateTime(2020 , 11 , 5) });
-            Polizas.Add(new Poliza { PolizaId = 2 , VehiculoId = 5 , MontoAsegurado = 300000 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            //Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 1 , MontoAsegurado = 300000, FechaFinal = new DateTime(2020 , 11 , 5) });
+            //Polizas.Add(new Poliza { PolizaId = 2 , VehiculoId = 2 , MontoAsegurado = 500000 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            //Polizas.Add(new Poliza { PolizaId = 3 , VehiculoId = 3 , MontoAsegurado = 100000000 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            //Polizas.Add(new Poliza { PolizaId = 1 , VehiculoId = 4 , MontoAsegurado = 300000 , FechaFinal = new DateTime(2020 , 11 , 5) });
+            //Polizas.Add(new Poliza { PolizaId = 2 , VehiculoId = 5 , MontoAsegurado = 300000 , FechaFinal = new DateTime(2020 , 11 , 5) });
 
+            Polizas = await PolizasBLL.GetPolizas();
 
-            Polizas = Polizas.Where(p => p.FechaFinal.DayOfYear - DIAS_ANTICIPACION <= DateTime.Today.DayOfYear).ToList();
+            Polizas = Polizas.Where(p => p.FechaFinal.DayOfYear - DIAS_ANTICIPACION <= DateTime.Today.DayOfYear && p.FechaFinal.Year == DateTime.Today.Year).ToList();
             
             PolizasListBox.ItemsSource = null;
             PolizasListBox.ItemsSource = Polizas;
@@ -61,6 +64,14 @@ namespace RentCar.UI.Reportes {
                 this.ImprimirButton.IsEnabled = true;
                 MessageBox.Show("Finalizado","Exito",MessageBoxButton.OK,MessageBoxImage.Information);
             }
+        }
+
+        private void PolizasListBox_Selected(object sender , RoutedEventArgs e) {
+            Poliza poliza = (sender as Button).DataContext as Poliza;
+
+            VistaPoliza vista = new VistaPoliza(poliza);
+            vista.Owner = this;
+            vista.Show();
         }
 
     }

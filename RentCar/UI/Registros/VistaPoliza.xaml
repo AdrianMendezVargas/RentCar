@@ -45,7 +45,7 @@
                 </DockPanel>
             </Grid>
         </GroupBox>
-        <Button  HorizontalAlignment="Center" Padding="0" Margin="0,0,0,30" Height="32" VerticalAlignment="Bottom">
+        <Button  x:Name="RenovarButton" Click="RenovarButton_Click" HorizontalAlignment="Center" Padding="0" Margin="0,0,0,30" Height="32" VerticalAlignment="Bottom">
             <DockPanel>
                 <materialDesign:PackIcon Kind="Refresh"/>
                 <TextBlock Padding="5,0">Renovar</TextBlock>
