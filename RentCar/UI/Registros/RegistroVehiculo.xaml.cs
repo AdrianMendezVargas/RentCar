@@ -39,6 +39,8 @@ namespace RentCar.UI.Registros
 
 
             //llenando el combo
+            ImportadorComboBox.SelectedValuePath = "ImportadorId";
+            Llenar();
 
            
         }
@@ -55,11 +57,11 @@ namespace RentCar.UI.Registros
 
         }
 
-        //async public void Llenar()
-        //{
-        //    ImportadorComboBox.ItemsSource = ImportadorBLL.GetList();
-        //    //ImportadorComboBox.ItemSource = await ImportadorBLL.GetList();
-        //}
+        async public void Llenar()
+        {
+            //ImportadorComboBox.ItemsSource = ImportadorBLL.GetList();
+            ImportadorComboBox.ItemsSource = await ImportadorBLL.GetList();
+        }
 
         private void MyPropertyChanged(string propiedad)
         {
