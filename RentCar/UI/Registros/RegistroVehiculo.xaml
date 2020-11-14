@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar.UI.Registros"
         mc:Ignorable="d"
-        Title="RegistroVehiculos" Height="560" Width="530" MinHeight="700" MinWidth="544" WindowStartupLocation="CenterScreen">
+        Title="RegistroVehiculos" Height="560" Width="530" MinHeight="715" MinWidth="544" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Vehiculo Id" HorizontalAlignment="Left" Margin="22,26,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="VehiculoIdTextBox" Margin="128,30,199,0" TextWrapping="Wrap" VerticalAlignment="Top">
@@ -147,9 +147,11 @@
                 </Binding.ValidationRules>
             </Binding>
         </TextBox>
+        <Label Content="Importador" HorizontalAlignment="Left" Margin="31,566,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ImportadorComboBox" Width="108" SelectedValue="{Binding ImportadorId}" HorizontalAlignment="Left" Margin="128,566,0,0" VerticalAlignment="Top"  DisplayMemberPath="Nombre"/>
 
-        
-        
+
+
 
         <Button x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top">
             <Button.Content>
@@ -197,9 +199,8 @@
             </Button>
 
         </Grid>
-        <Label Content="Importador" HorizontalAlignment="Left" Margin="35,574,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ImportadorComboBox" SelectedValue="{Binding ImportadorId}" />
-        
+
+
 
 
 

@@ -25,7 +25,7 @@ namespace RentCar.UI.Registros
         public Vehiculo vehiculo { get; set; } = new Vehiculo();
         
 
-        public RegistroVehiculo(int vehiculoId = 0)
+        public  RegistroVehiculo(int vehiculoId = 0)
         {
             InitializeComponent();
 
@@ -36,8 +36,13 @@ namespace RentCar.UI.Registros
             this.DataContext = this;
             MyPropertyChanged("vehiculo");
 
-            
+
+
+            //llenando el combo
+
+           
         }
+        
 
         private async void InicializarVehiculo(int vehiculoId) {
             var _vehiculo = await VehiculoBLL.Buscar(vehiculoId);
@@ -49,6 +54,12 @@ namespace RentCar.UI.Registros
             }
 
         }
+
+        //async public void Llenar()
+        //{
+        //    ImportadorComboBox.ItemsSource = ImportadorBLL.GetList();
+        //    //ImportadorComboBox.ItemSource = await ImportadorBLL.GetList();
+        //}
 
         private void MyPropertyChanged(string propiedad)
         {
