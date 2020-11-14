@@ -9,8 +9,8 @@ using RentCar.DAL;
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201112202502_AddPolizaToVehiculo")]
-    partial class AddPolizaToVehiculo
+    [Migration("20201114123159_Migracion_Inicial")]
+    partial class Migracion_Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -191,6 +191,9 @@ namespace RentCar.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Estado")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ImportadorId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Kilometraje")

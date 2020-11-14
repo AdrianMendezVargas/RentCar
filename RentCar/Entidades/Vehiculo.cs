@@ -11,6 +11,7 @@ namespace RentCar.Entidades
     {
         [Key]
         public int VehiculoId { get; set; }
+        public int ImportadorId { get; set; }
         public Poliza Poliza { get; set; }
         public string Matricula { get; set; }
         public string Placa { get; set; }
@@ -32,6 +33,7 @@ namespace RentCar.Entidades
         public Vehiculo()
         {
             VehiculoId = 0;
+            ImportadorId = 0;
             Poliza = new Poliza();
             Matricula = "";
             Marca = "";

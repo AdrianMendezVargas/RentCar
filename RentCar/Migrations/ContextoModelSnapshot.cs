@@ -191,6 +191,9 @@ namespace RentCar.Migrations
                     b.Property<int>("Estado")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ImportadorId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Kilometraje")
                         .HasColumnType("INTEGER");
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentCar.Migrations
 {
-    public partial class AddPolizaToVehiculo : Migration
+    public partial class Migracion_Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,6 +88,7 @@ namespace RentCar.Migrations
                 {
                     VehiculoId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    ImportadorId = table.Column<int>(nullable: false),
                     Matricula = table.Column<string>(nullable: true),
                     Placa = table.Column<string>(nullable: true),
                     Marca = table.Column<string>(nullable: true),
