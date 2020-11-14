@@ -58,6 +58,9 @@ namespace RentCar.UI.Registros
 
         }
 
+        
+        
+
         private void MyPropertyChanged(string propiedad)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propiedad));

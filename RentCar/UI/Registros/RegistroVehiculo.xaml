@@ -148,6 +148,9 @@
             </Binding>
         </TextBox>
 
+        
+        
+
         <Button x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,25,130,0" VerticalAlignment="Top">
             <Button.Content>
                 <DockPanel>
@@ -194,12 +197,9 @@
             </Button>
 
         </Grid>
-        <Label Content="Importador" HorizontalAlignment="Left" Margin="19,576,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="128,578,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBoxItem Content=""/>
-
-
-
+        <Label Content="Importador" HorizontalAlignment="Left" Margin="35,574,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ImportadorComboBox" SelectedValue="{Binding ImportadorId}" />
+        
 
 
 

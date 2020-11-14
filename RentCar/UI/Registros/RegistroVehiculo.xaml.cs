@@ -23,6 +23,7 @@ namespace RentCar.UI.Registros
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Vehiculo vehiculo { get; set; } = new Vehiculo();
+        
 
         public RegistroVehiculo(int vehiculoId = 0)
         {
