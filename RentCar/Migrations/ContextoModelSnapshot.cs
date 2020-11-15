@@ -68,7 +68,7 @@ namespace RentCar.Migrations
 
                     b.HasKey("ImportadorId");
 
-                    b.ToTable("Importador");
+                    b.ToTable("Importadores");
                 });
 
             modelBuilder.Entity("RentCar.Entidades.Poliza", b =>

@@ -9,8 +9,8 @@ using RentCar.DAL;
 namespace RentCar.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20201114123159_Migracion_Inicial")]
-    partial class Migracion_Inicial
+    [Migration("20201115192009_migracion")]
+    partial class migracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,7 @@ namespace RentCar.Migrations
 
                     b.HasKey("ImportadorId");
 
-                    b.ToTable("Importador");
+                    b.ToTable("Importadores");
                 });
 
             modelBuilder.Entity("RentCar.Entidades.Poliza", b =>
