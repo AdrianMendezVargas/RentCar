@@ -105,13 +105,14 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                <!-- <DataGridTemplateColumn Width="1*">
+                    <DataGridTemplateColumn Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
+                    </DataGridTemplateColumn>
+                    
 
                 </DataGrid.Columns>
                 <d:DataGrid.Items>
