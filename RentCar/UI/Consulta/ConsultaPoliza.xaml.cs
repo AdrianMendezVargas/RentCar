@@ -96,7 +96,7 @@ namespace RentCar.UI.Consulta {
 
 
         private void VerButton_Click(object sender , RoutedEventArgs e) {
-            PPoliza poliza = (sender as Button).DataContext as Poliza;
+            Poliza poliza = (sender as Button).DataContext as Poliza;
 
             VistaPoliza vista = new VistaPoliza(poliza);
             vista.Owner = this;
