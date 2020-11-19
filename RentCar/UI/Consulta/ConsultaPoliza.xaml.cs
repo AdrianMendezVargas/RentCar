@@ -94,19 +94,14 @@ namespace RentCar.UI.Consulta {
             ResultadosDataGrid.ItemsSource = poliza;
         }
 
-/*
+
         private void VerButton_Click(object sender , RoutedEventArgs e) {
-            Poliza poliza = (sender as Button).DataContext as Poliza;
-            if (SeleccionarPoliza) {
-                ((RegistroPoliza) Owner).RecibirPolizaSeleccionado(poliza);
-                Close();
-            } else {
-                RegistroPoliza registroPoliza = new RegistroPoliza(poliza.PolizaId);
-                registroPoliza.Owner = this;
-                registroPoliza.Show();
-            }
+            PPoliza poliza = (sender as Button).DataContext as Poliza;
+
+            VistaPoliza vista = new VistaPoliza(poliza);
+            vista.Owner = this;
+            vista.Show();
         }
-        */
 
     }
 }
