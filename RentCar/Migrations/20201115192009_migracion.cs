@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RentCar.Migrations
 {
-    public partial class Migracion_Inicial : Migration
+    public partial class migracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,7 +28,7 @@ namespace RentCar.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Importador",
+                name: "Importadores",
                 columns: table => new
                 {
                     ImportadorId = table.Column<int>(nullable: false)
@@ -39,7 +39,7 @@ namespace RentCar.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Importador", x => x.ImportadorId);
+                    table.PrimaryKey("PK_Importadores", x => x.ImportadorId);
                 });
 
             migrationBuilder.CreateTable(
@@ -147,7 +147,7 @@ namespace RentCar.Migrations
                 name: "Clientes");
 
             migrationBuilder.DropTable(
-                name: "Importador");
+                name: "Importadores");
 
             migrationBuilder.DropTable(
                 name: "Polizas");

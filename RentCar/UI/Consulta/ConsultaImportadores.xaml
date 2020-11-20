@@ -5,42 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RentCar.UI.Consulta"
         mc:Ignorable="d"
-        Title="ConsultaVehiculos" Height="350" Width="600">
+       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="ConsultaRentas" Height="600" Width="1000">
+        <Window.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Cyan" SecondaryColor="Lime" />
+                    <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Window.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <Label Content="Filtro:" Margin="10,0"/>
-                <Label Content="Criterio:" Margin="80,0"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <ComboBox x:Name="FiltroComboBox" Width="100" Margin="10,0" Height="23">
-                    <ComboBoxItem Content="Todo"/>
-                    <ComboBoxItem Content="ID"/>
-                    <ComboBoxItem Content="Nombre"/>
-                    <ComboBoxItem Content="pagina Web"/>
-                    <ComboBoxItem Content="Telefono"/>
-                </ComboBox>
-
-                <TextBox x:Name="CriterioTextBox" Text="" Width="200" Height="23" Margin="20,0"/>
-
-                <Button x:Name="BuscarButton" Click="BuscarButton_Click">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Expander HorizontalAlignment="Stretch" Header="Aplicar filtros" BorderThickness="0.5" materialDesign:ColorZoneAssist.Background="AntiqueWhite" Background="#FFDAF0EF" BorderBrush="Black" >
+                <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/Resources/buscar.png" Width="25"/>
-                        <Label Content="Buscar" RenderTransformOrigin="-4.236,25.252"/>
+                        <ComboBox x:Name="FiltroComboBox" SelectedIndex="0" materialDesign:HintAssist.Hint="Filtrar por" materialDesign:HintAssist.IsFloating="True" Margin="20 10" VerticalAlignment="Center" Width="92"  >
+                            <ComboBoxItem Content="Ninguno"/>
+                            <ComboBoxItem Content="Renta Id"/>
+                            <ComboBoxItem Content="Cliente Id"/>
+                            <ComboBoxItem Content="Vehiculo Id"/>
+                        </ComboBox>
+                        <Label VerticalAlignment="Center" Content="Estado:" Margin="10,0"/>
+                        <StackPanel Orientation="Vertical">
+                            <RadioButton x:Name="AntiguasRadioButton" GroupName="EstadoRenta" Content="Antiguas" Margin="0,2"/>
+                            <RadioButton x:Name="ActualesRadioButton" GroupName="EstadoRenta" Content="Actuales" Margin="0,2"/>
+                            <RadioButton x:Name="TodasRadioButton" IsChecked="True" GroupName="EstadoRenta" Content="Todas" Margin="0,2"/>
+
+                        </StackPanel>
+
                     </StackPanel>
+                </StackPanel>
+            </Expander>
+        </Grid>
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center" Orientation="Horizontal" >
+                <TextBox x:Name="CriterioTextBox" Margin="30, 20" FontSize="14" materialDesign:HintAssist.Hint="Criterio" materialDesign:HintAssist.IsFloating="True" Text="" TextWrapping="Wrap" Width="206" Style="{DynamicResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                <Button  x:Name="BuscarButton"  Margin="20" Style="{StaticResource MaterialDesignOutlinedButton}" Click="BuscarButton_Click">
+                    <DockPanel>
+                        <Image Source="/Resources/buscar.png"/>
+                        <TextBlock VerticalAlignment="Center" Text="Buscar"/>
+                    </DockPanel>
                 </Button>
             </StackPanel>
-
-            <DataGrid x:Name="DatosDataGrid" Height="275" AutoGenerateColumns="False">
+            <Grid Grid.Column="1">
+                <Button x:Name="AgregarImportadorButton" HorizontalAlignment="Right" Margin="30,0" Click="AgregarImportadorButton_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Margin="0,0,5,0" Kind="Add" VerticalAlignment="Center"/>
+                        <TextBlock Text="Nuevo Importador"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <DataGrid x:Name="ResultadosDataGrid" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding ImportadorId}" Visibility="Visible"/>
-                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
-                    <DataGridTextColumn Header="Pagina Web                      " Binding="{Binding PaginaWeb}"/>
-                    <DataGridTextColumn Header="Telefono" Binding="{Binding Telefono}"/>
-                   
+                    <DataGridTextColumn Header="Importador Id" Width="1*" Binding="{Binding ImportadorId}"/>
+                    <DataGridTextColumn Header="Nombre" Width="1.5*" Binding="{Binding Nombre}"/>
+                    <DataGridTextColumn Header="Telefono" Width="1*" Binding="{Binding Telefono}"/>
+                    <DataGridTextColumn Header="Pagina Web" Width="1*" Binding="{Binding PaginaWeb}"/>
+                    
+                    
+                    <DataGridTemplateColumn Header="" Width="1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button x:Name="EditarButton" Content="Ver" Click="VerButton_Click" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
+                <d:DataGrid.Items>
+                    <MenuItem></MenuItem>
+                </d:DataGrid.Items>
             </DataGrid>
-        </StackPanel>
+        </Grid>
+
     </Grid>
 </Window>

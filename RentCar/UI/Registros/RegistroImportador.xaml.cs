@@ -192,5 +192,10 @@ namespace RentCar.UI.Registros
 
             return validados;
         }
+
+        public void RecibirImportadorSeleccionado(Importador importador)
+        {
+            ImportadorIdTextBox.Text = importador.ImportadorId.ToString();
+        }
     }
 }

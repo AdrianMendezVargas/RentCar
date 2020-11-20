@@ -27,7 +27,7 @@ namespace RentCar.BLL
 
             try
             {
-                contexto.Importador.Add(importador);
+                contexto.Importadores.Add(importador);
                 paso = await contexto.SaveChangesAsync() > 0;
             }
             catch (Exception)
@@ -72,11 +72,11 @@ namespace RentCar.BLL
             Contexto contexto = new Contexto();
             try
             {
-                var importador = contexto.Importador.Find(id);
+                var importador = contexto.Importadores.Find(id);
 
                 if (importador != null)
                 {
-                    contexto.Importador.Remove(importador);
+                    contexto.Importadores.Remove(importador);
                     paso = await contexto.SaveChangesAsync() > 0;
                 }
             }
@@ -99,7 +99,7 @@ namespace RentCar.BLL
 
             try
             {
-                importador = await contexto.Importador
+                importador = await contexto.Importadores
                     .Where(e => e.ImportadorId == id)
                     .FirstOrDefaultAsync();
             }
@@ -122,7 +122,7 @@ namespace RentCar.BLL
 
             try
             {
-                encontrado = await contexto.Importador.AnyAsync(e => e.ImportadorId == id);
+                encontrado = await contexto.Importadores.AnyAsync(e => e.ImportadorId == id);
             }
             catch (Exception)
             {
@@ -145,7 +145,7 @@ namespace RentCar.BLL
 
             try
             {
-                importador = await contexto.Importador.ToListAsync();
+                importador = await contexto.Importadores.ToListAsync();
 
             }
             catch (Exception)
@@ -162,14 +162,14 @@ namespace RentCar.BLL
 
         }
 
-        public async static Task<List<Importador>> GetList(Expression<Func<Importador, bool>> criterio)
+        public async static Task<List<Importador>> GetImportadores(Expression<Func<Importador, bool>> criterio)
         {
             Contexto contexto = new Contexto();
             var Lista = new List<Importador>();
             await Task.Delay(01); //Para dar tiempo a renderizar el mensaje de carga
             try
             {
-                Lista = await contexto.Importador.Where(criterio).ToListAsync();
+                Lista = await contexto.Importadores.Where(criterio).ToListAsync();
             }
             catch (Exception)
             {
