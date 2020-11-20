@@ -148,7 +148,7 @@
             </Binding>
         </TextBox>
         <Label Content="Importador" HorizontalAlignment="Left" Margin="31,566,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="ImportadorComboBox" Width="108" SelectedValue="{Binding ImportadorId}" HorizontalAlignment="Left" Margin="128,566,0,0" VerticalAlignment="Top"  DisplayMemberPath="Nombre"/>
+        <ComboBox x:Name="ImportadorComboBox" SelectionChanged="ImportadorComboBox_SelectionChanged" Width="108" SelectedValue="{Binding ImportadorId}" HorizontalAlignment="Left" Margin="128,566,0,0" VerticalAlignment="Top"  DisplayMemberPath="Nombre"/>
 
 
 

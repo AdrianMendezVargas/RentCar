@@ -14,8 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace RentCar.UI.Registros
-{
+namespace RentCar.UI.Registros {
     /// <summary>
     /// Interaction logic for Vehiculo.xaml
     /// </summary>
@@ -23,16 +22,15 @@ namespace RentCar.UI.Registros
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Vehiculo vehiculo { get; set; } = new Vehiculo();
-        
 
-        public  RegistroVehiculo(int vehiculoId = 0)
-        {
+
+        public RegistroVehiculo(int vehiculoId = 0) {
             InitializeComponent();
 
             if (vehiculoId > 0) {
                 InicializarVehiculo(vehiculoId);
             }
-       
+
             this.DataContext = this;
             MyPropertyChanged("vehiculo");
 
@@ -42,9 +40,9 @@ namespace RentCar.UI.Registros
             ImportadorComboBox.SelectedValuePath = "ImportadorId";
             Llenar();
 
-           
+
         }
-        
+
 
         private async void InicializarVehiculo(int vehiculoId) {
             var _vehiculo = await VehiculoBLL.Buscar(vehiculoId);
@@ -57,180 +55,151 @@ namespace RentCar.UI.Registros
 
         }
 
-        async public void Llenar()
-        {
+        async public void Llenar() {
             //ImportadorComboBox.ItemsSource = ImportadorBLL.GetList();
             ImportadorComboBox.ItemsSource = await ImportadorBLL.GetList();
         }
 
-        private void MyPropertyChanged(string propiedad)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propiedad));
+        private void MyPropertyChanged(string propiedad) {
+            PropertyChanged?.Invoke(this , new PropertyChangedEventArgs(propiedad));
         }
 
-        private async void BuscarButton_Click(object sender, RoutedEventArgs e)
-        {
+        private async void BuscarButton_Click(object sender , RoutedEventArgs e) {
 
-            if (int.TryParse(VehiculoIdTextBox.Text, out int vehiculoId))
-            {
+            if (int.TryParse(VehiculoIdTextBox.Text , out int vehiculoId)) {
 
-                if (await VehiculoBLL.Existe(vehiculoId))
-                {
+                if (await VehiculoBLL.Existe(vehiculoId)) {
                     vehiculo = await VehiculoBLL.Buscar(vehiculoId);
                     MyPropertyChanged("vehiculo");
-                }
-                else
-                {
+                } else {
                     MessageBox.Show("Este vehiculo no existe.");
                     Limpiar();
                 }
 
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("Este vehiculo id es invalido.");
             }
 
         }
 
-        private void NuevoButton_Click(object sender, RoutedEventArgs e)
-        {
+        private void NuevoButton_Click(object sender , RoutedEventArgs e) {
 
             Limpiar();
         }
 
-        private async void GuardarButton_Click(object sender, RoutedEventArgs e)
-        {
+        private async void GuardarButton_Click(object sender , RoutedEventArgs e) {
             bool guardado = false;
 
-            if (CamposValidos())
-            {
+            if (CamposValidos()) {
                 guardado = await VehiculoBLL.Guardar(vehiculo);
 
-                if (guardado)
-                {
-                    Limpiar();
+                if (guardado) {
+                    //Limpiar();
                     MessageBox.Show("Guardado.");
-                }
-                else
-                {
+                } else {
                     MessageBox.Show("Error al guardar.");
                 }
             }
 
         }
 
-        private void Limpiar()
-        {
+        private void Limpiar() {
             vehiculo = new Vehiculo();
             MyPropertyChanged("vehiculo");
         }
 
-        private async void EliminarButton_Click(object sender, RoutedEventArgs e)
-        {
-            
+        private async void EliminarButton_Click(object sender , RoutedEventArgs e) {
 
-                    RegistroSalidasVehiculo registro = new RegistroSalidasVehiculo();
-                    registro.Show();
-                   
+
+            RegistroSalidasVehiculo registro = new RegistroSalidasVehiculo();
+            registro.Show();
+
 
         }
 
-        private bool CamposValidos()
-        {
+        private bool CamposValidos() {
             bool validados = true;
             string mensaje = "Errores: \n\n";
 
-            if (!int.TryParse(VehiculoIdTextBox.Text, out int vehiculoId))
-            {
+            if (!int.TryParse(VehiculoIdTextBox.Text , out int vehiculoId)) {
                 validados = false;
                 mensaje += "\nVehiculo Id invalido.";
             }
-            if (!int.TryParse(PolizaIdTextBox.Text, out int PolizaId))
-            {
+            if (!int.TryParse(PolizaIdTextBox.Text , out int PolizaId)) {
                 validados = false;
                 mensaje += "\nPoliza Id invalido.";
             }
-            if (string.IsNullOrWhiteSpace(MatriculaTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(MatriculaTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir una Matricula.";
             }
-            if (string.IsNullOrWhiteSpace(PlacaTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(PlacaTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir la placa.";
             }
-            if (string.IsNullOrWhiteSpace(MarcaTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(MarcaTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir la marca.";
             }
-            if (string.IsNullOrWhiteSpace(ModeloTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(ModeloTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir el modelo.";
             }
-            if (string.IsNullOrWhiteSpace(EstadoTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(EstadoTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir el estado del vehiculo.";
             }
-            if (string.IsNullOrWhiteSpace(PrecioTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(PrecioTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir el precio.";
             }
-            if (AñoFabricacionDatePicker.SelectedDate > DateTime.Now)
-            {
+            if (AñoFabricacionDatePicker.SelectedDate > DateTime.Now) {
                 validados = false;
                 mensaje += "\nDebe introducir una fecha de fabricacion menor que la actual.";
             }
 
-            if (string.IsNullOrWhiteSpace(ChassisTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(ChassisTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir la cantidad de chassis.";
             }
-            if (string.IsNullOrWhiteSpace(PasajerosTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(PasajerosTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir la cantidad de pasajeros.";
             }
 
-            if (string.IsNullOrWhiteSpace(PuertasTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(PuertasTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir la cantidad de puertas.";
             }
-            if (string.IsNullOrWhiteSpace(TraccionTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(TraccionTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir la traccion del vehiculo.";
             }
-            if (string.IsNullOrWhiteSpace(ComentarioTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(ComentarioTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir un comentario del vehiculo.";
             }
-            if (string.IsNullOrWhiteSpace(ValorTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(ValorTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir el valor del vehiculo.";
             }
-            if (string.IsNullOrWhiteSpace(TipoTextBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(TipoTextBox.Text)) {
                 validados = false;
                 mensaje += "\nDebe introducir el tipo de vehiculo.";
             }
-            if (!validados)
-            {
+            if (!validados) {
                 MessageBox.Show(mensaje);
             }
 
             return validados;
         }
 
+        private void ImportadorComboBox_SelectionChanged(object sender , SelectionChangedEventArgs e) {
+            var importador = ((ComboBox) sender).Items.CurrentItem as Importador;
+            if (importador != null) {
+                vehiculo.ImportadorId = importador.ImportadorId;
+            }
+        }
     }
 
 
