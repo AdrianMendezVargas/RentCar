@@ -132,7 +132,7 @@ Title="ConsultaClientes" Height="600" Width="1000">    <Window.Resources>
                     <DataGridTemplateColumn Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
+                                <Button x:Name="VerButton" Padding="0"  Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

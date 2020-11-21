@@ -38,7 +38,7 @@ Title="ConsultaPoliza" Height="600" Width="1000">
                             <ComboBoxItem Content="Ninguno"/>
                             <ComboBoxItem Content="Poliza Id"/>
                             <ComboBoxItem Content="Vehiculo Id"/>
-                            <ComboBoxItem Content="Estado"/>
+                          
                            
                         </ComboBox>
                         <Label VerticalAlignment="Center" Content="Estado:" Margin="10,0"/>
@@ -117,7 +117,7 @@ Title="ConsultaPoliza" Height="600" Width="1000">
                     <DataGridTemplateColumn Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
+                                <Button x:Name="VerButton" Padding="0"  Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

@@ -99,7 +99,7 @@
                     <DataGridTemplateColumn Header="" Width="1.2*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
+                                <Button x:Name="VerButton" Padding="0" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
