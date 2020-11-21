@@ -14,7 +14,9 @@ namespace RentCar.Entidades {
         public DateTime FechaFinal { get; set; }
         public DateTime FechaLimitePago { get; set; }
         public virtual string FechaFinalCorta => FechaFinal.ToShortDateString();
+        public virtual string FechaInicialCorta => FechaInicial.ToShortDateString();
         public virtual string MontoAseguradoFormateado => string.Format("{0:c}", MontoAsegurado);
         public virtual bool EstaVencida => DateTime.Today > FechaFinal;
+        public virtual string Estado => EstaVencida ? "Vencida" : "Vigente";
     }
 }

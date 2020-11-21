@@ -14,7 +14,8 @@ xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
+Title="ConsultaPoliza" Height="600" Width="1000">
+    <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Cyan" SecondaryColor="Lime" />
@@ -24,7 +25,7 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
     </Window.Resources>
 
     <Grid>
-             <Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="1*"/>
@@ -34,7 +35,7 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
                 <StackPanel Orientation="Vertical" TextBlock.Foreground="{DynamicResource MaterialDesignBody}" Margin="24,8,24,16">
                     <StackPanel Orientation="Horizontal">
                         <ComboBox x:Name="FiltroComboBox" SelectedIndex="4" materialDesign:HintAssist.Hint="Filtrar por" materialDesign:HintAssist.IsFloating="True" Margin="20 10" VerticalAlignment="Center" Width="92"  >
-                             <ComboBoxItem Content="Ninguno"/>
+                            <ComboBoxItem Content="Ninguno"/>
                             <ComboBoxItem Content="Poliza Id"/>
                             <ComboBoxItem Content="Vehiculo Id"/>
                             <ComboBoxItem Content="Estado"/>
@@ -44,8 +45,8 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
                     </StackPanel>
                 </StackPanel>
             </Expander>
-    </Grid>
-     <Grid Grid.Row="1" >
+        </Grid>
+        <Grid Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="1*"/>
@@ -59,8 +60,10 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
                     </DockPanel>
                 </Button>
             </StackPanel>
-       
-         <Grid Grid.Row="1">
+
+            
+        </Grid>
+        <Grid Grid.Row="2">
             <TextBlock Visibility="Hidden" x:Name="ButtonTextBlock" Text="{Binding ButtonText}"/>
             <DataGrid x:Name="ResultadosDataGrid" ItemsSource="{Binding Poliza}" SelectionMode="Single" AutoGenerateColumns="False" IsReadOnly="True" Margin="10,0,10,10" >
                 <DataGrid.Columns>
@@ -73,7 +76,7 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="VehiculoId" Width="1*">
+                    <DataGridTemplateColumn Header="Vehiculo Id" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Label x:Name="VehiculoIdButton" HorizontalAlignment="Stretch" Content="{Binding VehiculoId}" />
@@ -89,30 +92,30 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="FechaInicial" Width="1*">
+                    <DataGridTemplateColumn Header="Fecha Inicial" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Label x:Name="FechaInicialButton" HorizontalAlignment="Stretch" Content="{Binding FechaInicial}"  />
+                                <Label x:Name="FechaInicialButton" HorizontalAlignment="Stretch" Content="{Binding FechaInicialCorta}"  />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="FechaFinal" Width="1*">
+                    <DataGridTemplateColumn Header="Fecha Final" Width="1*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Label x:Name="FechaFinalButton" HorizontalAlignment="Stretch" Content="{Binding FechaFinal}"  />
+                                <Label x:Name="FechaFinalButton" HorizontalAlignment="Stretch" Content="{Binding FechaFinalCorta}"  />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
                     <DataGridTemplateColumn Width="1*">
-                    <DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button x:Name="VerButton" Padding="0" d:Content="Ver" Content="{Binding Text, ElementName=ButtonTextBlock}" Click="VerButton_Click" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    
+
 
                 </DataGrid.Columns>
                 <d:DataGrid.Items>
@@ -120,6 +123,5 @@ Title="ConsultaPoliza" Height="600" Width="1000">    <Window.Resources>
                 </d:DataGrid.Items>
             </DataGrid>
         </Grid>
-    </Grid>
     </Grid>
 </Window>
