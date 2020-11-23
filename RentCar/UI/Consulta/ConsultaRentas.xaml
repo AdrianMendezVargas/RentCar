@@ -44,9 +44,9 @@
                             <RadioButton x:Name="AntiguasRadioButton" GroupName="EstadoRenta" Content="Antiguas" Margin="0,2"/>
                             <RadioButton x:Name="ActualesRadioButton" GroupName="EstadoRenta" Content="Actuales" Margin="0,2"/>
                             <RadioButton x:Name="TodasRadioButton" IsChecked="True" GroupName="EstadoRenta" Content="Todas" Margin="0,2"/>
-
                         </StackPanel>
-
+                        <DatePicker x:Name="DesdeDatePicker" Width="150px" Margin="20,0" materialDesign:HintAssist.Hint="Desde" materialDesign:HintAssist.IsFloating="True"/>
+                        <DatePicker x:Name="HastaDatePicker" Width="150px" Margin="20,0" materialDesign:HintAssist.Hint="Hasta" materialDesign:HintAssist.IsFloating="True"/>
                     </StackPanel>
                 </StackPanel>
             </Expander>

@@ -7,11 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Linq;
 
 namespace RentCar.UI.Consulta {
@@ -49,7 +44,7 @@ namespace RentCar.UI.Consulta {
         }
 
         private void BuscarButton_Click(object sender , RoutedEventArgs e) {
-            FiltrarRentas();
+            _ = FiltrarRentas();
         }
 
         public void CargarGrid() {
@@ -96,6 +91,14 @@ namespace RentCar.UI.Consulta {
 
             } else if (AntiguasRadioButton.IsChecked.Value) {
                 Rentas = Rentas.Where(r => !r.Activa).ToList();
+            }
+
+            if (DesdeDatePicker.SelectedDate != null) {
+                Rentas = Rentas.Where(r => r.FechaInicial >= DesdeDatePicker.SelectedDate).ToList();
+            }
+
+            if (HastaDatePicker.SelectedDate != null) {
+                Rentas = Rentas.Where(r => r.FechaInicial <= HastaDatePicker.SelectedDate).ToList();
             }
 
             CargarGrid();
