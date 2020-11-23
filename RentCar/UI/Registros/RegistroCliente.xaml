@@ -31,7 +31,7 @@
         </TextBox>
 
 
-        <Button  x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,75,50,0" VerticalAlignment="Top">
+        <Button  x:Name="BuscarButton" Click="BuscarButton_Click" Height="30" HorizontalAlignment="Right" Margin="0,75,23,0" VerticalAlignment="Top">
             <Button.Content>
                 <DockPanel>
                     <Image Source="/Resources/buscar.png"/>
@@ -41,41 +41,41 @@
             </Button.Content>
         </Button>
 
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="248" Margin="0,0,0,23" Height="30">
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
 
 
-            <Button  x:Name="NuevoButton" Click="NuevoButton_Click" HorizontalAlignment="Left">
-                <Button.Content>
-                    <DockPanel>
-                        <Image Source="/Resources/nuevo.png"/>
-                        <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
-                    </DockPanel>
+            <Button  Grid.Column="0" x:Name="NuevoButton" Click="NuevoButton_Click" HorizontalAlignment="Left">
+                <DockPanel>
+                    <Image Source="/Resources/nuevo.png"/>
+                    <TextBlock VerticalAlignment="Center" Text="Nuevo"/>
+                </DockPanel>
 
-                </Button.Content>
             </Button>
 
-            <Button  x:Name="GuardarButton" Click="GuardarButton_Click" HorizontalAlignment="Center">
-                <Button.Content>
-                    <DockPanel>
-                        <Image Source="/Resources/guardar.png"/>
-                        <TextBlock VerticalAlignment="Center" Text="Guardar"/>
-                    </DockPanel>
+            <Button  Grid.Column="1" x:Name="GuardarButton" Click="GuardarButton_Click" Margin="10,0" HorizontalAlignment="Center">
+                <DockPanel>
+                    <Image Source="/Resources/guardar.png"/>
+                    <TextBlock VerticalAlignment="Center" Text="Guardar"/>
+                </DockPanel>
 
-                </Button.Content>
             </Button>
 
 
-            <Button  x:Name="EliminarButton" Click="EliminarButton_Click" HorizontalAlignment="Right">
-                <Button.Content>
-                    <DockPanel>
-                        <Image Source="/Resources/eliminar.png"/>
-                        <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
-                    </DockPanel>
+            <Button Grid.Column="2" x:Name="EliminarButton" Click="EliminarButton_Click" HorizontalAlignment="Right">
+                <DockPanel>
+                    <Image Source="/Resources/eliminar.png"/>
+                    <TextBlock VerticalAlignment="Center" Text="Eliminar"/>
+                </DockPanel>
 
-                </Button.Content>
             </Button>
 
         </Grid>
+
         <Label Content="Email" HorizontalAlignment="Left" Margin="30,161,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="EmailTextBox"  HorizontalAlignment="Right" Margin="0,165,50,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195">
             <Binding Path="cliente.Email" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay" NotifyOnSourceUpdated="True" NotifyOnTargetUpdated="True">
