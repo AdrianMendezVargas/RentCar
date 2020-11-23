@@ -90,6 +90,17 @@ namespace RentCar.UI.Consulta {
             } else {
                 poliza = await PolizasBLL.GetPolizas();
             }
+
+            if (TodasRadioButton.IsChecked.Value) {
+                poliza = poliza.Where(p => true).ToList();
+
+            } else if (VigenteRadioButton.IsChecked.Value) {
+                poliza = poliza.Where(p => !p.EstaVencida).ToList();
+
+            } else if (VencidaRadioButton.IsChecked.Value) {
+                poliza = poliza.Where(p => p.EstaVencida).ToList();
+            }
+
             ResultadosDataGrid.ItemsSource = null;
             ResultadosDataGrid.ItemsSource = poliza;
         }

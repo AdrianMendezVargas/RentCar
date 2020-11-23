@@ -43,8 +43,8 @@ Title="ConsultaPoliza" Height="600" Width="1000">
                         </ComboBox>
                         <Label VerticalAlignment="Center" Content="Estado:" Margin="10,0"/>
                         <StackPanel Orientation="Vertical">
-                            <RadioButton x:Name="AntiguasRadioButton" GroupName="EstadoPoliza" Content="Antiguas" Margin="0,2"/>
-                            <RadioButton x:Name="ActualesRadioButton" GroupName="Estadopoliza" Content="Actuales" Margin="0,2"/>
+                            <RadioButton x:Name="VencidaRadioButton" GroupName="EstadoPoliza" Content="Vencida" Margin="0,2"/>
+                            <RadioButton x:Name="VigenteRadioButton" GroupName="Estadopoliza" Content="Vigente" Margin="0,2"/>
                             <RadioButton x:Name="TodasRadioButton" IsChecked="True" GroupName="EstadoPoliza" Content="Todas" Margin="0,2"/>
                         </StackPanel>
 
